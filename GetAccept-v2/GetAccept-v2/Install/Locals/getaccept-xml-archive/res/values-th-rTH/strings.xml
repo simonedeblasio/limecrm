@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: th-TH, Thai (Thailand)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+-->
+<resources>
+    <string name="COMMON_EMAIL"></string>
+    <string name="RELATED_DOCUMENTS"></string>
+    <string name="NO_DOCUMENT_SENT_YET"></string>
+    <string name="SETTINGS"></string>
+    <string name="INVITE_COWORKERS"></string>
+    <string name="SUPPORT"></string>
+    <string name="CANCEL"></string>
+    <string name="MULTIPLE_ENTITIES"></string>
+    <string name="SELECT_ENTITY"></string>
+    <string name="INVITE_COLLEGUES"></string>
+    <string name="INVITE"></string>
+    <string name="INTRODUCTION_VIDEO"></string>
+    <string name="PLAY_VIDEO"></string>
+    <string name="USERNAME"></string>
+    <string name="LOGIN"></string>
+    <string name="SIGNUP"></string>
+    <string name="CREATE_ACCOUNT"></string>
+    <string name="REGISTRATION"></string>
+    <string name="READ_ABOUT_ESIGNING"></string>
+    <string name="REGISTER"></string>
+    <string name="AGREE_WITH"></string>
+    <string name="TERMS_OF_SERVICE"></string>
+    <string name="AFTER_EXPIRATION_TRIAL"></string>
+    <string name="PAID_PLAN"></string>
+    <string name="NAME"></string>
+    <string name="ENTITY_NAME"></string>
+    <string name="VERIFY_CREDENTIALS"></string>
+    <string name="SEND"></string>
+    <string name="DOCUMENT_RECIPIENTS"></string>
+    <string name="RECIPIENT_ROLES"></string>
+    <string name="CLICK_TO_SEARCH"></string>
+    <string name="NO_RECIPIENTS"></string>
+    <string name="SIGNER"></string>
+    <string name="CC"></string>
+    <string name="NEXT"></string>
+    <string name="AT_LEASTE_ONE_RECIPIENT"></string>
+    <string name="BACK"></string>
+    <string name="DOCUMENTS"></string>
+    <string name="UPLOAD_VIDEO"></string>
+    <string name="PREPARE_SENDING"></string>
+    <string name="NAME_OF_YOUR_DOCUMENTS"></string>
+    <string name="SEND_SMART_REMINDERS"></string>
+    <string name="OPEN_IN_GA_WITH_VIDEO"></string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP"></string>
+    <string name="VIDEO_IS_BEING_PROCESSING"></string>
+    <string name="SELECT_A_DOCUMENT"></string>
+    <string name="REMOVE_VIDEO"></string>
+    <string name="SUCCESS"></string>
+    <string name="SUCCESSFULLY"></string>
+    <string name="ADD_REMINDER"></string>
+    <string name="SKIP"></string>
+    <string name="REFRESH_LIST"></string>
+    <string name="LOGOUT"></string>
+    <string name="PASSWORD"></string>
+    <string name="DETAILED_ANALYTICS"></string>
+    <string name="DOWNLOAD_DOCUMENT"></string>
+    <string name="COUNTRY"></string>
+    <string name="COMPANY_ENTITY"></string>
+    <string name="SENT"></string>
+    <string name="VISITS"></string>
+    <string name="TIME_SPENT"></string>
+    <string name="PAGE_VIEWS"></string>
+    <string name="READ"></string>
+    <string name="DELETE"></string>
+    <string name="SEND_INTERNAL"></string>
+    <string name="DOCUMENT_NAME"></string>
+    <string name="SUBJECT"></string>
+    <string name="MESSAGE"></string>
+    <string name="OPEN_IN_GETACCEPT"></string>
+    <string name="UPLOAD_A_VIDEO"></string>
+    <string name="USE"></string>
+    <string name="RETAKE"></string>
+    <string name="SEND_SMS"></string>
+    <string name="SEARCH_INTERNAL"></string>
+    <string name="TEMPLATE_HEADER"></string>
+    <string name="GET_STARTED"></string>
+    <string name="LIME_DOCUMENT"></string>
+    <string name="TEMPLATE_FROM_GETACCEPT"></string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS"></string>
+    <string name="REPLACE_DOCUMENT"></string>
+    <string name="CHOOSE_A_TEMPLATE"></string>
+    <string name="COPY_AND_PASTE"></string>
+    <string name="CHOOSE_A_DOCUMENT"></string>
+    <string name="SELECTED_DOCUMENT"></string>
+    <string name="SEARCH_FOR_TEMPLATE"></string>
+</resources>

@@ -1,0 +1,941 @@
+#ga {
+    margin-top: 10px;
+}
+
+h4 {
+    font-weight: bold;
+    color: rgb(51,71,91);
+    font-size: 14px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a:hover {
+    color: rgb(244,146,49);
+    text-decoration: underline;
+}
+
+.header-container {
+    padding-bottom: 0px;
+}
+
+.header-container::before {
+    border-color: rgb(46,46,46) transparent transparent !important;
+}
+
+.ga-container {
+    display: none;
+}
+
+/*********************/
+/*VIEW (Black header)*/
+/*********************/
+
+.ga-view {
+    background-color: rgb(46,46,46);
+    width: 100%;
+    height: 38px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.ga-view-head-left {
+    display: inline-block;
+    width: 70%;
+}
+
+.ga-view-head-center {
+    display: inline-block;
+    position: relative;
+    right: 40px;
+}
+
+.ga-view-head-right {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    padding-top: 4px;
+}
+
+.ga-view .chevron{
+    font-size: 9px;
+}
+
+.ga-logo {
+    height: 20px;
+    margin: 6px;
+}
+
+.ga-view-expanded {
+    position: relative;
+    display: block;
+    bottom: 0px;
+    margin-right: 10px;
+    height: 100%;   
+    padding: 15px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    color: rgb(136,136,136);
+    z-index: 40;
+}
+
+.ga-view-expanded::after {
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 100%;
+    background-color: #DFEDFF;
+    z-index: 15;
+    -webkit-box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
+    -moz-box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
+    box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
+}
+
+.ga-view-send {
+    top: 0px;
+    color: #fff;
+    margin: 1px 0px;
+    padding: 4px 10px 5px 6px;
+    font-size: 12px;
+    background-color: rgb(244,146,49);
+    border-radius: 3px;
+    font-weight: 700;
+}
+
+.ga-view-send:hover {
+    color: #fffcf7;
+    text-decoration: none;
+}
+
+/*******/
+/*LOGIN*/
+/*******/
+
+.ga-login {
+    text-align: center;
+    color: rgb(46,46,46);
+}
+
+.ga-login-icon {
+    height: 40px;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.ga-login-button {
+    margin-top: 15px;
+}
+
+.ga-login-signup {
+    display: block;
+}
+
+/*******/
+/*STEPS*/
+/*******/
+
+.ga-steps {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.ga-steps li {
+    display: inline;
+    margin: 0px 5px;
+}
+
+.ga-step {
+    border: 0.3px solid rgb(244,146,49);
+    border-radius: 50%;
+    display: inline-block;
+    padding: 4px;
+}
+
+.ga-step-fill {
+    background-color: rgb(244,146,49);
+}
+
+/*************/
+/*GaDocuments*/
+/*************/
+
+.ga-gaDocuments {
+    color: rgb(136,136,136);
+    word-break: break-word;
+    white-space: normal;
+    max-height: 25em;
+    overflow-y: auto;
+    margin-top: 1em;
+}
+
+.ga-gaDocuments h4 {
+    display: inline;
+}
+
+.ga-gaDocuments i {
+    display: inline;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.ga-gaDocuments-list {
+    clear: both;
+    list-style: none;
+}
+
+.ga-gaDocuments-listItem {
+    border-left: 5px solid #ccc;
+    margin-bottom: 5px;
+    padding: 2px 10px;
+    color: #999;
+}
+
+.ga-gaDocuments-listItem-link {
+    color: rgb(244,146,49);
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.ga-gaDocuments-listItem-status {
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 12px;  
+    font-weight: bold;
+}
+
+.ga-gaDocuments-listItem-analytics, .ga-gaDocuments-listItem-download {
+    color: #999;
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 11px; 
+}
+
+/***********/
+/*Analytics*/
+/***********/
+
+.ga-analytics-status-indicator {
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
+}
+
+.ga-analytics-head-name {
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+.ga-analytics-head-name h2 {
+    display: inline;
+}
+
+.ga-analytics-head-name h5:hover {
+    text-decoration: underline;
+}
+
+.ga-analytics-status {
+    display: inline;
+    text-transform: uppercase;
+}
+
+.ga-analytics-stats {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.ga-analytics-stats h1 {
+    margin: 0px;
+}
+
+.ga-analytics-stats h5 {
+    text-transform: uppercase;
+}
+
+.ga-analytics-stats li {
+    text-align: center;
+    display: table-cell;
+}
+
+.ga-analytics-documents {
+    padding-top: 10px;
+}
+
+.ga-analytics-pages {
+    max-height: 400px; 
+    overflow-y: auto;
+}
+
+.ga-analytics-pageList li {
+    margin-top: 15px;
+    padding-left: 20px;
+    display: flex;
+}
+
+.ga-analytics-page-img {
+    width: 45%;
+    margin-left: 10px;
+    height: 150px;
+    display: inline-block;
+}
+
+.ga-analytics-page-info {
+    display: inline-block;
+    text-align: center;
+    width: 40%;
+    height: 150px;
+    padding-top: 10px;
+    margin-left: 5px;
+}
+
+.ga-analytics-percent {
+    border: 1px solid orange;
+    width: auto;
+    height: 12px;
+    margin: 0 10%;
+    border-radius: 2px;
+}
+
+.ga-percent {
+    height: 100%;
+    background-color: orange;
+}
+
+.ga-analytics-page-thumb {
+    max-height: 100%;
+    max-width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
+}
+
+.ga-analytics-delete {
+    margin-top: 30px;
+}
+
+/*****************/
+/*****VIDEO*******/
+/*****************/
+
+.ga-video {
+    margin-bottom: 20px;
+    word-break: normal;
+    white-space: normal;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    padding: 10px;
+    cursor: pointer;
+    background: hsla(0,0%,78%,.5);
+    box-shadow: 0 0.8rem 1.5rem 0 rgba(0,0,0,.3);
+}
+
+.ga-video-innerContainer {
+    background-color: #fff;
+    padding: 0px;
+    height: auto;
+    position: relative;
+    color: #000;
+    padding-bottom: 40px;
+    border-radius: 12px 12px 2px 2px;
+}
+
+.ga-video-header {
+    text-align: center;
+    background-color: rgb(244,146,49);
+    color: #fff;
+    padding: 30px 0px;
+    border-radius: 2px 2px 0px 0px;
+}
+
+.ga-video-close {
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.ga-video-close:hover {
+    color: #000;
+}
+
+.ga-video-body {
+    text-align: center;
+    padding: 0px 20px;
+}
+
+.ga-video-thumb {
+    margin-top: 10px;
+    height: 200px;
+}
+
+.ga-video-button-group {
+    display: block; 
+    margin-top: 10px; 
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.ga-btn-group ,.ga-btn-group:visited {
+    width: 49%;
+    margin-right: 2px;
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+.ga-btn-group:hover, .ga-btn-group:active, .ga-btn-group:focus {
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+.upload-video {
+    margin-top: 10px;
+}
+
+/*******************/
+/*SEND OUT WORKFLOW*/
+/*******************/
+.ga-sendout-workflow {
+    word-break: break-word;
+    white-space: normal;
+}
+
+.ga-sendout-workflow-top {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+}
+
+.ga-sendout-workflow-top a ul {
+    display: inline-block;
+}
+
+.ga-back {
+    color: rgb(244,146,49);
+    cursor: pointer;
+}
+
+/***********/
+/*RECIPIENT*/
+/***********/
+
+.ga-recipient {
+    width: 100%;
+    padding: 0px;
+    background-color: #fff;
+    color: rgb(136,136,136);
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.ga-recipient-container {
+    height: auto;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid rgb(136,136,136);
+    border-radius: 2px;
+}
+
+.ga-recipient-personList li {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.no-recipients-text {
+    text-align: center; 
+    line-height: 90px; 
+    color:#888;
+}
+
+.ga-recipient-recipients {
+    min-height: 90px;
+    height: auto;
+    width: 100%;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(238,238,238);
+    border-radius: 2px;
+}
+
+.ga-recipient-recipients li {
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.ga-recipient-recipientsList-name {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ga-recipient-recipientsList-actions {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+ }
+
+.action {
+    display: inline-block;
+    cursor: pointer;
+    padding: 0px 5px;
+}
+
+.action:not(.active):hover {
+    background-color: #ccc;
+}
+
+.ga-recipient-recipientsList-actions .remove {
+    color: rgb(136,136,136);
+    padding-left: 6px;
+}
+
+.ga-recipient-recipientsList-actions .remove:hover {
+    background-color: red;
+    color: #fff;
+}
+
+.active {
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+/******************/
+/*AVAILABLE FIELDS*/
+/******************/
+
+.ga-availablefields-container {
+    overflow-y: auto;
+    max-height: 25em;
+}
+
+/**********/
+/*DOCUMENT*/
+/**********/
+
+.ga-document {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.ga-document-listDocuments {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.ga-document-send-list-text {
+    background-color: #eeeeee;
+    border-radius: 20px;
+    color: #666666; 
+    font-weight: bold;  
+    height: auto;
+}
+
+.ga-document-send-list-text span {
+    line-height: 14px;
+    vertical-align: middle;
+}
+
+.ga-document-send-list-icon { 
+    display: inline-block;
+    padding: 5px 5px;
+    border-radius: 60px;
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+.ga-document-remove-video {
+    display: inline-block;
+    padding: 5px 6px;
+    position: absolute;
+    right: 0px;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.ga-document-remove-video:hover {
+    background-color:#ccc;
+}
+
+.ga-document-listDocuments li{
+    vertical-align: middle;
+    margin: 5px 0px;
+}
+
+.ga-document-send {
+    margin-top: 10px;
+}
+
+.ga-document-open {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/**********/
+/*REMINDER*/
+/**********/
+
+.ga-reminderList {
+    display: table;
+    table-layout: fixed;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.ga-reminderList li {
+    display: table-cell;
+}
+
+.ga-reminderList-option {
+    width: 95%;
+    display: block;
+    height: 35px;
+    background-color: #ccc;
+    cursor: pointer;
+    line-height: 35px;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.ga-reminderList-option:hover {
+    background-color: #666;
+    color: #fff;
+}
+
+/******/
+/*MENU*/
+/******/
+
+.ga-menu-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: rgb(136,136,136);
+   
+    cursor: pointer;
+}
+
+.ga-menu {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    z-index: 100;
+    width: 150px;  
+    border-bottom-left-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
+}
+
+.ga-menu ul{
+    list-style: none;
+    display: block;
+    cursor: pointer
+}
+
+.ga-menu li {
+    line-height: 3.0em;
+    padding-left: 10px;
+}
+
+.ga-menu li:hover {
+    border-left: 2px solid rgb(244,146,49);
+    color: rgb(244,146,49);
+}
+
+.ga-menu-user-container {
+    position: relative;
+}  
+
+.ga-menu-user-text {
+    margin-left: 2.5em;
+} 
+.ga-menu-user-thumb {
+    width: 2em;
+    display: inline-block;
+    height: 2em;
+    background-size: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/********/
+/*INVITE*/
+/********/
+.ga-invite-coworkerlist-container {
+    overflow-y: auto;
+    max-height: 15em;
+    position: relative;
+}
+.ga-invite-coworkerlist li {
+    background-color: rgb(238,238,238);
+    height: 30px;
+    margin-bottom: 2px;
+    line-height: 30px;
+}
+
+.ga-invite-coworkerlist-name {
+    display: inline-block;
+    width: 70%;
+    padding-left: 5px;
+}
+
+.ga-invite-coworkerlist-invite {
+    display: inline-block;
+    width: auto;
+    position: absolute;
+    right: 15px;
+}
+
+.ga-invite-sendInvite {
+    background-color: orange;
+    color: #fff;
+    padding: 7.5px;
+    cursor: pointer;
+}
+
+/******/
+/*HELP*/
+/******/
+.ga-help-intro-video-thumb {
+    text-align: center;
+}
+
+.ga-help-intro-video-thumb a {
+    display: block;
+}
+
+#ga-help-introduction-video {
+    width: 120px;
+}
+
+
+/*===== TEMPLATE =====*/
+
+.ga-template-container {
+    min-height: 20em; 
+    overflow-y: auto;
+}
+.ga-template-list {
+    /*background-color: #ccc;*/
+}
+
+.ga-template-list-item {
+    position: relative;
+    display: inline;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.ga-template-thumb {
+    position: relative;
+    display: inline-block;
+    margin-right: 5px;
+    width: calc(50% - 7px);
+    height: 120px;
+    background-size: cover;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.ga-template-thumb.selected {
+    border: 2px solid #f89214;
+}
+
+.ga-template-item-name {
+    position: absolute;
+    bottom: -0px;
+    right: 0px; 
+    left: 0px;
+    color: #888;
+    padding: 5px 0px;
+    background-color: #ccc;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/******/
+/*MISC*/
+/******/
+
+.ga-settings ,.ga-invite ,.ga-help {
+    height: 300px;
+    word-break: normal;
+    white-space: normal;
+}
+
+.ga-spinner {
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 45%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.4);
+    color: orange;
+    z-index: 100;
+}
+
+.ga-btn, .ga-btn:visited{
+    background-color: rgb(244,146,49);
+    color: #fff;
+    width: 100%;
+    height: 40px;
+}
+
+.ga-btn:hover, .ga-btn:active, .ga-btn:focus {
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+.ga-btn-blank {
+    background-color: none;
+    background-image: none;
+    border: none;
+    color: rgb(249,177,34);
+    background: none;
+    font-weight: bold;
+    margin-top: 5px;
+    opacity: 1;
+}
+
+.ga-btn-blank:hover {
+    text-decoration: underline;
+    color: rgb(244,146,49);
+}
+
+.ga-label {
+    font-weight: normal;
+    margin-bottom: -2px;
+}
+
+.ga-input-field {
+    margin-bottom: 4px;
+}
+
+#ga-login-password {
+    margin-top: 10px;
+}
+
+#country {
+    margin-top: 2px;
+    margin-bottom: 15px;
+}
+
+.ga-register {
+    margin-bottom: 10px;
+}
+
+/* GLÖM INTE ATT PLOCKA BORT DENNA. DENNA GÖMMER SPINNERN. */
+#loadingIndicator { 
+    visibility: hidden !important;
+}
+
+/**********************************/
+/********* STATUS COLORS **********/
+/**********************************/
+
+.importing , .processing , .cc {
+    border-left-color: #3E82F7;
+}
+.draft{
+    border-left-color: gray; /*gray*/
+}
+.viewed{
+   border-left-color: #f89214; /*orange*/
+}
+.sent{
+    border-left-color: #3D81DA;  /*blue*/
+}
+.signed{
+    border-left-color: #45c068; /*green*/
+}
+.rejected, .lost{
+    border-left-color: #FA8885;/*red*/
+}
+.reviewed{
+    border-left-color: #f89214;/*orange*/
+}
+
+.ga-analytics-status-indicator.importing , .ga-analytics-status-indicator.processing , .ga-analytics-status-indicator.cc {
+    background-color: #3E82F7;
+}
+.ga-analytics-status-indicator.draft{
+    background-color: gray; /*gray*/
+}
+.ga-analytics-status-indicator.viewed{
+   background-color: #f89214; /*orange*/
+}
+.ga-analytics-status-indicator.sent {
+    background-color: #3D81DA;
+}
+.ga-analytics-status-indicator.signed{
+    background-color: #45c068; /*green*/
+}
+.ga-analytics-status-indicator.rejected, .ga-analytics-status-indicator.lost{
+    background-color: #FA8885;/*red*/
+}
+.ga-analytics-status-indicator.reviewed{
+    background-color: #f89214;/*orange*/
+}
+
+
+@media screen and (max-height: 800px) {
+    .ga-sendout-workflow {
+        height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 5px;
+        padding-bottom: 20px; 
+    }
+
+    .ga-recipient-recipientsList-actions {
+        right: 38px;
+    }
+
+    .ga-analytics {
+        height: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 20px;
+    }
+
+    .ga-analytics-pages {
+        max-height: none;
+        height: auto;
+        overflow: normal;
+    }
+}
+
+@media screen and (min-height: 801px) {
+    .ga-sendout-workflow {
+        min-height: 500px;
+        height: auto;
+    }
+}

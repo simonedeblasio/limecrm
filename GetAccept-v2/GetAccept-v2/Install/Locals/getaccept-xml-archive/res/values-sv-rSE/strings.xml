@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: sv-SE, Swedish (Sweden)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+-->
+<resources>
+    <string name="COMMON_EMAIL">Epost</string>
+    <string name="RELATED_DOCUMENTS">Relatedade dokument</string>
+    <string name="NO_DOCUMENT_SENT_YET">Det finns inget dokument skickat från detta kort</string>
+    <string name="SETTINGS">Inställningar</string>
+    <string name="INVITE_COWORKERS">Bjud in dina kollegor</string>
+    <string name="SUPPORT">Support</string>
+    <string name="CANCEL">Avbryt</string>
+    <string name="MULTIPLE_ENTITIES">Skifta entitet\u0020</string>
+    <string name="SELECT_ENTITY">Välj entitet</string>
+    <string name="INVITE_COLLEGUES">Bjud in dina kollegor till att använda GetAccept</string>
+    <string name="INVITE">Bjud in</string>
+    <string name="INTRODUCTION_VIDEO">Introduktionsvideo</string>
+    <string name="PLAY_VIDEO">Spela video</string>
+    <string name="USERNAME">Användarnamn</string>
+    <string name="LOGIN">Logga in</string>
+    <string name="SIGNUP">Har du inget konto? Skapa ett nu</string>
+    <string name="CREATE_ACCOUNT">Skapa ett konto gratis</string>
+    <string name="REGISTRATION">Registreringen tar mindre än en minut, när du är klar kan du skicka ditt första dokument med GetAccept</string>
+    <string name="READ_ABOUT_ESIGNING">Läs om elektronisk signering</string>
+    <string name="REGISTER">Registrera</string>
+    <string name="AGREE_WITH">Genom att registrera dig godkänner du våra</string>
+    <string name="TERMS_OF_SERVICE">Villkor och policies</string>
+    <string name="AFTER_EXPIRATION_TRIAL">Efter att testperioden har gått ut har du möjligheten att övergå till en gratis version eller uppgradera till en</string>
+    <string name="PAID_PLAN">betalt abonnemang.</string>
+    <string name="NAME">Namn</string>
+    <string name="ENTITY_NAME">Skriv in ditt företagsnamn</string>
+    <string name="VERIFY_CREDENTIALS">Verifiera att ditt lösenord och användarnamn är korrekt</string>
+    <string name="SEND">Skicka</string>
+    <string name="DOCUMENT_RECIPIENTS">Mottagare</string>
+    <string name="RECIPIENT_ROLES">Lägg till mottagare och sätt deras roll. Var mottagare i listan kommer att få ett dokument skickat till sig</string>
+    <string name="CLICK_TO_SEARCH">Klicka för att söka efter e-post</string>
+    <string name="NO_RECIPIENTS">Inga mottagare tillagda</string>
+    <string name="SIGNER">Signerare</string>
+    <string name="CC">CC</string>
+    <string name="NEXT">Nästa</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Du måste välja minst en mottagare</string>
+    <string name="BACK">Tillbaka</string>
+    <string name="DOCUMENTS">Dokument som kommer skickas</string>
+    <string name="UPLOAD_VIDEO">Ladda upp video</string>
+    <string name="PREPARE_SENDING">Förbered leverans</string>
+    <string name="NAME_OF_YOUR_DOCUMENTS">Skriv in ett dokumentnamn och editera din ämnesrad samt meddelande</string>
+    <string name="SEND_SMART_REMINDERS">Skicka smarta påminnelser</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Öppna din GetAccept Mobila Appen och spela in en video</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Öppna GetAccept Mobil Appen och spela in en video för att presentera dokumentet</string>
+    <string name="VIDEO_IS_BEING_PROCESSING">Video förbereds, var vänlig och vänta</string>
+    <string name="SELECT_A_DOCUMENT">Välj ett dokument i dokumentfliken för att fortsätta</string>
+    <string name="REMOVE_VIDEO">Ta bort video</string>
+    <string name="SUCCESS">Lyckat!</string>
+    <string name="SUCCESSFULLY">Ditt dokument har skickats via GetAccept</string>
+    <string name="ADD_REMINDER">Lägg till påminnelse</string>
+    <string name="SKIP">Skippa</string>
+    <string name="REFRESH_LIST">Uppdatera listan</string>
+    <string name="LOGOUT">Logga ut</string>
+    <string name="PASSWORD">Lösenord</string>
+    <string name="DETAILED_ANALYTICS">Detaljerad analys</string>
+    <string name="DOWNLOAD_DOCUMENT">Ladda ner dokument</string>
+    <string name="COUNTRY">Land</string>
+    <string name="COMPANY_ENTITY">Företag / Entity</string>
+    <string name="SENT">Skickat</string>
+    <string name="VISITS">Besök</string>
+    <string name="TIME_SPENT">Spenderad tid</string>
+    <string name="PAGE_VIEWS">Sidvisningar</string>
+    <string name="READ">Läs</string>
+    <string name="DELETE">Ta bort</string>
+    <string name="SEND_INTERNAL">Skicka internt</string>
+    <string name="DOCUMENT_NAME">Dokumentnamn</string>
+    <string name="SUBJECT">Ämne</string>
+    <string name="MESSAGE">Meddelande</string>
+    <string name="OPEN_IN_GETACCEPT">Öppna i GetAccept</string>
+    <string name="UPLOAD_A_VIDEO">Ladda upp en video!</string>
+    <string name="USE">Använd</string>
+    <string name="RETAKE">Ta om</string>
+    <string name="SEND_SMS"></string>
+    <string name="SEARCH_INTERNAL">Sök internt efter email</string>
+    <string name="TEMPLATE_HEADER">Välj ett dokument från Lime eller en mall från GetAccept.</string>
+    <string name="GET_STARTED">Kom igång</string>
+    <string name="LIME_DOCUMENT">Dokument i Lime</string>
+    <string name="TEMPLATE_FROM_GETACCEPT">Mall från GetAccept</string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS">För att välja ett dokument, klicka på dokument tabben i Lime och markera sedan ett dokument</string>
+    <string name="REPLACE_DOCUMENT">Byt dokument</string>
+    <string name="CHOOSE_A_TEMPLATE">Välj en template</string>
+    <string name="COPY_AND_PASTE">Kopiera och klistra parametrar från listan nedan till ditt GetAccept-mallfält som värde.</string>
+    <string name="CHOOSE_A_DOCUMENT">Välj dokument</string>
+    <string name="SELECTED_DOCUMENT">Valt dokument:</string>
+    <string name="SEARCH_FOR_TEMPLATE">Sök efter en mall</string>
+</resources>

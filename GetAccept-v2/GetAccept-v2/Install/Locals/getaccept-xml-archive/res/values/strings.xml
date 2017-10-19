@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: en-US, English (USA)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+-->
+<resources>
+    <string name="COMMON_EMAIL">Email</string>
+    <string name="RELATED_DOCUMENTS">Related documents</string>
+    <string name="NO_DOCUMENT_SENT_YET">There is no documents sent from here yet</string>
+    <string name="SETTINGS">Settings</string>
+    <string name="INVITE_COWORKERS">Invite coworkers</string>
+    <string name="SUPPORT">Support</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="MULTIPLE_ENTITIES">If you have multiple entities you can select your current entity here.\u0020</string>
+    <string name="SELECT_ENTITY">Select entity</string>
+    <string name="INVITE_COLLEGUES">Invite colleagues to use this integration</string>
+    <string name="INVITE">Invite</string>
+    <string name="INTRODUCTION_VIDEO">Introduction video</string>
+    <string name="PLAY_VIDEO">Play Video</string>
+    <string name="USERNAME">Username</string>
+    <string name="LOGIN">Login</string>
+    <string name="SIGNUP">Don\'t have an account? Sign up</string>
+    <string name="CREATE_ACCOUNT">Create a free account</string>
+    <string name="REGISTRATION">The registration process takes less than a minute, after you can send your first documents.</string>
+    <string name="READ_ABOUT_ESIGNING">Read about e-signing</string>
+    <string name="REGISTER">Register</string>
+    <string name="AGREE_WITH">By signing up, you agree with our</string>
+    <string name="TERMS_OF_SERVICE">Terms of Service</string>
+    <string name="AFTER_EXPIRATION_TRIAL">After expiration of the 14-day trial, you have the option to revert to a free plan, or upgrade to a</string>
+    <string name="PAID_PLAN">paid plan.</string>
+    <string name="NAME">Name</string>
+    <string name="ENTITY_NAME">Enter your company/entity name</string>
+    <string name="VERIFY_CREDENTIALS">Make sure that your password and username are right.</string>
+    <string name="SEND">Send</string>
+    <string name="DOCUMENT_RECIPIENTS">Document Recipients</string>
+    <string name="RECIPIENT_ROLES">Add and set recipient roles. All recipients in the list will receive the document.</string>
+    <string name="CLICK_TO_SEARCH">Click to search on email</string>
+    <string name="NO_RECIPIENTS">No recipients added</string>
+    <string name="SIGNER">Signer</string>
+    <string name="CC">CC</string>
+    <string name="NEXT">Next</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">You need to select at leaste one recipient!</string>
+    <string name="BACK">Back</string>
+    <string name="DOCUMENTS">Document(s) that will be sent</string>
+    <string name="UPLOAD_VIDEO">Upload video</string>
+    <string name="PREPARE_SENDING">Prepare sending</string>
+    <string name="NAME_OF_YOUR_DOCUMENTS">Set a name of your document and customize the subject and message</string>
+    <string name="SEND_SMART_REMINDERS">Send smart reminders</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Open in GetAccept and record a video</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Open your GetAccept mobile application and record a video to increse your closing rate.</string>
+    <string name="VIDEO_IS_BEING_PROCESSING">Video is being processing, please wait</string>
+    <string name="SELECT_A_DOCUMENT">Please select a document to step forward.</string>
+    <string name="REMOVE_VIDEO">Remove video</string>
+    <string name="SUCCESS">Success!</string>
+    <string name="SUCCESSFULLY">Your document was successfully sent through GetAccept</string>
+    <string name="ADD_REMINDER">Add reminder?</string>
+    <string name="SKIP">Skip</string>
+    <string name="REFRESH_LIST">Refresh list</string>
+    <string name="LOGOUT">Logout</string>
+    <string name="PASSWORD">Password</string>
+    <string name="DETAILED_ANALYTICS">Detailed analytics</string>
+    <string name="DOWNLOAD_DOCUMENT">Download document</string>
+    <string name="COUNTRY">Country</string>
+    <string name="COMPANY_ENTITY">Company/Entity</string>
+    <string name="SENT">Sent</string>
+    <string name="VISITS">Visits</string>
+    <string name="TIME_SPENT">Time Spent</string>
+    <string name="PAGE_VIEWS">Page views</string>
+    <string name="READ">Read</string>
+    <string name="DELETE">Delete</string>
+    <string name="SEND_INTERNAL">Send internal</string>
+    <string name="DOCUMENT_NAME">Document name</string>
+    <string name="SUBJECT">Subject</string>
+    <string name="MESSAGE">Message</string>
+    <string name="OPEN_IN_GETACCEPT">Open in GetAccept</string>
+    <string name="UPLOAD_A_VIDEO">Upload a video!</string>
+    <string name="USE">Use</string>
+    <string name="RETAKE">Retake</string>
+    <string name="SEND_SMS">Send SMS</string>
+    <string name="SEARCH_INTERNAL">Search internal on e-mail</string>
+    <string name="TEMPLATE_HEADER">Choose a file from Lime or select a template from GetAccept.</string>
+    <string name="GET_STARTED">Get started</string>
+    <string name="LIME_DOCUMENT">Document in Lime</string>
+    <string name="TEMPLATE_FROM_GETACCEPT">Template from GetAccept</string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS">To select a document, click the document tab in Lime, and then select a document</string>
+    <string name="REPLACE_DOCUMENT">Replace document</string>
+    <string name="CHOOSE_A_TEMPLATE">Choose a template</string>
+    <string name="COPY_AND_PASTE">Copy and paste parameters from the list below to your GetAccept template field as Value.</string>
+    <string name="CHOOSE_A_DOCUMENT">Choose a document</string>
+    <string name="SELECTED_DOCUMENT">Selected document:</string>
+    <string name="SEARCH_FOR_TEMPLATE">Search for template</string>
+</resources>

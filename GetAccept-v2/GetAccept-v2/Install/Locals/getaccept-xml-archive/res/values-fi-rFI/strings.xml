@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: fi-FI, Finnish (Finland)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+-->
+<resources>
+    <string name="COMMON_EMAIL">Sähköposti</string>
+    <string name="RELATED_DOCUMENTS">Liittyvät dokumentit</string>
+    <string name="NO_DOCUMENT_SENT_YET">Ei vielä lähetettyjä asiakirjoja tältä kortilta</string>
+    <string name="SETTINGS">Asetukset</string>
+    <string name="INVITE_COWORKERS">Lisää kolleegoja</string>
+    <string name="SUPPORT">Tuki</string>
+    <string name="CANCEL">Peruuta</string>
+    <string name="MULTIPLE_ENTITIES">Vaihda oikea yksikkö tästä</string>
+    <string name="SELECT_ENTITY">Valitse yksikkö</string>
+    <string name="INVITE_COLLEGUES">Kutsu kollegoita käyttämään tätä integraatiota</string>
+    <string name="INVITE">Kutsu</string>
+    <string name="INTRODUCTION_VIDEO">Esittelyvideo</string>
+    <string name="PLAY_VIDEO">Toista video</string>
+    <string name="USERNAME">Käyttäjätunnus</string>
+    <string name="LOGIN">Kirjaudu sisään</string>
+    <string name="SIGNUP">Ei ole tiliä? Rekisteröidy</string>
+    <string name="CREATE_ACCOUNT">Luo ilmainen tili</string>
+    <string name="REGISTRATION">Rekisteröinti kestää alle minuutin, tämän jälkeen voit lähettää ensimmäiset asiakirjat.</string>
+    <string name="READ_ABOUT_ESIGNING">Lue e-allekirjoituksesta</string>
+    <string name="REGISTER">Rekisteröidy</string>
+    <string name="AGREE_WITH">Rekisteröitymällä hyväksyt meidän</string>
+    <string name="TERMS_OF_SERVICE">Käyttöehdot</string>
+    <string name="AFTER_EXPIRATION_TRIAL">14 päivän kokeiluversion päättymisen jälkeen sinulla on mahdollisuus palata ilmaiseen käyttöön tai päivittää</string>
+    <string name="PAID_PLAN">maksullinen tilaus.</string>
+    <string name="NAME">Nimi</string>
+    <string name="ENTITY_NAME">Anna yrityksen / yksikön nimi</string>
+    <string name="VERIFY_CREDENTIALS">Varmista, että salasana ja käyttäjätunnus ovat oikeassa.</string>
+    <string name="SEND">Lähetä</string>
+    <string name="DOCUMENT_RECIPIENTS">Asiakirjan vastaanottajat</string>
+    <string name="RECIPIENT_ROLES">Lisää ja määrittää vastaanottajien rooleja. Kaikki vastaanottajat luettelossa saavat asiakirjan.</string>
+    <string name="CLICK_TO_SEARCH">Klikkaa etsiäksesi nimeä tai sähköpostiosoitetta</string>
+    <string name="NO_RECIPIENTS">Ei vastaanottajia lisätty</string>
+    <string name="SIGNER">Allekirjoittaja</string>
+    <string name="CC">CC</string>
+    <string name="NEXT">Seuraava</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Sinun täytyy valita vähintään yksi vastaanottaja!</string>
+    <string name="BACK">Takaisin</string>
+    <string name="DOCUMENTS">Lähetettävät asiakirjat</string>
+    <string name="UPLOAD_VIDEO">Lataa video</string>
+    <string name="PREPARE_SENDING">Valmistele lähetys</string>
+    <string name="NAME_OF_YOUR_DOCUMENTS">Anna asiakirjalle nimi, muokkaa otsikkoa ja viestiä</string>
+    <string name="SEND_SMART_REMINDERS">Lähetä älykkäitä muistutuksia</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Avaa GetAcceptPresent videolla</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Avaa GetAccept mobiilisovellus ja tallenna video esitelläksesi asiakirja</string>
+    <string name="VIDEO_IS_BEING_PROCESSING">Videota käsitellään, odota hetki</string>
+    <string name="SELECT_A_DOCUMENT">Valitse asiakirja jatkaaksesi</string>
+    <string name="REMOVE_VIDEO">Poista video</string>
+    <string name="SUCCESS">Onnistui!</string>
+    <string name="SUCCESSFULLY">Asiakirjasi on onnistuneesti lähetetty GetAcceptilla</string>
+    <string name="ADD_REMINDER">Lisää muistutus?</string>
+    <string name="SKIP">Ohita</string>
+    <string name="REFRESH_LIST">Päivitä lista</string>
+    <string name="LOGOUT">Kirjaudu ulos</string>
+    <string name="PASSWORD">Salasana</string>
+    <string name="DETAILED_ANALYTICS">Yksityiskohtaiset analyysit</string>
+    <string name="DOWNLOAD_DOCUMENT">Lataa asiakirja</string>
+    <string name="COUNTRY">Maa</string>
+    <string name="COMPANY_ENTITY">Yritys / Entity</string>
+    <string name="SENT">Lähetetyt</string>
+    <string name="VISITS">Käyntiä</string>
+    <string name="TIME_SPENT">Käytetty aika</string>
+    <string name="PAGE_VIEWS">Sivunäkymät</string>
+    <string name="READ">Lukea</string>
+    <string name="DELETE">Poistaa</string>
+    <string name="SEND_INTERNAL">Lähetä sisäinen</string>
+    <string name="DOCUMENT_NAME">Asiakirjan nimi</string>
+    <string name="SUBJECT">Aihe</string>
+    <string name="MESSAGE">Viesti</string>
+    <string name="OPEN_IN_GETACCEPT">Avaa GetAccept</string>
+    <string name="UPLOAD_A_VIDEO">Lähetä video!</string>
+    <string name="USE">Käyttää</string>
+    <string name="RETAKE">Uusi otos</string>
+    <string name="SEND_SMS">Lähetä tekstiviesti</string>
+    <string name="SEARCH_INTERNAL">Haku sisäisesti sähköpostitse</string>
+    <string name="TEMPLATE_HEADER">Valitse tiedosto Lime-ohjelmasta tai valitse malli GetAcceptista.</string>
+    <string name="GET_STARTED">Aloittaa</string>
+    <string name="LIME_DOCUMENT">Lime-dokumentti</string>
+    <string name="TEMPLATE_FROM_GETACCEPT">Mallisarja GetAcceptista</string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS">Valitse asiakirja napsauttamalla Lime-ohjelman asiakirja-välilehteä ja valitse sitten asiakirja</string>
+    <string name="REPLACE_DOCUMENT">Korvaa asiakirja</string>
+    <string name="CHOOSE_A_TEMPLATE">Valitse malli</string>
+    <string name="COPY_AND_PASTE">Kopioi ja liitä parametrit alla olevasta luettelosta GetAccept-mallikenttään arvoksi.</string>
+    <string name="CHOOSE_A_DOCUMENT">Valitse asiakirja</string>
+    <string name="SELECTED_DOCUMENT">Valittu asiakirja:</string>
+    <string name="SEARCH_FOR_TEMPLATE">Etsi mallia</string>
+</resources>

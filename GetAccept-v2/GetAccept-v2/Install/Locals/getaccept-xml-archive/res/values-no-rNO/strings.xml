@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: no-NO, Norwegian (Norway)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+-->
+<resources>
+    <string name="COMMON_EMAIL">E-post</string>
+    <string name="RELATED_DOCUMENTS">Relaterte dokumenter</string>
+    <string name="NO_DOCUMENT_SENT_YET">Det finnes ingen dokumenter sendt fra dette kortet</string>
+    <string name="SETTINGS">Innstillinger</string>
+    <string name="INVITE_COWORKERS">Inviter kollegaer</string>
+    <string name="SUPPORT">Brukerstøtte</string>
+    <string name="CANCEL">Avbryt</string>
+    <string name="MULTIPLE_ENTITIES">Hvis du har flere enheter kan du velge din nåværende enhet her.</string>
+    <string name="SELECT_ENTITY">Velg enhet</string>
+    <string name="INVITE_COLLEGUES">Inviter kolleger for å bruke denne integrasjonen</string>
+    <string name="INVITE">Invitere</string>
+    <string name="INTRODUCTION_VIDEO">Introduksjonsvideo</string>
+    <string name="PLAY_VIDEO">Spill video</string>
+    <string name="USERNAME">Brukernavn</string>
+    <string name="LOGIN">Logg inn</string>
+    <string name="SIGNUP">Har du ikke en konto? Meld deg på</string>
+    <string name="CREATE_ACCOUNT">Opprett en gratis konto</string>
+    <string name="REGISTRATION">Registreringen tar mindre enn ett minutt før du kan du sende dine første dokumenter.</string>
+    <string name="READ_ABOUT_ESIGNING">Les om e-signering</string>
+    <string name="REGISTER">Registrere</string>
+    <string name="AGREE_WITH">Ved å registrere deg, samtykker du med våre</string>
+    <string name="TERMS_OF_SERVICE">Vilkår for bruk</string>
+    <string name="AFTER_EXPIRATION_TRIAL">Etter utløpt 14-dagers prøveperiode, har du muligheten til å gå tilbake til en gratis versjon, eller oppgradere til en</string>
+    <string name="PAID_PLAN">betalt abonnement.</string>
+    <string name="NAME">Navn</string>
+    <string name="ENTITY_NAME">Skriv inn ditt foretaksnavn</string>
+    <string name="VERIFY_CREDENTIALS">Sørg for at brukernavn og passord er riktig.</string>
+    <string name="SEND">Send</string>
+    <string name="DOCUMENT_RECIPIENTS">Mottakere</string>
+    <string name="RECIPIENT_ROLES">Legg til og sett mottakerroller. Alle mottakere i listen vil motta dokumentet.</string>
+    <string name="CLICK_TO_SEARCH">Klikk for å søke navn eller e-post</string>
+    <string name="NO_RECIPIENTS">Ingen mottakere lagt til</string>
+    <string name="SIGNER">Signér</string>
+    <string name="CC">CC</string>
+    <string name="NEXT">Neste</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Du må velge minst en mottaker</string>
+    <string name="BACK">Tilbake</string>
+    <string name="DOCUMENTS">Dokument(er) som skal sendes</string>
+    <string name="UPLOAD_VIDEO">Last opp video</string>
+    <string name="PREPARE_SENDING">Forbered utsendelse</string>
+    <string name="NAME_OF_YOUR_DOCUMENTS">Angi et navn på dokumentet og tilpass emnet og meldingen</string>
+    <string name="SEND_SMART_REMINDERS">Send smarte påminnelser</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Åpne i GetAcceptPresent med en video</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Åpne GetAccept på mobilen og spill inn en video for å øke dine sjanser.</string>
+    <string name="VIDEO_IS_BEING_PROCESSING">Videoen lastes opp, vennligst vent</string>
+    <string name="SELECT_A_DOCUMENT">Vennligst velg et dokument for å fortsette.</string>
+    <string name="REMOVE_VIDEO">Fjern video</string>
+    <string name="SUCCESS">Suksess!</string>
+    <string name="SUCCESSFULLY">Dokumentet ble sendt via GetAccept</string>
+    <string name="ADD_REMINDER">Legge til påminnelse?</string>
+    <string name="SKIP">Hopp over</string>
+    <string name="REFRESH_LIST">Oppdater liste</string>
+    <string name="LOGOUT">Logg ut</string>
+    <string name="PASSWORD">Passord</string>
+    <string name="DETAILED_ANALYTICS">Detaljert analyse</string>
+    <string name="DOWNLOAD_DOCUMENT">Last ned dokument</string>
+    <string name="COUNTRY">Land</string>
+    <string name="COMPANY_ENTITY">Firma / Entity</string>
+    <string name="SENT">Sendt</string>
+    <string name="VISITS">Besøk</string>
+    <string name="TIME_SPENT">Tid brukt</string>
+    <string name="PAGE_VIEWS">Sidevisninger</string>
+    <string name="READ">Lese</string>
+    <string name="DELETE">Slett</string>
+    <string name="SEND_INTERNAL">Send internt</string>
+    <string name="DOCUMENT_NAME">Dokumentnavn</string>
+    <string name="SUBJECT">Emne</string>
+    <string name="MESSAGE">Budskap</string>
+    <string name="OPEN_IN_GETACCEPT">Åpne i GetAccept</string>
+    <string name="UPLOAD_A_VIDEO">Last opp en video!</string>
+    <string name="USE">Bruk</string>
+    <string name="RETAKE">Retake</string>
+    <string name="SEND_SMS">Send sms</string>
+    <string name="SEARCH_INTERNAL">Søk internt på e-post</string>
+    <string name="TEMPLATE_HEADER">Velg en fil fra Lime eller velg en mal fra GetAccept.</string>
+    <string name="GET_STARTED">Kom i gang</string>
+    <string name="LIME_DOCUMENT">Dokument i Lime</string>
+    <string name="TEMPLATE_FROM_GETACCEPT">Mal fra GetAccept</string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS">Hvis du vil velge et dokument, klikker du på dokumentfanen i Lime, og velger deretter et dokument</string>
+    <string name="REPLACE_DOCUMENT">Erstatt dokument</string>
+    <string name="CHOOSE_A_TEMPLATE">Velg en mal</string>
+    <string name="COPY_AND_PASTE">Kopier og lim inn parametere fra listen nedenfor til GetAccept-malfeltet som Verdi.</string>
+    <string name="CHOOSE_A_DOCUMENT">Velg et dokument</string>
+    <string name="SELECTED_DOCUMENT">Utvalgt dokument:</string>
+    <string name="SEARCH_FOR_TEMPLATE">Søk etter mal</string>
+</resources>

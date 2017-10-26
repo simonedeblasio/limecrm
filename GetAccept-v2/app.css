@@ -73,7 +73,10 @@ a:hover {
     display: block;
     bottom: 0px;
     margin-right: 10px;
-    height: 100%;   
+    width: 100%;
+    height: 30em;  
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 15px;
     padding-bottom: 40px;
     background-color: #fff;
@@ -172,9 +175,10 @@ a:hover {
     color: rgb(136,136,136);
     word-break: break-word;
     white-space: normal;
-    max-height: 25em;
-    overflow-y: auto;
+    /*max-height: 25em;
+    overflow-y: auto;*/
     margin-top: 1em;
+    margin-bottom: 2em;
 }
 
 .ga-gaDocuments h4 {
@@ -458,38 +462,48 @@ a:hover {
 }
 
 .no-recipients-text {
-    text-align: center; 
-    line-height: 90px; 
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%,-100%);
     color:#888;
 }
 
 .ga-recipient-recipients {
-    min-height: 90px;
-    height: auto;
-    width: 100%;
-    margin-right: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    position: relative;
+    height: 9em;
+    overflow-y: auto;
     background-color: rgb(238,238,238);
     border-radius: 2px;
 }
+.ga-recipient-recipients ul {
+    padding: 0em;
+    margin: 0em;
+}
 
-.ga-recipient-recipients li {
-    padding-left: 10px;
-    height: 30px;
+.ga-recipient-list-item {
+    position: relative;
+    left: 0em;
+    right: 0em;
+    display: flex;
+    flex-direction: row;
+    min-height: 30px;
     line-height: 30px;
+    width: 100%;
 }
 
 .ga-recipient-recipientsList-name {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
+    position: relative; 
+    padding-left: 1em;
+    flex: 1;
 }
 
 .ga-recipient-recipientsList-actions {
-    display: inline-block;
-    position: absolute;
-    right: 15px;
+    height: 100%; 
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: right;
+    float: right;
  }
 
 .action {
@@ -504,7 +518,6 @@ a:hover {
 
 .ga-recipient-recipientsList-actions .remove {
     color: rgb(136,136,136);
-    padding-left: 6px;
 }
 
 .ga-recipient-recipientsList-actions .remove:hover {
@@ -520,10 +533,74 @@ a:hover {
 /******************/
 /*AVAILABLE FIELDS*/
 /******************/
+.ga-available-fields-row {
+    border-bottom: 1px solid #ccc;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.ga-available-fields {
+    word-break: break-word;
+    white-space: normal;
+} 
 
 .ga-availablefields-container {
-    overflow-y: auto;
-    max-height: 25em;
+    /*overflow-y: auto;
+    max-height: 25em;*/
+}
+
+.ga-available-fields-text {
+    font-weight: bold;
+    color: #333;
+}
+
+/******/
+/*FILE*/
+/******/
+
+.ga-file-refresh {
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+
+.ga-file-option-container {
+    position: relative;
+    padding: 0.3em;
+    margin-top: 0.5em;
+}
+
+.ga-file-option-list {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.ga-file-option {
+    display: table-cell;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    cursor: pointer;
+}
+
+.ga-file-option.active {
+    background-color: rgb(244,146,49);
+    border: 1px solid rgb(244,146,49);
+}
+
+.ga-file-reload-document {
+    cursor: pointer;
+    text-align: center;
+    background-color: rgb(238,238,238);
+    border-radius: 0.2em;
+    padding: 1em 0em;
+    margin-top: 1em;
+}
+
+.ga-file-reload-icon {
+    display: block;
+    font-size: 2em;
 }
 
 /**********/
@@ -539,6 +616,19 @@ a:hover {
     border-bottom: 1px solid #ccc;
     padding-bottom: 10px;
     margin-bottom: 10px;
+}
+
+.ga-document-inner {
+    height: 20em; 
+    overflow: auto;
+}
+
+.ga-document-add-video {
+    display: block;
+    color:#F49231;
+    cursor: pointer;
+    margin-bottom: 0em;
+    margin-top: 0.5em;
 }
 
 .ga-document-send-list-text {
@@ -587,6 +677,72 @@ a:hover {
 .ga-document-open {
     text-align: center;
     margin-top: 10px;
+}
+
+.ga-document-sendout-buttons {
+    position: absolute;
+    bottom: 0.5em;
+    left: 1em;
+    right: 1em;
+    width: auto;
+    background-color: #fff;
+    box-shadow: 0 -5px 5px -5px #333;
+}
+
+.ga-document-email-header {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+}
+
+.ga-document-email-container {
+    padding: 0.5em 0.5em;
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.ga-document-email-label {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ga-document-updated-icon {
+    margin-left: 0.5em;
+    color: #2dc990;
+}
+
+.ga-document-updated-text {
+    font-size: 10px;
+    color: #2dc990;
+}
+
+.ga-document-input {
+    background-color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 3px 5px;
+}
+
+/*===== NO DOCUMENT ======*/
+
+.ga-no-document {
+    text-align: center;
+    margin-top: 3em;
+    z-index: 999;
+}
+.ga-no-document-icon {
+    font-size: 8em;
+    display: block;
+}
+
+.ga-no-document-get-started {
+    margin-top: 2em;
 }
 
 /**********/
@@ -730,50 +886,45 @@ a:hover {
     width: 120px;
 }
 
-
+/**********************/
 /*===== TEMPLATE =====*/
+/**********************/
 
 .ga-template-container {
-    min-height: 20em; 
+    background-color: rgb(238,238,238);
+    height: 10em;
     overflow-y: auto;
-}
-.ga-template-list {
-    /*background-color: #ccc;*/
+    padding: 0.5em 0.5em;
 }
 
 .ga-template-list-item {
     position: relative;
-    display: inline;
-    box-sizing: border-box;
-    text-align: center;
-    margin: 0 auto;
-}
-
-.ga-template-thumb {
-    position: relative;
-    display: inline-block;
-    margin-right: 5px;
-    width: calc(50% - 7px);
-    height: 120px;
-    background-size: cover;
-    border: 1px solid #ccc;
+    padding: 0.2em 0.2em;
     cursor: pointer;
 }
 
-.ga-template-thumb.selected {
-    border: 2px solid #f89214;
+.ga-template-list-item.selected {
+    color: #f89214;
+    font-weight: bold;
 }
 
-.ga-template-item-name {
+.ga-template-action-links {
     position: absolute;
-    bottom: -0px;
-    right: 0px; 
-    left: 0px;
-    color: #888;
-    padding: 5px 0px;
-    background-color: #ccc;
-    white-space: nowrap;
-    overflow: hidden;
+    bottom: 4.5em;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; 
+    margin-top: 1em;
+}
+
+/**********************/
+/*====== FIELDS ======*/
+/**********************/
+
+.ga-document-fields-container {
+    margin-top: 1em;
+    height: 22em; 
+    overflow: auto;
 }
 
 /******/
@@ -812,6 +963,14 @@ a:hover {
 .ga-btn:hover, .ga-btn:active, .ga-btn:focus {
     background-color: rgb(244,146,49);
     color: #fff;
+}
+
+.ga-btn-button {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    right: 1em;
+    width: auto;
 }
 
 .ga-btn-blank {
@@ -907,14 +1066,6 @@ a:hover {
 
 
 @media screen and (max-height: 800px) {
-    .ga-sendout-workflow {
-        height: 400px;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding-right: 5px;
-        padding-bottom: 20px; 
-    }
-
     .ga-recipient-recipientsList-actions {
         right: 38px;
     }
@@ -933,9 +1084,25 @@ a:hover {
     }
 }
 
-@media screen and (min-height: 801px) {
-    .ga-sendout-workflow {
-        min-height: 500px;
-        height: auto;
+@media screen and (min-height: 1080px) {
+    .ga-view-expanded { 
+        height: 50em;
+    }
+
+    .ga-document-inner {
+        height: 40em;
+    }
+
+    .ga-document-fields-container { 
+        margin-top: 1em;
+        height: 41em;
+    }
+
+    .ga-recipient-container {
+        max-height: 25em;
+    }
+
+    .ga-recipient-recipients {
+        height: 15em;
     }
 }

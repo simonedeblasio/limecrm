@@ -6,7 +6,7 @@
  Locale: da-DK, Danish (Denmark)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+ Exported at: Thu, 26 Oct 2017 23:17:22 +0100
 -->
 <resources>
     <string name="COMMON_EMAIL">E-mail</string>
@@ -94,4 +94,5 @@
     <string name="CHOOSE_A_DOCUMENT">Vælg et dokument</string>
     <string name="SELECTED_DOCUMENT">Udvalgt dokument:</string>
     <string name="SEARCH_FOR_TEMPLATE">Søg efter skabelon</string>
+    <string name="CHANING_TEXT">Ændring af tekst</string>
 </resources>

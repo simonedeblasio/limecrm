@@ -6,7 +6,7 @@
  Locale: en-US, English (USA)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+ Exported at: Thu, 26 Oct 2017 23:17:22 +0100
 -->
 <resources>
     <string name="COMMON_EMAIL">Email</string>
@@ -94,4 +94,5 @@
     <string name="CHOOSE_A_DOCUMENT">Choose a document</string>
     <string name="SELECTED_DOCUMENT">Selected document:</string>
     <string name="SEARCH_FOR_TEMPLATE">Search for template</string>
+    <string name="CHANING_TEXT">Chaning text</string>
 </resources>

@@ -6,7 +6,7 @@
  Locale: pl-PL, Polish (Poland)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+ Exported at: Thu, 26 Oct 2017 23:17:22 +0100
 -->
 <resources>
     <string name="COMMON_EMAIL"></string>
@@ -94,4 +94,5 @@
     <string name="CHOOSE_A_DOCUMENT"></string>
     <string name="SELECTED_DOCUMENT"></string>
     <string name="SEARCH_FOR_TEMPLATE"></string>
+    <string name="CHANING_TEXT"></string>
 </resources>

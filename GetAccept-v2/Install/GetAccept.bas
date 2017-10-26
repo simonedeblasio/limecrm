@@ -3,8 +3,10 @@ Option Explicit
 Private GlobalPersonSourceTab As String
 Private GlobalPersonSourceField As String
 
+
 '#Global variables
 Private GlobalDocumentTypeField As String
+Private GlobalEmailData As String
 
 
 Declare Function GetSystemMetrics32 Lib "user32" _
@@ -929,14 +931,43 @@ Public Sub openGaModal()
     Dim oDialog As Lime.Dialog
     Set oDialog = New Lime.Dialog
     oDialog.Type = lkDialogHTML
-    oDialog.Property("url") = Application.WebFolder & "lbs.html?ap=apps/GetAccept-v2/availablefields&type=tab"
+    'oDialog.Property("url") = Application.WebFolder & "lbs.html?ap=apps/GetAcceptEmail/GetAcceptEmail=tab"
+    oDialog.Property("url") = Application.WebFolder & "lbs.html?ap=apps/GetAcceptEmail/GetAcceptEmail&type=tab"
     oDialog.Property("height") = 530
     oDialog.Property("width") = 700
-    oDialog.show
+    oDialog.show (lkDialogHTML)
 
     Exit Sub
 ErrorHandler:
     UI.ShowError ("GetAccept.openGaModal")
 End Sub
 
+Public Sub showEmailDialog(emailData As String)
+    On Error GoTo ErrorHandler:
+    GlobalEmailData = emailData
+    Call openGaModal
+    Exit Sub
+ErrorHandler:
+    UI.ShowError ("GetAccept.showEmailDialog")
+End Sub
+
+Public Function GetEmailData() As String
+    On Error GoTo ErrorHandler:
+    
+    GetEmailData = GlobalEmailData
+    
+    Exit Function
+ErrorHandler:
+    UI.ShowError ("GetAccept.GetEmailData")
+End Function
+
+Public Sub StoreEmailData(emailData As String)
+    On Error GoTo ErrorHandler:
+    
+    GlobalEmailData = emailData
+    Exit Sub
+ErrorHandler:
+    UI.ShowError ("GetAccept.StoreEmailData")
+
+End Sub
 

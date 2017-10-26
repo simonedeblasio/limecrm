@@ -56,9 +56,16 @@
 
             <!-- ko if: GaDocuments() -->
                 <div class="ga-gaDocuments">                
-                    <h4 data-bind="text: localize.GetAccept.RELATED_DOCUMENTS"></h4>
-                    <i data-bind="click: refreshGaDocuments, icon: 'fa-refresh', tooltip: localize.GetAccept.REFRESH_LIST"> </i>
-                    <p data-bind="text: localize.GetAccept.NO_DOCUMENT_SENT_YET, visible: gaDocumentList().length == 0"></p>
+                    <div data-bind="visible: gaDocumentList().length > 0" >
+                        <h4 data-bind="text: localize.GetAccept.RELATED_DOCUMENTS"></h4>
+                        <i data-bind="click: refreshGaDocuments, icon: 'fa-refresh', tooltip: localize.GetAccept.REFRESH_LIST"> </i>
+                    </div>
+                    <div class="ga-no-document" data-bind="visible: gaDocumentList().length == 0">
+                        <i class="fa fa-send-o ga-no-document-icon"></i>
+                        <p data-bind="text: localize.GetAccept.NO_DOCUMENT_SENT_YET"></p>
+                        <br/>
+                        <button class="btn ga-btn ga-no-document-get-started" data-bind="click: showRecipientPicker, text: localize.GetAccept.GET_STARTED"></button>
+                    </div>
                     <ul class="ga-gaDocuments-list" data-bind="foreach: gaDocumentList">
                         <li class="ga-gaDocuments-listItem" data-bind="css: status">
                             <div>
@@ -91,7 +98,7 @@
                         <h4 class="ga-analytics-status" data-bind="text: documentAnalytics().status"></h4>
                         <ul class="ga-analytics-stats">
                             <li>
-                                <h5 data-bind="text: localize.GetAccept.SENT"><h5> <!--data-bind="text: localize.GetAccept.SENT"-->
+                                <h5 data-bind="text: localize.GetAccept.SENT"><h5>
                                 <h1 data-bind="text: documentAnalytics().sendDate"></h1>
                                 <p data-bind="text: documentAnalytics().sendDateText"></p>
                             </li>
@@ -132,57 +139,57 @@
             <!-- /ko -->
 
             <!-- ko if: Recipient() -->
-                <div class="ga-recipient ga-sendout-workflow" data-bind="click: hidePersonList">
-                    <div class="ga-sendout-workflow-top">
-                        <a class="ga-back" data-bind="text: localize.GetAccept.CANCEL, click: cancel, icon: 'fa-arrow-left'"></a>
-                        <ul class="ga-steps" data-bind="foreach: worksteps, visible: worksteps().length > 0">
-                            <li>
-                                <div class="ga-step" data-bind="css: {'ga-step-fill': $data == 1 }"></div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <h4 data-bind="text: localize.GetAccept.DOCUMENT_RECIPIENTS"></h4>
-                    <p data-bind="text: localize.GetAccept.RECIPIENT_ROLES"></p>
-                    <div class="ga-recipient-search-internal-container">
-                        <div class="checkbox">
-                            <label data-bind="click: function(){return true}, clickBubble: false">
-                                <input type="checkbox" value="" data-bind="checked: sendInternal"><span data-bind="text: localize.GetAccept.SEARCH_INTERNAL"></span>
-                            </label>
+                    <div class="ga-recipient ga-sendout-workflow" data-bind="click: hidePersonList">
+                        <div class="ga-sendout-workflow-top">
+                            <a class="ga-back" data-bind="text: localize.GetAccept.CANCEL, click: cancel, icon: 'fa-arrow-left'"></a>
+                            <ul class="ga-steps" data-bind="foreach: worksteps, visible: worksteps().length > 0">
+                                <li>
+                                    <div class="ga-step" data-bind="css: {'ga-step-fill': $data == 1 }"></div>
+                                </li>
+                            </ul>
                         </div>
+
+                        <h4 data-bind="text: localize.GetAccept.DOCUMENT_RECIPIENTS"></h4>
+                        <p data-bind="text: localize.GetAccept.RECIPIENT_ROLES"></p>
+                        <div class="ga-recipient-search-internal-container">
+                            <div class="checkbox">
+                                <label data-bind="click: function(){return true}, clickBubble: false">
+                                    <input type="checkbox" value="" data-bind="checked: sendInternal"><span data-bind="text: localize.GetAccept.SEARCH_INTERNAL"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control ga-input-field" data-bind="click: showPersonList, clickBubble: false, value: searchValue, valueUpdate: 'afterkeyup', attr: { placeholder: localize.GetAccept.CLICK_TO_SEARCH }"
+                        />
+                        <!-- ko if : showPersons -->
+                        <div class="ga-recipient-container">
+                            <ul class="ga-recipient-personList" data-bind="foreach: personList">
+                                <li data-bind="click: add">
+                                    <span data-bind="text: name, tooltip: email, icon: 'fa-plus'"></span>
+                                    <!-- ko if: internal -->
+                                    <span data-bind="icon: 'fa-user', text: ' ', tooltip: $parent.localize.GetAccept.SEND_INTERNAL"></span>
+                                    <!-- /ko -->
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /ko -->
+                        <div class="ga-recipient-recipients" data-bind="visible: !showPersons()">
+                            <h4 class="no-recipients-text" data-bind="visible: recipientsList().length==0, text: localize.GetAccept.NO_RECIPIENTS"></h4>
+                            <ul class="ga-recipient-list" data-bind="foreach: recipientsList">
+                            <ul class="ga-recipient-list" data-bind="">
+                                <li class="ga-recipient-list-item">
+                                    <div class="ga-recipient-recipientsList-name">
+                                        <span data-bind="text: name"></span>
+                                    </div>
+                                    <div class="ga-recipient-recipientsList-actions">
+                                        <span class="action" data-bind="text: $parent.localize.GetAccept.SIGNER, click: isSigner, css: {'active' : signer }"></span>
+                                        <span class="action" data-bind="text: $parent.localize.GetAccept.CC, click: isCC, css: {'active': cc }"></span>
+                                        <span class="action remove" data-bind="icon:'fa-times', click: remove"> </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="btn ga-btn ga-btn-button" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showFile"></button>
                     </div>
-                    <input type="text" class="form-control ga-input-field" data-bind="click: showPersonList, clickBubble: false, value: searchValue, valueUpdate: 'afterkeyup', attr: { placeholder: localize.GetAccept.CLICK_TO_SEARCH }"
-                    />
-                    <!-- ko if : showPersons -->
-                    <div class="ga-recipient-container">
-                        <ul class="ga-recipient-personList" data-bind="foreach: personList">
-                            <li>
-                                <span data-bind="text: name, click: add, icon: 'fa-plus'"></span>
-                                <!-- ko if: internal -->
-                                <span data-bind="icon: 'fa-user', text: ' ', tooltip: $parent.localize.GetAccept.SEND_INTERNAL"></span>
-                                <!-- /ko -->
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /ko -->
-                    <div class="ga-recipient-recipients">
-                        <h4 class="no-recipients-text" data-bind="visible: recipientsList().length==0, text: localize.GetAccept.NO_RECIPIENTS"></h4>
-                        <ul data-bind="foreach: recipientsList">
-                            <li>
-                                <div class="ga-recipient-recipientsList-name">
-                                    <span data-bind="text: name, tooltip: email"></span>
-                                </div>
-                                <div class="ga-recipient-recipientsList-actions">
-                                    <div class="action" data-bind="text: $parent.localize.GetAccept.SIGNER, click: isSigner, css: {'active' : signer }"></div>
-                                    <div class="action" data-bind="text: $parent.localize.GetAccept.CC, click: isCC, css: {'active': cc }"></div>
-                                    <div class="action remove" data-bind="icon:'fa-times', click: remove"> </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--<button class="btn ga-btn" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showFile"></button>-->
-                    <button class="btn ga-btn" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showDocument"></button>
-                </div>
             <!-- /ko -->
 
             <!-- ko if: File() -->
@@ -195,67 +202,97 @@
                         </li>
                     </ul>
                 </div>
-                <h4 data-bind="text: localize.GetAccept.TEMPLATE_HEADER"></h4>
-                <input type="text" class="form-control ga-input-field" data-bind="value: templateSerach, valueUpdate: 'afterkeyup', attr: {placeholder:'Sök efter template'}">
-                <div class="ga-template-container">
-                    <ul class="ga-template-list" data-bind="foreach: templateList">
-                        <li class="ga-template-list-item" data-bind="click: selectTemplate">
-                            <div class="ga-template-thumb" data-bind="style: { 'backgroundImage': 'url(' + thumb + ')'}, css: { 'selected': $root.selectedTemplateId() === id }">
-                                <span class="ga-template-item-name" data-bind="text: name"></span>
-                            </div>
-                        </li>
+
+                <div class="ga-file-option-container">
+                    <ul class="ga-file-option-list">
+                        <li class="ga-file-option" data-bind="click: toggleDocumentPicker, css: { 'active' : useFile()}, icon: 'fa-file', text: localize.GetAccept.LIME_DOCUMENT "></li>
+                        <li class="ga-file-option" style="border-left: none" data-bind="click: toggleTemplatePicker, css: { 'active' : useTemplates()}, icon: 'fa-clone', text: localize.GetAccept.TEMPLATE_FROM_GETACCEPT"></li>
                     </ul>
-                    <div style="text-align: center">
-                        <a href="" style="display: block;" data-bind="text: 'Manage/Create templates'"></a>
-                        <a href="" style="display: block;" data-bind="text: 'Show template parameters', click: showTemplateParameters"></a>
+                   <!-- ko if: useFile -->
+                    <div data-bind="visible: useFile">
+                        <!-- ko if: documentName() !== "" -->
+                        <h4 data-bind="text: localize.GetAccept.SELECTED_DOCUMENT + ' ' + documentName()"></h4>
+                        <!-- /ko -->
+                        <!-- ko if: documentName() === "" -->
+                        <h4 data-bind="text: localize.GetAccept.CHOOSE_A_DOCUMENT"></h4>
+                        <!-- /ko -->
+
+                        <span data-bind="text: localize.GetAccept.SELECT_DOCUMENT_INSTRUCTIONS"></span>
+                        <div class="ga-file-reload-document" data-bind="click: reloadFileName">
+                            <i class="fa fa-refresh ga-file-reload-icon"></i>
+                            <span data-bind="text: localize.GetAccept.REPLACE_DOCUMENT"></span>
+                        </div>
                     </div>
-                </div>
-                <button class="btn ga-btn" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showDocument"></button>
+                    <!-- /ko -->
+
+                     <!-- ko if: useTemplates() -->
+                        <div>
+                            <h4 data-bind="text: localize.GetAccept.CHOOSE_A_TEMPLATE"></h4>
+                            <input type="text" class="form-control ga-input-field" data-bind="value: templateSerach, valueUpdate: 'afterkeyup', attr: {placeholder: localize.GetAccept.SEARCH_FOR_TEMPLATE}">
+                                <div class="ga-template-container">
+                                    <ul class="ga-template-list" data-bind="foreach: templateList">
+                                        <li class="ga-template-list-item" data-bind="click: selectTemplate, css: { 'selected': $root.selectedTemplateId() === id }">
+                                            <i class="fa fa-file-text"></i>
+                                            <span class="ga-template-item-name" data-bind="text: name"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
+                    <!-- /ko -->
+                </div>               
             </div>
+
+            <div class="ga-template-action-links">
+                <a href="" style="display: block;" data-bind="text: 'Show template parameters', click: showTemplateParameters"></a>
+            </div>
+            <button style="margin-top: 1em;" class="btn ga-btn ga-btn-button" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showDocument"></button>
             <!-- /ko -->
 
             <!-- ko if: TemplateFields() -->
             <div class="ga-document ga-sendout-workflow">
                 <a class="ga-back" data-bind="text: localize.GetAccept.BACK, click: backDocument, icon: 'fa-arrow-left'"></a>
-                <ul data-bind="foreach: selectedTemplateFields">
-                    <li>
-                        <label class="ga-label" data-bind="text: field_label"></label>
-                        <input class="form-control ga-input-field" data-bind="value: field_value">
-                    </li>
-                </ul>
-                <a href="" data-bind="text: 'Preview document'"></a>
-                <button class="btn ga-btn" data-bind="text: localize.GetAccept.NEXT + ' >'"></button>
+                <div class="ga-document-fields-container">
+                    <ul data-bind="foreach: selectedTemplateFields">
+                        <li>
+                            <label class="ga-label" data-bind="text: field_label"></label>
+                            <input class="form-control ga-input-field" data-bind="value: field_value, valueUpdate: 'afterkeyup'">
+                        </li>
+                    </ul>
+                </div>
+                <button class="btn ga-btn ga-btn-button" data-bind="text: localize.GetAccept.NEXT + ' >', click: goToDocumentAfterFields"></button>
             </div>
             <!-- /ko -->
 
             <!-- ko if: AvailableFields() -->
-                <div class="ga-document ga-sendout-workflow">
-                    <a class="ga-back" data-bind="text: localize.GetAccept.BACK, click: backDocument, icon: 'fa-arrow-left'"></a>
+                <div class="ga-available-fields">
+                <a class="ga-back" data-bind="text: localize.GetAccept.BACK, click: backDocument, icon: 'fa-arrow-left'"></a>
+                <p style="margin-top: 1em;" data-bind="text: localize.GetAccept.COPY_AND_PASTE"></p>
+                <div class="ga-document ga-sendout-workflow" style="margin-top: 1em;">
                     <div class="ga-availablefields-container">
                         <ul data-bind="foreach: availableLimeFields">
-                            <li style="border-bottom: 1px solid #ccc;">
+                            <li class="ga-available-fields-row">
                                 <div>
-                                    <small style="font-weight: bolder" data-bind="text: 'Field name:'"></small>
+                                    <small class="ga-available-fields-text" data-bind="text: 'Field name:'"></small>
                                     <small data-bind="text: name"></small>
                                 </div>
                                 <div>
-                                    <small style="font-weight: bolder" data-bind="text: 'Value:'"></small>
+                                    <small class="ga-available-fields-text" data-bind="text: 'Value:'"></small>
                                     <small data-bind="text: value"></small>
                                 </div>
                                 <div>
-                                    <small style="font-weight: bolder" data-bind="text: 'Key:'"></small>
+                                    <small class="ga-available-fields-text" data-bind="text: 'Key:'"></small>
                                     <small data-bind="text: key"></small>
+                                    <i style="cursor: pointer;" class="fa fa-clipboard" data-bind="tooltip: 'Copy to clipboard', click: copy"></i>
                                 </div>
-                                <!--<label class="ga-label" data-bind="text: name"></label>
-                                <input class="form-control ga-input-field" data-bind="value: value">-->
                             </li>
                         </ul>
                     </div>
                 </div>
+                </div>
             <!-- /ko -->
 
             <!-- ko if: Document() -->
-                <div class="ga-document ga-sendout-workflow animated fadeInRightBig">
+                <div class="ga-document ga-sendout-workflow">
                     <a class="ga-back" data-bind="text: localize.GetAccept.BACK, click: backDocument, icon: 'fa-arrow-left'"></a>
                     <ul class="ga-steps" data-bind="foreach: worksteps, visible: worksteps().length > 0">
                         <li>
@@ -263,59 +300,78 @@
                         </li>
                     </ul>
                     <div class="ga-document-listDocuments">
-                        <h4 data-bind="text: localize.GetAccept.DOCUMENTS"></h4>
-                        <ul data-bind="foreach: documentList">
-                            <li>
-                                <div class="ga-document-send-list-text">
-                                    <i class="ga-document-send-list-icon fa fa-file"></i>
-                                    <span data-bind="text: documentName"></span>                                 
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- ko if: !!selectedTemplate() -->
-                        <div class="ga-document-send-list-text">
-                            <i class="ga-document-send-list-icon fa fa-file"></i>
-                            <span data-bind="text: selectedTemplate().name"></span>
-                        </div>
-                        <!-- /ko -->  
+                        <div class="ga-document-inner">
+                            <!-- ko if: useFile() -->
+                                <!-- ko foreach: document -->
+                                    <label for="ga-label ga-document-name" class="ga-label" data-bind="text: $parent.localize.GetAccept.DOCUMENT_NAME"></label>
+                                    <input id="ga-document-name" class="form-control ga-input-field" type="text" data-bind="value: documentName, valueUpdate: 'afterkeydown'" />
+                                <!-- /ko -->
+                            <!-- /ko -->
 
-                        <!-- ko if: hasVideo() -->
+                            <!-- ko if: useTemplates() -->
+                                <label for="ga-label ga-document-name" class="ga-label" data-bind="text: localize.GetAccept.DOCUMENT_NAME"></label>
+                                <input id="ga-document-name" class="form-control ga-input-field" type="text" data-bind="value: selectedTemplate().name, valueUpdate: 'afterkeydown'" />
+                            <!-- /ko -->
+
+                            <!-- ko if: useTemplates() && 1==2 -->
                             <div class="ga-document-send-list-text">
-                                <i class="ga-document-send-list-icon fa fa-video-camera"></i>
-                                <span data-bind="text: localize.GetAccept.INTRODUCTION_VIDEO"></span>  
-                                <i class="ga-document-remove-video fa fa-times" data-bind="click: removeVideo, text: ' ', tooltip: localize.GetAccept.REMOVE_VIDEO"></i>              
+                                <i class="ga-document-send-list-icon fa fa-file"></i>
+                                <span data-bind="text: selectedTemplate().name"></span>
                             </div>
-                        <!-- /ko -->
-                        <!-- ko if: !hasVideo() -->
-                            <button type="button" class="btn ga-btn upload-video" data-bind="text: localize.GetAccept.UPLOAD_VIDEO,  icon: 'fa-video-camera', click: uploadVideo"></button>
-                        <!-- /ko -->
-                    </div>
-                    <h4 data-bind="text: localize.GetAccept.COMMON_EMAIL"></h4>
-                    <!-- ko foreach: document -->
-                        <label for="ga-label ga-document-name" class="ga-label" data-bind="text: $parent.localize.GetAccept.DOCUMENT_NAME"></label>
-                        <input id="ga-document-name" class="form-control ga-input-field" type="text" data-bind="value: documentName, valueUpdate: 'afterkeydown'" />
-                    <!-- /ko -->
-                    <!-- ko if: !!selectedTemplate() -->
-                        <label for="ga-label ga-document-name" class="ga-label" data-bind="text: localize.GetAccept.DOCUMENT_NAME"></label>
-                        <input id="ga-document-name" class="form-control ga-input-field" type="text" data-bind="value: selectedTemplate().name, valueUpdate: 'afterkeydown'" />
-                    <!-- /ko -->
-                    <label for="ga-email-subject" class="ga-label" data-bind="text: localize.GetAccept.SUBJECT"></label>
-                    <input id="ga-email-subject" class="form-control ga-input-field" type="text" data-bind="value: emailSubject, valueUpdate: 'afterkeydown'" />
-                    <label for="ga-email-message" class="ga-label" data-bind="text: localize.GetAccept.MESSAGE"></label>
-                    <textarea id="ga-email-message" rows="6" class="form-control ga-input-field" data-bind="value: emailMessage, valueUpdate: 'afterkeydown', event: { keyup: enterPress }"></textarea>
-                    <div class="checkbox">
-                        <label data-bind="click: function(){return true}, clickBubble: false">
-                            <input type="checkbox" value="" data-bind="checked: smartReminders"><span data-bind="text: localize.GetAccept.SEND_SMART_REMINDERS"></span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label data-bind="click: function(){return true}, clickBubble: false">
-                            <input type="checkbox" value="" data-bind="checked: sendSMS"><span data-bind="text: localize.GetAccept.SEND_SMS"></span>
-                        </label>
-                    </div>
-                    <button type="button" class="btn ga-btn ga-document-send" data-bind="text: localize.GetAccept.SEND,  icon: 'fa-paper-plane', click: send, enable: (!!selectedTemplate() || uploadedDocuments().length > 0) "></button>
-                    <div class="ga-document-open">
-                        <button type="button" class="btn ga-btn-blank" data-bind="text: localize.GetAccept.OPEN_IN_GETACCEPT, enable: (!!selectedTemplate() || uploadedDocuments().length > 0) , click: open"></button>
+                            <!-- /ko -->  
+
+                            <!-- ko if: hasVideo() -->
+                                <div class="ga-document-send-list-text">
+                                    <i class="ga-document-send-list-icon fa fa-video-camera"></i>
+                                    <span data-bind="text: localize.GetAccept.INTRODUCTION_VIDEO"></span>  
+                                    <i class="ga-document-remove-video fa fa-times" data-bind="click: removeVideo, text: ' ', tooltip: localize.GetAccept.REMOVE_VIDEO"></i>              
+                                </div>
+                            <!-- /ko -->
+                            
+                            <!-- ko if: !hasVideo() -->
+                                <span class="ga-document-add-video" data-bind="click: uploadVideo, text: '+ ' + localize.GetAccept.UPLOAD_VIDEO"></span>
+                            <!-- /ko -->
+                            
+                        
+                        <span class="ga-document-email-header" data-bind="text: localize.GetAccept.COMMON_EMAIL"></span>
+                        <div class="ga-document-email-container" data-bind="click: createEmail">                     
+                            <label class="ga-label ga-document-email-label" data-bind="text: localize.GetAccept.SUBJECT"></label>
+                            <!-- ko if: updateSubject -->
+                            <i class="fa fa-spinner fa-pulse fa-fw ga-document-updated-icon"></i>
+                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANING_TEXT"></span>
+                            <!-- /ko -->
+                            <div class="ga-document-input">
+                                <span data-bind="text: emailSubject"></span>
+                            </div>
+
+                            <label class="ga-label ga-document-email-label" data-bind="text: localize.GetAccept.MESSAGE"></label>
+                            <!-- ko if: updateMessage -->
+                            <i class="fa fa-spinner fa-pulse fa-fw ga-document-updated-icon"></i>
+                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANING_TEXT"></span>
+                            <!-- /ko -->
+                            <div class="ga-document-input">
+                                <span data-bind="text: emailMessage"></span>
+                            </div>
+                        </div>
+
+                        <div class="checkbox">
+                            <label data-bind="click: function(){return true}, clickBubble: false">
+                                <input type="checkbox" value="" data-bind="checked: smartReminders"><span data-bind="text: localize.GetAccept.SEND_SMART_REMINDERS"></span>
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label data-bind="click: function(){return true}, clickBubble: false">
+                                <input type="checkbox" value="" data-bind="checked: sendSMS"><span data-bind="text: localize.GetAccept.SEND_SMS"></span>
+                            </label>
+                        </div>
+                        </div>
+                    
+                        <div class="ga-document-sendout-buttons">
+                            <button type="button" class="btn ga-btn ga-document-send" data-bind="text: localize.GetAccept.SEND,  icon: 'fa-paper-plane', click: send, enable: (!!selectedTemplate() || uploadedDocuments().length > 0) "></button>
+                            <div class="ga-document-open">
+                                <button type="button" class="btn ga-btn-blank" data-bind="text: localize.GetAccept.OPEN_IN_GETACCEPT, enable: (!!selectedTemplate() || uploadedDocuments().length > 0) , click: open"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             <!-- /ko -->
@@ -414,14 +470,12 @@
              <!-- ko if: Menu() -->
             <div class="ga-menu">    
                 <ul>
-                   <!-- <li class="ga-menu-item" data-bind="click: showSettings, clickBubble: false, icon: 'fa-cog', text: localize.GetAccept.SETTINGS"></li>-->
                     <li class="ga-menu-item" data-bind="click: showInvite, clickBubble: false, icon: 'fa-users', text: localize.GetAccept.INVITE_COWORKERS"></li>
                     <li class="ga-menu-item" data-bind="click: showHelp, clickBubble: false, icon: 'fa-life-ring', text: localize.GetAccept.SUPPORT"></li>	
                     <li class="ga-menu-item" data-bind="click: logout, clickBubble: false, icon: 'fa-sign-out', text: localize.GetAccept.LOGOUT"></li>
                     <li class="ga-menu-item" data-bind="click: showSettings, clickBubble: false">
                         <div class="ga-menu-user-container">
                             <!-- ko if: User.thumb_url === '' -->
-                            <!--<div class="ga-menu-user-thumb" data-bind="style: {'backgroundImage': 'url('+ 'apps/GetAccept-v2/img/logo.png' +')'}"></div>-->
                             <i class="fa fa-user"></i>
                             <span class="" data-bind="text: User.first_name + ' ' + User.last_name"></span>
                             <!-- /ko -->

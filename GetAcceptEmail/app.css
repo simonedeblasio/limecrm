@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(238,238,238);
+    color: #666;
+}
+
+.ga-btn, .ga-btn:visited{
+    background-color: rgb(244,146,49);
+    color: #fff;
+    width: 100%;
+    height: 40px;
+}
+
+.ga-btn:hover, .ga-btn:active, .ga-btn:focus {
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
+.ga-btn-blank {
+    background-color: none;
+    background-image: none;
+    border: none;
+    color: rgb(249,177,34);
+    background: none;
+    font-weight: bold;
+    margin-top: 5px;
+    opacity: 1;
+    width: 100%;
+
+}
+
+.ga-btn-blank:hover {
+    text-decoration: underline;
+    color: rgb(244,146,49);
+}
+
+.ga-message {
+    overflow: hidden;
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+/* GLÖM INTE ATT PLOCKA BORT DENNA. DENNA GÖMMER SPINNERN. */
+#loadingIndicator { 
+    visibility: hidden !important;
+}

@@ -1,11 +1,11 @@
 {
-	"name": "GetAccept-v2",
-	"author":"GetAccept",
+	"name": "GetAccept-Email",
+	"author":"Andreas",
 	"status":"Development",
 	"versions":[
 		{
 			"version":"0.1",
-			"date":"2017-06-23",
+			"date":"2017-10-26",
 			"comments":"Creation"
 		}
 	],

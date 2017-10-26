@@ -6,7 +6,7 @@
  Locale: fi-FI, Finnish (Finland)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+ Exported at: Thu, 26 Oct 2017 23:17:22 +0100
 -->
 <resources>
     <string name="COMMON_EMAIL">Sähköposti</string>
@@ -94,4 +94,5 @@
     <string name="CHOOSE_A_DOCUMENT">Valitse asiakirja</string>
     <string name="SELECTED_DOCUMENT">Valittu asiakirja:</string>
     <string name="SEARCH_FOR_TEMPLATE">Etsi mallia</string>
+    <string name="CHANING_TEXT">Tekstin muuttaminen</string>
 </resources>

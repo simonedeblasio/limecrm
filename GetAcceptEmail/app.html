@@ -1,0 +1,15 @@
+<div style="padding-right: 1em">
+    <h3 data-bind="text: localize.GetAccept.COMMON_EMAIL"></h3>
+
+    <label for="comment" data-bind="text: localize.GetAccept.SUBJECT"></label>
+    <input id="ga-email-subject" class="form-control ga-input-field" type="text" data-bind="value: emailSubject, valueUpdate: 'afterkeyup'"
+    />
+
+    <div class="form-group">
+        <label for="comment" data-bind="text: localize.GetAccept.MESSAGE"></label>
+        <textarea class="form-control ga-message" rows="13" data-bind="value: emailMessage, valueUpdate: 'afterkeyup'"></textarea>
+    </div>
+    <button class="btn ga-btn" data-bind="click: storeEmailData, icon: 'fa-floppy-o', text: localize.GetAccept.USE"></button>
+    <br/>
+    <button class="btn ga-btn-blank" data-bind="click: cancel, text: localize.GetAccept.CANCEL"></button>
+</div>

@@ -15,7 +15,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         this.resources = {
             scripts: ['pusher.min.js'], // <= External libs for your apps. Must be a file
             styles: ['app.css', 'animate.css'], // <= Load styling for the app.
-            libs: [] // <= Already included libs, put not loaded per default. Example json2xml.js
+            libs: ['json2xml.js'] // <= Already included libs, put not loaded per default. Example json2xml.js
         };
     };
 
@@ -41,8 +41,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         var key = className  + id;
         viewModel.searchToInvite = true;
         viewModel.User = "";
-        //alert(key);
-
+       
         // THIS IS THE DIFERENT VIEWS
         viewModel.Spinner = ko.observable(false);
         viewModel.Signup = ko.observable(false);
@@ -70,13 +69,15 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.templateSerach = ko.observable('').extend({throttle:500});
         viewModel.smartReminders = ko.observable(false);
         viewModel.sendSMS = ko.observable(false);
+        viewModel.useTemplates = ko.observable(false);
         viewModel.hasVideo = ko.observable(false);
         viewModel.sendInternal = ko.observable(false);
         viewModel.videoData = ko.observable({});
         viewModel.showApp = false;
-        viewModel.emailSubject = "";
-        viewModel.emailMessage = "";
+        viewModel.emailSubject = ko.observable('');
+        viewModel.emailMessage = ko.observable('');
         viewModel.documentAnalytics = ko.observable();
+        viewModel.documentName = ko.observable(''); 
 
         //FREE ACCOUNT 
         viewModel.signupCountry = ko.observable('');
@@ -340,8 +341,8 @@ lbs.apploader.register('GetAccept-v2', function () {
             });
 
             apiRequest('entity', 'GET', '', function (data) {
-                viewModel.emailSubject = data.entity.default_email_send_subject;
-                viewModel.emailMessage = data.entity.default_email_send_message;
+                viewModel.emailSubject(data.entity.default_email_send_subject);
+                viewModel.emailMessage(data.entity.default_email_send_message);
             });
 
         }
@@ -450,8 +451,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         function backDocument() {
             viewModel.worksteps([1, 0]);
             hideAllSteps();
-            //viewModel.File(true);
-            viewModel.Recipient(true);
+            viewModel.File(true);
             viewModel.documentList.removeAll();
             viewModel.document.removeAll();
         }
@@ -602,9 +602,9 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.Menu(false);
             viewModel.Signup(false);
             viewModel.Analytics(false);
-           /* viewModel.File(false);
+            viewModel.File(false);
             viewModel.TemplateFields(false);
-            viewModel.AvailableFields(false);*/
+            viewModel.AvailableFields(false);
         }
 
         function getRecipients() {
@@ -653,21 +653,33 @@ lbs.apploader.register('GetAccept-v2', function () {
 				if(data) {
                     $.each(data.fields, function(index, fieldData) {
                         if(!!fieldData.field_label) {
+                            try {
+                                var fieldString = fieldData.field_value;
+                                var fieldKey = fieldString.replace("{{","").replace("}}","");
+                                var fieldKeyValue = eval('viewModel.' + fieldKey + '.text');
+                                fieldData.field_value = !!fieldKeyValue? fieldKeyValue : field_value; 
+                            }
+                            catch(e) {
+                                console.log(e);
+                            }
                             viewModel.selectedTemplateFields.push(fieldData);
                         }
                     });
                     viewModel.TemplateFields(true);
                 }
                 else {
-                    alert("saknar");
+                    viewModel.Document(true);
                 }
 			});
         }
 
         function showTemplateParameters() {
-            viewModel.File(false);
+            /*var cd = {testar: 'hej'}
+            var d = "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf";
+            var dialog = showModalDialog(d+"?sv=watch&&type=tab",cd,"status:false;dialogWidth:900px;dialogHeight:820px;resizable:Yes");*/
+            hideAllSteps();
             viewModel.availableLimeFields.removeAll();
-            $.each(viewModel.company, function(fieldName, fieldValue) {
+            $.each(eval('viewModel.' + className), function(fieldName, fieldValue) {
                 var fieldData = new mapAvailableField(fieldName, fieldValue);
                 viewModel.availableLimeFields.push(fieldData);
             });
@@ -677,9 +689,18 @@ lbs.apploader.register('GetAccept-v2', function () {
         function mapAvailableField(fieldName, fieldValue) {
             var field = this;
             try {
-                field.value = fieldValue.value;
+                field.value = fieldValue.text;
                 field.name = lbs.limeDataConnection.ActiveInspector.Record.Field(fieldName).LocalName
-                field.key = fieldName;
+                field.key = "{{" + className + "." + fieldName + "}}";
+                field.copy = function() {
+                    try {
+                        window.clipboardData.setData('Text', this.key);
+                        alert("Value is copied to clipboard");
+                    }
+                    catch(err){
+                        console.log(err);
+                    }
+                }
             }
             catch(e) {
                 console.log(e);
@@ -866,10 +887,11 @@ lbs.apploader.register('GetAccept-v2', function () {
             if (viewModel.recipientsList().length > 0) {
                 getTemplates();
                 viewModel.Recipient(false);
-                //viewModel.File(true);
-                viewModel.Recipient(true);
+                viewModel.File(true);
                 viewModel.GaDocuments(false);
                 viewModel.Spinner(false);
+                reloadFileName();
+
             }
             else {
                 viewModel.Spinner(false);
@@ -877,19 +899,53 @@ lbs.apploader.register('GetAccept-v2', function () {
             }
         }
 
+        function reloadFileName() {
+            viewModel.documentName('');
+            if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
+                if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.Selection.Count > 0) {
+                    //HÄR LEKER VI
+                    var document_data = lbs.common.executeVba("GetAccept.GetDocumentData," + className);
+                    document_data = JSON.parse(document_data);
+                    viewModel.documentName(document_data[0].file_name);
+                }
+            }
+        }
+
+        function toggleTemplatePicker() {
+            viewModel.useTemplates(true);
+            viewModel.useFile(false);
+        }
+
+        function toggleDocumentPicker() {
+            viewModel.useTemplates(false);
+            viewModel.useFile(true);
+        }
+
+        viewModel.useFile = ko.observable(true);
+
+        viewModel.toggleDocumentPicker = toggleDocumentPicker;
+        viewModel.toggleTemplatePicker = toggleTemplatePicker;
+        viewModel.reloadFileName = reloadFileName;
+
+        function goToDocumentAfterFields() {
+            hideAllSteps();
+            viewModel.Document(true);
+        }
+        viewModel.goToDocumentAfterFields = goToDocumentAfterFields;
+
         function showDocument() {
-            if (!!viewModel.selectedTemplate()) {
+            if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                 viewModel.worksteps([1, 1]);
                 viewModel.File(false);
                 viewModel.Recipient(false);
-                //viewModel.Document(true);
+                viewModel.TemplateFields(false);
                 viewModel.GaDocuments(false);
                 
                 getTemplateFields();
                 //getDocuments();
                 //uploadDocument(false);
             }
-            else {
+            else if( viewModel.useFile()) {
                 if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
                     if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.Selection.Count > 0) {
                         viewModel.worksteps([1, 1]);
@@ -909,6 +965,9 @@ lbs.apploader.register('GetAccept-v2', function () {
                     viewModel.Spinner(false);
                     alert("Please select a document or a template step forward.")
                 }
+            }
+            else {
+                alert("Please select a document or a template step forward.")
             }
             
             
@@ -957,6 +1016,100 @@ lbs.apploader.register('GetAccept-v2', function () {
             listDocuments();
         }
 
+        function packEmailData() {
+            var emailData = {};
+            try {
+                var message = prepereStringForSendingToVBA(viewModel.emailMessage());
+                var subject = prepereStringForSendingToVBA(viewModel.emailSubject());
+                
+                var data = {
+                    'emailData': {
+                        'emailMessage': message,
+                        'emailSubject': subject
+                    }
+                };
+          
+                try {
+                    var t = json2xml(data);
+                }
+                catch(e) {
+                    alert(e);
+                }
+                
+                lbs.common.executeVba("GetAccept.showEmailDialog," + t);
+                var emailResult = lbs.common.executeVba("GetAccept.GetEmailData");
+                
+                unpackEmailData(emailResult);
+            }
+            catch(e){
+                alert(e);
+            }
+        }
+
+        viewModel.updateMessage = ko.observable(false);
+        viewModel.updateSubject = ko.observable(false);
+
+        function unpackEmailData(emailResult) {
+            try {
+                var json = xml2json($.parseXML(emailResult), '');
+                json = $.parseJSON(json);
+
+                var message = unpackStringAfterSending(json.emailData.emailMessage);
+                var subject = unpackStringAfterSending(json.emailData.emailSubject);
+
+                if(message != viewModel.emailMessage()) {
+                    viewModel.updateMessage(true);
+                    setTimeout(function(){
+                        viewModel.updateMessage(false);
+                    },1000);
+                    viewModel.emailMessage(message);
+                } 
+
+                if(subject != viewModel.emailSubject()) {
+                    viewModel.updateSubject(true);
+                    setTimeout(function(){
+                        viewModel.updateSubject(false);
+                    },1000);
+                    viewModel.emailSubject(subject);
+                }
+            }
+            catch(e) {
+                alert(e);
+            }
+        }
+
+        function unpackStringAfterSending(str) {
+            str = str.replace(/%0/g,',');
+            str = str.replace(/%1/g, String.fromCharCode(10));
+            str = str.replace(/%2/g, String.fromCharCode(39));
+            str = str.replace(/%3/g, String.fromCharCode(34));
+            str = str.replace(/%4/g, '&');
+            str = str.replace(/%5/g, '>');
+            str = str.replace(/%6/g, '<');
+           
+            return str;
+        }
+        
+        function prepereStringForSendingToVBA(str) {
+            try {
+                str = str.replace(/,/g,'%0');
+                str = str.replace(/(?:\r\n|\r|\n)/g,'%1');
+                str = str.replace(/'/g,'%2');
+                str = str.replace(/"/g,'%3');
+                str = str.replace(/&/g,'%4');
+                str = str.replace(/>/g,'%5');
+                str = str.replace(/</g,'%6');
+                
+                
+            }   
+            catch(e) {
+                alert(e);
+            }
+            return str; 
+        }
+
+        viewModel.createEmail = packEmailData;
+
         function sendDocument(automaticSending) {
             var active_record_id = lbs.limeDataConnection.ActiveInspector.Controls.GetValue(class_id);
             var deal_value = "";
@@ -964,27 +1117,24 @@ lbs.apploader.register('GetAccept-v2', function () {
             var company_name = "";
             var video_id = null;
             viewModel.Spinner(true);
-            try {
-                if (className === "business" || className === "deal") {
-                    deal_value = eval('viewModel.' + className + '.' + appConfig.businessValue + '.value')
-                    deal_name = eval('viewModel.' + className + '.name.text');
-                    company_name = eval('viewModel.' + className + '.company.text');
-                }
-                else if (className === "company") {
-                    company_name = eval('viewModel.' + className + '.name.text');
-                }
-                else {
-                    company_name = eval('viewModel.' + className + '.company.text');
-                }
 
-                if (viewModel.videoData().video_id) {
-                    video_id = viewModel.videoData().video_id;
-                }
+            if (className === "business" || className === "deal") {
+                deal_value = eval('viewModel.' + className + '.' + appConfig.businessValue + '.value')
+                deal_name = eval('viewModel.' + className + '.name.text');
+                company_name = eval('viewModel.' + className + '.company.text');
             }
-            catch(error) {
-                console.log(error);
+            else if (className === "company") {
+                company_name = eval('viewModel.' + className + '.name.text');
             }
-            if(!!viewModel.selectedTemplate()) {
+            else {
+                company_name = eval('viewModel.' + className + '.company.text');
+            }
+
+            if (viewModel.videoData().video_id) {
+                video_id = viewModel.videoData().video_id;
+            }
+
+            if(!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                 var documentData = {
                     name: viewModel.selectedTemplate().name,
                     type: 'sales',
@@ -995,9 +1145,17 @@ lbs.apploader.register('GetAccept-v2', function () {
                     is_automatic_sending: automaticSending,
                     is_reminder_sending: viewModel.smartReminders(),
                     is_sms_sending: viewModel.sendSMS(),
-                    email_send_subject: viewModel.emailSubject,
-                    email_send_message: viewModel.emailMessage,
+                    email_send_subject: viewModel.emailSubject(),
+                    email_send_message: viewModel.emailMessage(),
                     video_id: video_id ? video_id : null,
+                }
+
+                if (viewModel.selectedTemplateFields().length > 0) {
+                    var customFields = [];
+                    $.each(viewModel.selectedTemplateFields(), function(index, field){
+                        customFields.push({'id': field.field_id, 'value': field.field_value});
+                    });
+                    documentData.custom_fields = customFields;
                 }
 
                 documentData.template_id = viewModel.selectedTemplateId();
@@ -1033,8 +1191,8 @@ lbs.apploader.register('GetAccept-v2', function () {
                         is_automatic_sending: automaticSending,
                         is_reminder_sending: viewModel.smartReminders(),
                         is_sms_sending: viewModel.sendSMS(),
-                        email_send_subject: viewModel.emailSubject,
-                        email_send_message: viewModel.emailMessage,
+                        email_send_subject: viewModel.emailSubject(),
+                        email_send_message: viewModel.emailMessage(),
                         video_id: video_id ? video_id : null,
                     }
                     gaRecipientList = [];
@@ -1213,7 +1371,9 @@ lbs.apploader.register('GetAccept-v2', function () {
                 setupPusher();
 
                 if(!!lbs.bakery.getCookie("shouldToggle")  && lbs.bakery.getCookie("shouldToggle") !== 'undefined') { 
-                    toogleGaView();
+                    setTimeout(function(){
+                       toogleGaView();
+                    },500);
                 }
             }
             else {

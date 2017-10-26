@@ -6,7 +6,7 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Wed, 18 Oct 2017 23:52:02 +0100
+ Exported at: Thu, 26 Oct 2017 23:17:22 +0100
 -->
 <resources>
     <string name="COMMON_EMAIL">Epost</string>
@@ -94,4 +94,5 @@
     <string name="CHOOSE_A_DOCUMENT">Välj dokument</string>
     <string name="SELECTED_DOCUMENT">Valt dokument:</string>
     <string name="SEARCH_FOR_TEMPLATE">Sök efter en mall</string>
+    <string name="CHANING_TEXT">Ändrar text</string>
 </resources>

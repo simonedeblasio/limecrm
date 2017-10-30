@@ -544,11 +544,6 @@ a:hover {
     white-space: normal;
 } 
 
-.ga-availablefields-container {
-    /*overflow-y: auto;
-    max-height: 25em;*/
-}
-
 .ga-available-fields-text {
     font-weight: bold;
     color: #333;
@@ -719,9 +714,6 @@ a:hover {
 
 .ga-document-input {
     background-color: #fff;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     font-size: 12px;
     cursor: pointer;
     border: 1px solid #ccc;
@@ -1082,9 +1074,15 @@ a:hover {
         height: auto;
         overflow: normal;
     }
+
+    .ga-document-input {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 
-@media screen and (min-height: 1080px) {
+@media screen and (min-height: 801px) {
     .ga-view-expanded { 
         height: 50em;
     }

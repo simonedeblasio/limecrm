@@ -232,6 +232,19 @@ lbs.apploader.register('GetAccept-v2', function () {
                 if (fullToken) {
                     lbs.common.executeVba("GetAccept.SetTokens", fullToken);
                 }
+
+                //
+                var nowSec = Math.ceil(new Date().getTime() / 1000);
+                if (expireToken && (expireToken - ((expireToken - nowSec) / 2)) > nowSec) {
+                  
+                }
+                else {
+                    apiRequest("refresh", "GET", "", function (data) { 
+                        saveToken(data);
+                    });
+                }
+                
+
                 return true;
             }
             else {
@@ -341,8 +354,8 @@ lbs.apploader.register('GetAccept-v2', function () {
             });
 
             apiRequest('entity', 'GET', '', function (data) {
-                viewModel.emailSubject(data.entity.default_email_send_subject);
-                viewModel.emailMessage(data.entity.default_email_send_message);
+                viewModel.emailSubject(data.entity.email_send_subject === ''? data.entity.default_email_send_subject : data.entity.email_send_subject);
+                viewModel.emailMessage(data.entity.email_send_message === ''? data.entity.default_email_send_message : data.entity.email_send_message);
             });
 
         }

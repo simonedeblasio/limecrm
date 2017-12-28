@@ -1,13 +1,45 @@
 Attribute VB_Name = "GetAccept"
 Option Explicit
+
+' ### GLOBAL VARIABLES ###
 Private GlobalPersonSourceTab As String
 Private GlobalPersonSourceField As String
 
+'### GLOBAL SETTINGS ###
+' Document
+Private Const GlobalDocumentField As String = "document"
+Private Const GlobalDocumentTypeField As String = "type"
+Private Const GlobalDocumentCommentField As String = "comment"
+Private Const GlobalDocumentCompanyField As String = "company"
+Private Const GlobalDocumentTypeFieldOptionQuote As String = "tender"
+Private Const GlobalDocumentTypeFieldOptionAgreement As String = "agreement"
 
-'#Global variables
-Private GlobalDocumentTypeField As String
+' Person
+Private Const GlobalPersonFirstNameField As String = "firstname"
+Private Const GlobalPersonLastNameField As String = "lastname"
+Private Const GlobalPersonEmailField As String = "email"
+Private Const GlobalPersonMobileField As String = "mobilephone"
+
+' Coworker
+Private Const GlobalCoworkerFirstNameField As String = "firstname"
+Private Const GlobalCoworkerLastNameField As String = "lastname"
+Private Const GlobalCoworkerEmailField As String = "email"
+Private Const GlobalCoworkerMobileField As String = "cellphone"
+Private Const GlobalCoworkerInactiveField As String = "inactive"
+
+' History
+Private Const GlobalHistoryDocumentField As String = "document"
+Private Const GlobalHistoryTypeField As String = "type"
+Private Const GlobalHistoryNoteField As String = "note"
+Private Const GlobalHistoryDateField As String = "date"
+Private Const GlobalHistoryCoworkerField As String = "coworker"
+Private Const GlobalHistoryTypeFieldOptionSent As String = "sentemail"
+
+' Todo
+Private Const GlobalTodoSubjectField As String = "subject"
+Private Const GlobalTodoStartTimeField As String = "starttime"
+
 Private GlobalEmailData As String
-
 
 Declare Function GetSystemMetrics32 Lib "user32" _
     Alias "GetSystemMetrics" (ByVal nIndex As Long) As Long
@@ -36,20 +68,16 @@ Public Function OpenGetAccept(className As String, personSourceTab As String, pe
     
     GlobalPersonSourceTab = personSourceTab
     GlobalPersonSourceField = personSourceField
-    
-    '#Global variables for fields in Lime CRM
-    'Set value to empty if field not excists
-    GlobalDocumentTypeField = "type"
 
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 If oInspector.ActiveExplorer.Selection.Count > 0 Then
-                    If oInspector.ActiveExplorer.ActiveItem.Record.Document("document") Is Nothing Then
+                    If oInspector.ActiveExplorer.ActiveItem.Record.Document(GlobalDocumentField) Is Nothing Then
                         Call Lime.MessageBox(Localize.GetText("GetAccept", "ga_missing_file"))
                         OpenGetAccept = "-1"
                         Exit Function
-                    ElseIf Not CheckFileTypes(oInspector.ActiveExplorer.ActiveItem.Record.Document("document").Extension) Then
+                    ElseIf Not CheckFileTypes(oInspector.ActiveExplorer.ActiveItem.Record.Document(GlobalDocumentField).Extension) Then
                         Call Lime.MessageBox(Localize.GetText("GetAccept", "ga_invalid_filetype"))
                         OpenGetAccept = "-1"
                         Exit Function
@@ -122,10 +150,10 @@ Public Function GetContactList(className As String) As String
     Set oInspector = Application.ActiveInspector
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         Set oView = New LDE.View
-        Call oView.Add("firstname", lkSortAscending)
-        Call oView.Add("lastname")
-        Call oView.Add("email")
-        Call oView.Add("mobilephone")
+        Call oView.Add(GlobalPersonFirstNameField, lkSortAscending)
+        Call oView.Add(GlobalPersonLastNameField)
+        Call oView.Add(GlobalPersonEmailField)
+        Call oView.Add(GlobalPersonMobileField)
         
         If GlobalPersonSourceTab <> "" Then
             If oInspector.Explorers.Exists(GlobalPersonSourceTab) Then
@@ -179,10 +207,10 @@ Public Function GetCoworkerList()
     Set oInspector = Application.ActiveInspector
     
         Set oView = New LDE.View
-        Call oView.Add("firstname", lkSortAscending)
-        Call oView.Add("lastname")
-        Call oView.Add("email")
-        Call oView.Add("cellphone")
+        Call oView.Add(GlobalCoworkerFirstNameField, lkSortAscending)
+        Call oView.Add(GlobalCoworkerLastNameField)
+        Call oView.Add(GlobalCoworkerEmailField)
+        Call oView.Add(GlobalCoworkerMobileField)
                 
             Set oFilter = New LDE.Filter
           
@@ -216,10 +244,10 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
     If oRecords.Class.Name = "coworker" Then
         For Each oRecord In oRecords
             i = i + 1
-            strJSON = strJSON + """firstname"":""" & oRecord("firstname") & """," _
-            & """lastname"":""" & oRecord("lastname") & """," _
-            & """mobilephone"":""" & oRecord("cellphone") & """," _
-            & """email"":""" & oRecord("email") & """" _
+            strJSON = strJSON + """firstname"":""" & oRecord(GlobalCoworkerFirstNameField) & """," _
+            & """lastname"":""" & oRecord(GlobalCoworkerLastNameField) & """," _
+            & """mobilephone"":""" & oRecord(GlobalCoworkerMobileField) & """," _
+            & """email"":""" & oRecord(GlobalCoworkerEmailField) & """" _
         
             If i < oRecords.Count Then
                 strJSON = strJSON + "},{"
@@ -235,10 +263,10 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
     If oRecords.Class.Name = "person" Then
         For Each oRecord In oRecords
             i = i + 1
-            strJSON = strJSON + """firstname"":""" & oRecord("firstname") & """," _
-            & """lastname"":""" & oRecord("lastname") & """," _
-            & """mobilephone"":""" & oRecord("mobilephone") & """," _
-            & """email"":""" & oRecord("email") & """" _
+            strJSON = strJSON + """firstname"":""" & oRecord(GlobalPersonFirstNameField) & """," _
+            & """lastname"":""" & oRecord(GlobalPersonLastNameField) & """," _
+            & """mobilephone"":""" & oRecord(GlobalPersonMobileField) & """," _
+            & """email"":""" & oRecord(GlobalPersonEmailField) & """" _
         
             If i < oRecords.Count Then
                 strJSON = strJSON + "},{"
@@ -350,15 +378,15 @@ Public Function GetDocumentData(className As String) As String
                 For Each oItem In oInspector.ActiveExplorer.Selection
                     Set oRecord = New LDE.Record
                     Set oView = New LDE.View
-                    Call oView.Add("document")
-                    Call oView.Add("comment", lkSortAscending)
+                    Call oView.Add(GlobalDocumentField)
+                    Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
                
                     Call oRecord.Open(Database.Classes("document"), oItem.Record.ID, oView)
                     retval = retval & " { "
-                    retval = retval & " ""file_name"" : """ & oRecord.Value("comment")
+                    retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
                     retval = retval & "."
-                    retval = retval & oRecord.Document("document").Extension & ""","
-                    retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document("document").Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
+                    retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
+                    retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document(GlobalDocumentField).Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
                     retval = retval & " },"
                 Next
             Else
@@ -402,7 +430,7 @@ Public Function GetDocumentType() As Boolean
                 Call oRecord.Open(Database.Classes("document"), oInspector.ActiveExplorer.Selection.Item(oInspector.ActiveExplorer.Selection.Count).Record.ID, oView)
                 
                 If GlobalDocumentTypeField <> "" Then
-                    If oRecord.text("type") = "Quote" Then
+                    If oRecord(GlobalDocumentTypeField) = Database.Classes("document").Fields(GlobalDocumentTypeField).Options.Lookup(GlobalDocumentTypeFieldOptionQuote, lkLookupOptionByKey) Then
                         retval = True
                     Else
                         retval = False
@@ -435,14 +463,14 @@ Public Function GetDocumentDescription(className As String) As String
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 Set oRecord = New LDE.Record
                 Set oView = New LDE.View
-                Call oView.Add("document")
-                Call oView.Add("comment", lkSortAscending)
+                Call oView.Add(GlobalDocumentField)
+                Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
                 
                 Call oRecord.Open(Database.Classes("document"), oInspector.ActiveExplorer.Selection.Item(oInspector.ActiveExplorer.Selection.Count).Record.ID, oView)
                 If Not oRecord.Document("document") Is Nothing Then
-                    retval = retval & oRecord.Value("comment")
+                    retval = retval & oRecord.Value(GlobalDocumentCommentField)
                     retval = retval & "."
-                    retval = retval & oRecord.Document("document").Extension
+                    retval = retval & oRecord.Document(GlobalDocumentField).Extension
                 End If
             End If
         End If
@@ -505,16 +533,15 @@ Public Sub SetDocumentStatus(sStatus As String, className As String)
                     If oRecordHistory.Fields.Exists(oInspector.Class.Name) Then
                         oRecordHistory.Value(oInspector.Class.Name) = oInspector.Record.ID
                     End If
-                    oRecordHistory.Value("type") = Database.Classes("history").Fields("type").Options.Lookup("sentemail", lkLookupOptionByKey).Value
-                    oRecordHistory.Value("note") = "Sent with GetAccept"
-                    oRecordHistory.Value("date") = VBA.Now
-                    If oRecordHistory.Fields.Exists("document") Then
-                        oRecordHistory.Value("document") = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
+                    oRecordHistory.Value(GlobalHistoryTypeField) = Database.Classes("history").Fields(GlobalHistoryTypeField).Options.Lookup(GlobalHistoryTypeFieldOptionSent, lkLookupOptionByKey).Value
+                    oRecordHistory.Value(GlobalHistoryNoteField) = "Sent with GetAccept"
+                    oRecordHistory.Value(GlobalHistoryDateField) = VBA.Now
+                    If oRecordHistory.Fields.Exists(GlobalHistoryDocumentField) Then
+                        oRecordHistory.Value(GlobalHistoryDocumentField) = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
                     End If
+                    
                     Call oRecordHistory.Update
                 Next
-               
-                
             End If
         End If
     End If
@@ -621,18 +648,19 @@ Public Sub DownloadFile(sLink As String, sFileName As String, className As Strin
         
         Call pDocument.Load(sFileLocation)
         Call oRecord.Open(Database.Classes("document"))
-        oRecord.Value("document") = pDocument
-        If oRecord.Fields.Exists("type") Then
-            oRecord("type") = Database.Classes("document").Fields("type").Options.Lookup("agreement", lkLookupOptionByKey)
+        oRecord.Value(GlobalDocumentField) = pDocument
+        If oRecord.Fields.Exists(GlobalDocumentTypeField) Then
+            oRecord(GlobalDocumentTypeField) = Database.Classes("document").Fields(GlobalDocumentTypeField).Options.Lookup(GlobalDocumentTypeFieldOptionAgreement, lkLookupOptionByKey)
         End If
         If oRecord.Fields.Exists(className) Then
             oRecord(className) = oInspector.Record.ID
         End If
+        
         'connect company if a company field exists on the parent card and the document card.
         If className <> "company" Then 'only done if the parent isnt alreaady the company
-            If oRecord.Fields.Exists("company") Then
-                If oInspector.Record.Fields.Exists("company") Then
-                    oRecord("company") = oInspector.Controls.GetValue("company")
+            If oRecord.Fields.Exists(GlobalDocumentCompanyField) Then
+                If oInspector.Record.Fields.Exists(GlobalDocumentCompanyField) Then
+                    oRecord(GlobalDocumentCompanyField) = oInspector.Controls.GetValue(GlobalDocumentCompanyField)
                 End If
             End If
         End If
@@ -724,8 +752,8 @@ On Error GoTo ErrorHandler
     If oInspector.Explorers.Exists("todo") Then
         sDate = VBA.DateAdd("d", days, VBA.Date)
         Call oRecord.Open(Database.Classes("todo"))
-        oRecord.Value("subject") = "Follow up GA document"
-        oRecord.Value("starttime") = sDate
+        oRecord.Value(GlobalTodoSubjectField) = "Follow up GA document"
+        oRecord.Value(GlobalTodoStartTimeField) = sDate
         oRecord.Value(oInspector.Record.Class.Name) = oInspector.Record.ID
         oRecord.Update
     Else
@@ -748,14 +776,14 @@ On Error GoTo ErrorHandler
     If oRecordHistory.Fields.Exists(oInspector.Class.Name) Then
         oRecordHistory.Value(oInspector.Class.Name) = oInspector.Record.ID
     End If
-    oRecordHistory.Value("type") = Database.Classes("history").Fields("type").Options.Lookup("sentemail", lkLookupOptionByKey).Value
-    oRecordHistory.Value("note") = "Sent with GetAccept"
-    oRecordHistory.Value("date") = VBA.Now
-    oRecordHistory.Value("coworker") = ActiveUser.Record.ID
+    oRecordHistory.Value(GlobalHistoryTypeField) = Database.Classes("history").Fields(GlobalHistoryTypeField).Options.Lookup(GlobalHistoryTypeFieldOptionSent, lkLookupOptionByKey).Value
+    oRecordHistory.Value(GlobalHistoryNoteField) = "Sent with GetAccept"
+    oRecordHistory.Value(GlobalHistoryDateField) = VBA.Now
+    oRecordHistory.Value(GlobalHistoryCoworkerField) = ActiveUser.Record.ID
     If oInspector.ActiveExplorer.Class.Name = "document" Then
         If oInspector.ActiveExplorer.Selection.Count > 0 Then
-            If oRecordHistory.Fields.Exists("document") Then
-                oRecordHistory.Value("document") = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
+            If oRecordHistory.Fields.Exists(GlobalHistoryDocumentField) Then
+                oRecordHistory.Value(GlobalHistoryDocumentField) = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
             End If
         End If
     End If
@@ -783,17 +811,17 @@ Public Function GetDocuments(className As String) As String
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 Set oRecord = New LDE.Record
                 Set oView = New LDE.View
-                Call oView.Add("document")
-                Call oView.Add("comment", lkSortAscending)
+                Call oView.Add(GlobalDocumentField)
+                Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
                 Call oView.Add("iddocument")
                 Set oPool = oInspector.ActiveExplorer.Selection.Pool
                 
                 Call oRecords.Open(Database.Classes("document"), oPool, oView)
                 retval = "["
                 For Each oRecord In oRecords
-                    If Not oRecord.Document("document") Is Nothing Then
+                    If Not oRecord.Document(GlobalDocumentField) Is Nothing Then
                         retval = retval & "{"
-                        retval = retval & " ""name"" : """ & oRecord.Value("comment") & "." & oRecord.Document("document").Extension & ""","
+                        retval = retval & " ""name"" : """ & oRecord.Value(GlobalDocumentCommentField) & "." & oRecord.Document(GlobalDocumentField).Extension & ""","
                         retval = retval & " ""id"" : """ & oRecord.ID & """"
                         retval = retval & " },"
                     End If
@@ -823,15 +851,16 @@ Public Sub Install()
     
     Set en = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values\strings.xml")
     Set sv = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-sv-rSE\strings.xml")
-    Set no = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-no-rNO\strings.xml")
-    Set fi = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-fi-rFI\strings.xml")
-    Set da = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-da-rDK\strings.xml")
+'    Set no = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-no-rNO\strings.xml")
+'    Set fi = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-fi-rFI\strings.xml")
+'    Set da = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-da-rDK\strings.xml")
     
     For Each key In en
         If en.Exists(key) And sv.Exists(key) And no.Exists(key) And fi.Exists(key) Then
             Call AddOrCheckLocalize("GetAccept", CStr(key), en.Item(key), en.Item(key), sv.Item(key), no.Item(key), fi.Item(key), da.Item(key))
         End If
     Next key
+    
     Debug.Print "----INSTALLATION IS DONE----"
     Exit Sub
 ErrorHandler:
@@ -897,15 +926,15 @@ Public Function SearchCoworkerByEmail(email As String) As String
     
     If email <> "" Then
         Set oView = New LDE.View
-        Call oView.Add("firstname", lkSortAscending)
-        Call oView.Add("lastname")
-        Call oView.Add("email")
-        Call oView.Add("cellphone")
+        Call oView.Add(GlobalCoworkerFirstNameField, lkSortAscending)
+        Call oView.Add(GlobalCoworkerLastNameField)
+        Call oView.Add(GlobalCoworkerEmailField)
+        Call oView.Add(GlobalCoworkerMobileField)
         
         Set oFilter = New LDE.Filter
           
-            Call oFilter.AddCondition("inactive", lkOpEqual, False)
-            Call oFilter.AddCondition("email", lkOpLike, email)
+            Call oFilter.AddCondition(GlobalCoworkerInactiveField, lkOpEqual, False)
+            Call oFilter.AddCondition(GlobalCoworkerEmailField, lkOpLike, email)
             Call oFilter.AddOperator(lkOpAnd)
             
             If oFilter.HitCount(Database.Classes("coworker")) > 0 Then
@@ -970,4 +999,6 @@ ErrorHandler:
     UI.ShowError ("GetAccept.StoreEmailData")
 
 End Sub
+
+
 

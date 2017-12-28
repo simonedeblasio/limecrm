@@ -137,7 +137,6 @@ lbs.apploader.register('GetAccept-v2', function () {
                             data = JSON.parse(xhr.responseText);
                             saveToken(data);
                             loadUserSettings();
-
                         }
                         else {
                             data = JSON.parse(xhr.responseText);
@@ -220,6 +219,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             if (typeof lbs.bakery.getCookie("accessToken") != 'undefined') {
                 if (lbs.bakery.getCookie("accessToken") != '') {
                     have_token = true;
+                    
                 }
             }
             if (have_token) {
@@ -519,7 +519,6 @@ lbs.apploader.register('GetAccept-v2', function () {
         }
 
         function createFreeAccount() {
-
             var countries = listCounties();
             viewModel.signupCountryList.removeAll();
             _.each(countries, function (name, key) {
@@ -687,9 +686,6 @@ lbs.apploader.register('GetAccept-v2', function () {
         }
 
         function showTemplateParameters() {
-            /*var cd = {testar: 'hej'}
-            var d = "http://che.org.il/wp-content/uploads/2016/12/pdf-sample.pdf";
-            var dialog = showModalDialog(d+"?sv=watch&&type=tab",cd,"status:false;dialogWidth:900px;dialogHeight:820px;resizable:Yes");*/
             hideAllSteps();
             viewModel.availableLimeFields.removeAll();
             $.each(eval('viewModel.' + className), function(fieldName, fieldValue) {
@@ -814,7 +810,14 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         function validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            return re.test(email);
+            var reg = new RegExp("\å|\ä|\ö");
+            if(!reg.test(email)){
+                return re.test(email);
+            }
+            else {
+                return false;
+            }
+            
         }
 
         viewModel.inviteSearchValue.subscribe(function (inputString) {
@@ -847,10 +850,13 @@ lbs.apploader.register('GetAccept-v2', function () {
                     viewModel.Spinner(true);
                     try {
                         var coworkers = JSON.parse(lbs.common.executeVba("GetAccept.SearchCoworkerByEmail," + inputString));
+                        var reg =  new RegExp("\å|\ä|\ö");
                         if(coworkers.Persons) {
                             $.each(coworkers.Persons, function(i, coworker) {
-                                var person = new recipientModel(coworker, true);
-                                viewModel.personList.push(person);
+                                if(!reg.test(coworker.email)) {
+                                    var person = new recipientModel(coworker, true);
+                                    viewModel.personList.push(person);
+                                }
                             });
                         }
                     }
@@ -916,7 +922,6 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.documentName('');
             if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
                 if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.Selection.Count > 0) {
-                    //HÄR LEKER VI
                     var document_data = lbs.common.executeVba("GetAccept.GetDocumentData," + className);
                     document_data = JSON.parse(document_data);
                     viewModel.documentName(document_data[0].file_name);
@@ -953,10 +958,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.Recipient(false);
                 viewModel.TemplateFields(false);
                 viewModel.GaDocuments(false);
-                
                 getTemplateFields();
-                //getDocuments();
-                //uploadDocument(false);
             }
             else if( viewModel.useFile()) {
                 if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {

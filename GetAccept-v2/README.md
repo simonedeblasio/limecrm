@@ -53,5 +53,22 @@ Configuration:
 
 You are now done. Each user will have their own login credentials which is used to start using the GetAccept integration.
 
+
+### You need to have following fields in the Document table: 
+[getacceptstatus] - type: Option field: values: 
+	name: Draft, key: draft
+	name: Sent, key: sent
+	name: Reviewd, key: reviewd
+	name: Signed, key: signed
+	
+[sent_with_ga] - type: Yes/No field
+
+[comment] - type: Text field
+
+[document] - type: File field
+
+	
+
+
 ## Important
 Each user at a company using the GetAccept integration need to have a GetAccept account.

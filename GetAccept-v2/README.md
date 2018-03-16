@@ -55,17 +55,22 @@ You are now done. Each user will have their own login credentials which is used 
 
 
 ### You need to have following fields in the Document table: 
-[getacceptstatus] - type: Option field: values: 
-	name: Draft, key: draft
-	name: Sent, key: sent
-	name: Reviewd, key: reviewd
-	name: Signed, key: signed
+[getacceptstatus] - type: Option field, 
+	values: 
+		name: Draft, key: draft
+		name: Sent, key: sent
+		name: Reviewd, key: reviewd
+		name: Signed, key: signed
 	
 [sent_with_ga] - type: Yes/No field
 
 [comment] - type: Text field
 
 [document] - type: File field
+
+[type] - type: Option field,
+	values: 
+		name: Agreement, key: agreement
 
 	
 

@@ -40,6 +40,9 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 	}}">
 </div>
 ```
+
+---------
+
 # Configuration:
 - title_field: The document name field
 - personSourceTab: If there is a realiton tab on the object where it shoud look for recipient persons directly, ex: if you place it in company.hmtl you should have persons
@@ -47,8 +50,6 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 - businessValue The name of the field containing the busniessvalue
 
 You are now done. Each user will have their own login credentials which is used to start using the GetAccept integration.
-
----------
 
 ## Two ways integration (NEW)
 __Requires the Lime CRM API and a api key.__

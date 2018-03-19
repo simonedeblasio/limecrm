@@ -1,7 +1,4 @@
-#GetAccept - eSigning Version 2
-
-CREATED BY: GetAccept
-To use this app you need to have a GetAccept account, create one for free att www.getaccept.com 
+![alt text](https://www.getaccept.com/assets/img/GetAccept_Logo_Grey_Web.png "Logo Title Text 1")
 
 # Close more deals faster
 GetAccept is a third party tool helping sales people close more deals by taking control of the proposal and eSigning workflow. Now it is integrated with LIME Pro and you can send your document directly from LIME Pro through GetAccept. 
@@ -83,3 +80,8 @@ API-key: 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F9
 	
 # Important
 Each user at a company using the GetAccept integration need to have a GetAccept account.
+
+
+
+CREATED BY: GetAccept
+To use this app you need to have a GetAccept account, create one for free att www.getaccept.com 

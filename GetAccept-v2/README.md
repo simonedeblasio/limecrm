@@ -25,7 +25,7 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 	[GetAccept-v2](https://github.com/getaccept/limecrm/tree/master/GetAccept-v2)
 	& 
 	[GetAcceptEmail](https://github.com/getaccept/limecrm/tree/master/GetAcceptEmail)
-2. Copy the folders "GetAccept-v2" and "GetAcceptEmail" to the apps folder in the Actionpad-folder. (Don't forget to unblock files)
+2. Copy the folders "GetAccept-v2" and "GetAcceptEmail" to the apps folder in the Actionpad-folder. (Don't forget to unblock files before unzipping and moving them)
 3. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime CRM
 4. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
 5. Import the GetAccept.bas ("..\Install\VBA") to the VBA

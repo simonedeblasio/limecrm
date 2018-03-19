@@ -20,8 +20,6 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 
 ----------
 
-[I'm an inline-style link](https://www.google.com)
-
 # Installation
 1. Make sure to download both: 
 	[GetAccept-v2](https://github.com/getaccept/limecrm/tree/master/GetAccept-v2)

@@ -20,13 +20,19 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 
 ----------
 
+[I'm an inline-style link](https://www.google.com)
+
 # Installation
-1. Copy the "GetAccept" folder to the apps folder in the Actionpad-folder.
-2. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime Pro
-3. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
-4. Import the GetAccept.bas ("..\Install\VBA") to the VBA
-5. Run the Install method in the GetAccept VBA module. You must have a localization table in the databas. It is  translated to English, Swedish, Norwegia, Danish and Finish. Check which fields you have in your localization table. Dependent on which fields you have you need to remove languages in AddOrCheckLocalize in the VBA (Example: If the lanugage Norwegian or Danish is missing in you localization table you should remove oRec.Value("no") = sNO and oRecs(1).Value("no") = sNO) and so on.
-6. Import the html-tag below to the tables where you want the GetAccept App tho be shown. most commonly used from company.html or busniess.html. Th table must have a document table and you must be able to connect to a person tab either directly on the table or on a related table.
+1. Make sure to download both: 
+	[GetAccept-v2](https://github.com/getaccept/limecrm/tree/master/GetAccept-v2)
+	& 
+	[GetAcceptEmail](https://github.com/getaccept/limecrm/tree/master/GetAcceptEmail)
+2. Copy the "GetAccept" folders to the apps folder in the Actionpad-folder.
+3. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime Pro
+4. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
+5. Import the GetAccept.bas ("..\Install\VBA") to the VBA
+6. Run the Install method in the GetAccept VBA module. You must have a localization table in the databas. It is  translated to English, Swedish, Norwegia, Danish and Finish. Check which fields you have in your localization table. Dependent on which fields you have you need to remove languages in AddOrCheckLocalize in the VBA (Example: If the lanugage Norwegian or Danish is missing in you localization table you should remove oRec.Value("no") = sNO and oRecs(1).Value("no") = sNO) and so on.
+7. Import the html-tag below to the tables where you want the GetAccept App tho be shown. most commonly used from company.html or busniess.html. Th table must have a document table and you must be able to connect to a person tab either directly on the table or on a related table.
 
 ``` html
 <div data-app="{app:'GetAccept-v2',config:{

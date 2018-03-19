@@ -3,7 +3,7 @@
 CREATED BY: GetAccept
 To use this app you need to have a GetAccept account, create one for free att www.getaccept.com 
 
-#Close more deals faster
+# Close more deals faster
 GetAccept is a third party tool helping sales people close more deals by taking control of the proposal and eSigning workflow. Now it is integrated with LIME Pro and you can send your document directly from LIME Pro through GetAccept. 
 
 Features :
@@ -15,20 +15,15 @@ Features :
 - eSigning, make it easy for you customers to say and skip the hazle with printers and scanners
 - Automatic downloading of your signed documents **(NEW)**
 
-#How does it work
+# How does it work
 You can add the GetAccept App on every object where there is a document tab present. 
-
-##Two ways integration (NEW)
-__Requires the Lime CRM API and a api key.__
-This feature allows GetAccept to automatically post back your signed documents to Lime CRM.
-Log on to the GetAccept web application. Go to **Settings** --> **Integrations** --> and then add your api key and the server url to integration page. 
 
 ##Suported file types 
 There is a list in the VBA in GetAccept.CheckFileTypes where you can configure which file types that the integration should accept. Before adding a file type should you check if GetAccept can handle it. 
 
 ----------
 
-#Installation
+# Installation
 1. Copy the "GetAccept" folder to the apps folder in the Actionpad-folder.
 2. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime Pro
 3. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
@@ -45,7 +40,7 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 	}}">
 </div>
 ```
-Configuration:
+# Configuration:
 - title_field: The document name field
 - personSourceTab: If there is a realiton tab on the object where it shoud look for recipient persons directly, ex: if you place it in company.hmtl you should have persons
 - personSourceField: If there is a realtion field on the object where it should look for persons connected to a sub table, ex: if you place it in busniess.html and you have a connection to the company where - persons are connected. 
@@ -53,8 +48,20 @@ Configuration:
 
 You are now done. Each user will have their own login credentials which is used to start using the GetAccept integration.
 
+---------
 
-### You need to have following fields in the Document table: 
+## Two ways integration (NEW)
+__Requires the Lime CRM API and a api key.__
+This feature allows GetAccept to automatically post back your signed documents to Lime CRM.
+Log on to the GetAccept web application. Go to **Settings** --> **Integrations** --> and then add your api key and the server url to the integration page. 
+
+Ex: Domain URL: https://[URL]/[DatabaseName]
+		https://gaCRMDemo/getaccept%20CRM
+		
+API-key: 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F966187491C7C62
+
+
+### You need to have following fields in the Document table to be able to use the two way integration: 
 [getacceptstatus] - type: Option field, 
 	values: 
 		name: Draft, key: draft
@@ -73,7 +80,5 @@ You are now done. Each user will have their own login credentials which is used 
 		name: Agreement, key: agreement
 
 	
-
-
-## Important
+# Important
 Each user at a company using the GetAccept integration need to have a GetAccept account.

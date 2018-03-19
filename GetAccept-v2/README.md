@@ -1,10 +1,10 @@
 ![alt text](https://www.getaccept.com/assets/img/GetAccept_Logo_Grey_Web.png "Logo Title Text 1")
 
 # Close more deals faster
-GetAccept is a third party tool helping sales people close more deals by taking control of the proposal and eSigning workflow. Now it is integrated with LIME Pro and you can send your document directly from LIME Pro through GetAccept. 
+GetAccept is a third party tool helping sales people close more deals by taking control of the proposal and eSigning workflow. Now it is integrated with LIME CRM and you can send your document directly from LIME CRM through GetAccept. 
 
 Features :
-- Send all doucment from Lime Pro through GetAccept
+- Send all doucment from Lime CRM through GetAccept
 - Document tracking, who has recived and opened the sent document
 - Document analytics, when was it opened, how many times, what pages did they spend time on etc
 - Commenting, discuss your proposal directly in the document
@@ -25,8 +25,8 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 	[GetAccept-v2](https://github.com/getaccept/limecrm/tree/master/GetAccept-v2)
 	& 
 	[GetAcceptEmail](https://github.com/getaccept/limecrm/tree/master/GetAcceptEmail)
-2. Copy the "GetAccept" folders to the apps folder in the Actionpad-folder.
-3. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime Pro
+2. Copy the folders "GetAccept-v2" and "GetAcceptEmail" to the apps folder in the Actionpad-folder. (Don't forget to unblock files)
+3. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime CRM
 4. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
 5. Import the GetAccept.bas ("..\Install\VBA") to the VBA
 6. Run the Install method in the GetAccept VBA module. You must have a localization table in the databas. It is  translated to English, Swedish, Norwegia, Danish and Finish. Check which fields you have in your localization table. Dependent on which fields you have you need to remove languages in AddOrCheckLocalize in the VBA (Example: If the lanugage Norwegian or Danish is missing in you localization table you should remove oRec.Value("no") = sNO and oRecs(1).Value("no") = sNO) and so on.

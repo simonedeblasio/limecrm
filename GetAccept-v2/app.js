@@ -1248,7 +1248,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 else {
                     setTimeout(function () {
                         viewModel.Spinner(false);
-                        var docUrl = '/document/' + (data.status == 'draft' ? 'edit' : 'view') + '/' + data.id;
+                        var docUrl = '/document/edit/ + data.id;
                         var sso_url = 'https://app.getaccept.com/auth/sso/login?token=' + escape(accessToken) + '&entity_id=' + entityId + '&go=' + escape(docUrl);
                         lbs.common.executeVba("GetAccept.OpenGALink", sso_url);
                         done();

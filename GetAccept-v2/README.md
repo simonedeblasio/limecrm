@@ -12,17 +12,17 @@ Features :
 - eSigning, make it easy for you customers to say and skip the hazle with printers and scanners
 - Automatic downloading of your signed documents **(NEW)**
 
-# How does it work
+----------
+
+# Installation & Configuration
+
+**Good to know:** The integration is built for the **"Lime Core database"**. If you need to install it in a different solutions you may need to do some manual configurations.
+
+## How does it work
 You can add the GetAccept App on every object where there is a document tab present. 
 
 ## Suported file types 
 There is a list in the VBA in GetAccept.CheckFileTypes where you can configure which file types that the integration should accept. Before adding a file type should you check if GetAccept can handle it. 
-
-----------
-
-# Installation
-
-**Good to know:** The integration is built for the **"Lime Core database"**. If you need to install it in a different solutions you may need to do some manual configurations.
 
 ## Setup
 1. Make sure to download both: 

@@ -15,12 +15,16 @@ Features :
 # How does it work
 You can add the GetAccept App on every object where there is a document tab present. 
 
-##Suported file types 
+## Suported file types 
 There is a list in the VBA in GetAccept.CheckFileTypes where you can configure which file types that the integration should accept. Before adding a file type should you check if GetAccept can handle it. 
 
 ----------
 
 # Installation
+
+**Good to know:** The integration is built for the **"Lime Core database"**. If you need to install it in a different solutions you may need to do some manual configurations.
+
+## Setup
 1. Make sure to download both: 
 	[GetAccept-v2](https://github.com/getaccept/limecrm/tree/master/GetAccept-v2)
 	& 
@@ -42,9 +46,7 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 </div>
 ```
 
----------
-
-# Configuration:
+## Configuration:
 - title_field: The document name field
 - personSourceTab: If there is a realiton tab on the object where it shoud look for recipient persons directly, ex: if you place it in company.hmtl you should have persons
 - personSourceField: If there is a realtion field on the object where it should look for persons connected to a sub table, ex: if you place it in busniess.html and you have a connection to the company where - persons are connected. 
@@ -52,7 +54,9 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 
 You are now done. Each user will have their own login credentials which is used to start using the GetAccept integration.
 
-## Two ways integration (NEW)
+---------
+
+# Two ways integration (NEW)
 __Requires the Lime CRM API and a api key.__
 This feature allows GetAccept to automatically post back a signed copy of your signed documents to Lime CRM. It will download the signed document with the signing certificate and store it back in the CRM. 
 
@@ -61,13 +65,13 @@ This feature allows GetAccept to automatically post back a signed copy of your s
 2. Go to **Settings** --> **Integrations** 
 3. Add your api key and the server url to the integration page. 
 
-Ex: Domain URL: https://[URL]/[DatabaseName]
+**Ex: Domain URL:** https://[URL]/[DatabaseName]
 		https://gaCRMDemo/getaccept%20CRM
 		
-API-key: 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F966187491C7C62
+**API-key:** 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F966187491C7C62
 
 
-### You need to have following fields in the Document table to be able to use the two way integration: 
+#### You need to have following fields in the Document table to be able to use the two way integration: 
 [getacceptstatus] - type: Option field, 
 	values: 
 		name: Draft, key: draft
@@ -85,11 +89,13 @@ API-key: 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F9
 	values: 
 		name: Agreement, key: agreement
 
-	
-# Important
-Each user at a company using the GetAccept integration need to have a GetAccept account.
 
+# Troubleshoot
+Some common errors: 
 
+---------
 
 CREATED BY: GetAccept
 To use this app you need to have a GetAccept account, create one for free att www.getaccept.com 
+
+

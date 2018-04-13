@@ -8,9 +8,9 @@ lbs.apploader.register('GetAccept-v2', function () {
     */
     self.config = function (appConfig) {
         this.yourPropertyDefinedWhenTheAppIsUsed = appConfig.yourProperty;
-        this.dataSources = [
-            { type: 'activeInspector' }
-        ];
+        this.dataSources = [{
+            type: 'activeInspector'
+        }];
         this.appConfig = appConfig;
         this.resources = {
             scripts: ['pusher.min.js'], // <= External libs for your apps. Must be a file
@@ -24,7 +24,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         var authEndpoint = "https://app.getaccept.com/api";
         var apiEndpoint = "https://app.getaccept.com/api";
         var clientId = "Lime CRM";
-        var className = lbs.limeDataConnection.ActiveInspector.Class.name;
+        var className = lbs.limeDataConnection.ActiveInspector.class.name;
         var class_id = 'id' + className;
         var originalPersonList = [];
         var originalTemplateList = [];
@@ -37,11 +37,11 @@ lbs.apploader.register('GetAccept-v2', function () {
         var pusherInit = false;
 
         var id = lbs.limeDataConnection.ActiveInspector.Record.id;
-        var className = lbs.limeDataConnection.ActiveInspector.class.name;
-        var key = className  + id;
+        var key = className + id;
+
         viewModel.searchToInvite = true;
         viewModel.User = "";
-       
+
         // THIS IS THE DIFERENT VIEWS
         viewModel.Spinner = ko.observable(false);
         viewModel.Signup = ko.observable(false);
@@ -64,9 +64,15 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.userName = ko.observable('');
         viewModel.password = ko.observable('');
         viewModel.showPersons = ko.observable(false);
-        viewModel.searchValue = ko.observable('').extend({throttle:500});
-        viewModel.inviteSearchValue = ko.observable('').extend({throttle:500});
-        viewModel.templateSerach = ko.observable('').extend({throttle:500});
+        viewModel.searchValue = ko.observable('').extend({
+            throttle: 500
+        });
+        viewModel.inviteSearchValue = ko.observable('').extend({
+            throttle: 500
+        });
+        viewModel.templateSerach = ko.observable('').extend({
+            throttle: 500
+        });
         viewModel.smartReminders = ko.observable(false);
         viewModel.sendSMS = ko.observable(false);
         viewModel.useTemplates = ko.observable(false);
@@ -76,9 +82,9 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.showApp = false;
         viewModel.emailSubject = ko.observable('');
         viewModel.emailMessage = ko.observable('');
-        viewModel.documentAnalytics = ko.observable();
-        viewModel.documentName = ko.observable(''); 
 
+        viewModel.documentAnalytics = ko.observable();
+        viewModel.documentName = ko.observable('');
         //FREE ACCOUNT 
         viewModel.signupCountry = ko.observable('');
         viewModel.signupCompany = ko.observable('');
@@ -111,12 +117,11 @@ lbs.apploader.register('GetAccept-v2', function () {
             $('.ga-container').slideToggle("slow");
             if ($('.ga-container').hasClass("extended")) {
                 $('.ga-container').removeClass("extended");
-                $('.chevron').removeClass("fa-chevron-down").addClass("fa-chevron-up");
-                lbs.bakery.setCookie("shouldToggle", null, -1);
-            }
-            else {
-                $('.ga-container').addClass("extended");
                 $('.chevron').removeClass("fa-chevron-up").addClass("fa-chevron-down");
+                lbs.bakery.setCookie("shouldToggle", null, -1);
+            } else {
+                $('.ga-container').addClass("extended");
+                $('.chevron').removeClass("fa-chevron-down").addClass("fa-chevron-up");
                 lbs.bakery.setCookie("shouldToggle", true, 30);
             }
         }
@@ -137,13 +142,11 @@ lbs.apploader.register('GetAccept-v2', function () {
                             data = JSON.parse(xhr.responseText);
                             saveToken(data);
                             loadUserSettings();
-                        }
-                        else {
+                        } else {
                             data = JSON.parse(xhr.responseText);
                             if (!data.error) {
                                 alert(viewModel.localize.GetAccept.VERIFY_CREDENTIALS);
-                            }
-                            else {
+                            } else {
                                 alert(data.error);
                             }
                             return false;
@@ -187,6 +190,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             lbs.common.executeVba("GetAccept.SetTokens", "-");
             cancel();
             viewModel.GaDocuments(false);
+            viewModel.Login(true);
             initGa();
         }
 
@@ -219,35 +223,52 @@ lbs.apploader.register('GetAccept-v2', function () {
             if (typeof lbs.bakery.getCookie("accessToken") != 'undefined') {
                 if (lbs.bakery.getCookie("accessToken") != '') {
                     have_token = true;
-                    
+
                 }
             }
             if (have_token) {
                 accessToken = lbs.bakery.getCookie("accessToken");
-                refreshToken = lbs.bakery.getCookie("refreshToken");
-                expireToken = lbs.bakery.getCookie("expireToken");
-                entityId = lbs.bakery.getCookie("entityId");
-                userHash = lbs.bakery.getCookie("userHash");
-                fullToken = lbs.bakery.getCookie("fullToken");
-                if (fullToken) {
-                    lbs.common.executeVba("GetAccept.SetTokens", fullToken);
-                }
+                apiRequest("test", "GET", "", function (data) {
+                    if (data) {
+                        refreshToken = lbs.bakery.getCookie("refreshToken");
+                        expireToken = parseInt(lbs.bakery.getCookie("expireToken"));
+                        entityId = lbs.bakery.getCookie("entityId");
+                        userHash = lbs.bakery.getCookie("userHash");
+                        fullToken = lbs.bakery.getCookie("fullToken");
+                        if (fullToken) {
+                            lbs.common.executeVba("GetAccept.SetTokens", fullToken);
+                        }
+                        var nowSec = Math.ceil(new Date().getTime() / 1000);
 
-                //
-                var nowSec = Math.ceil(new Date().getTime() / 1000);
-                if (expireToken && (expireToken - ((expireToken - nowSec) / 2)) > nowSec) {
-                  
-                }
-                else {
-                    apiRequest("refresh", "GET", "", function (data) { 
-                        saveToken(data);
-                    });
-                }
-                
+                        //Check if token expires within 7 days
+                        if (expireToken - nowSec > 604800) {
+                            var validTo = moment(expireToken * 1000).format("YYYY-MM-DD hh:mm a");
+                            console.log("Token expires: " + validTo.toString());
+                        } else {
+                            apiRequest("refresh", "GET", "", function (data) {
+                                saveToken(data);
+                            });
+                        }
 
-                return true;
-            }
-            else {
+                        viewModel.Login(false);
+                        listCoworkers();
+                        listEntities();
+                        listDocuments();
+                        setupPusher();
+
+                        if (!!lbs.bakery.getCookie("shouldToggle") && lbs.bakery.getCookie("shouldToggle") !== 'undefined') {
+                            setTimeout(function () {
+                                toogleGaView();
+                            }, 500);
+                        }
+
+                    } else {
+                        viewModel.Login(true);
+                    }
+                });
+
+
+            } else {
                 return false;
             }
         }
@@ -256,37 +277,43 @@ lbs.apploader.register('GetAccept-v2', function () {
             if (!!documentData.id) {
                 viewModel.Spinner(true);
                 apiRequest("documents/" + documentData.id + "?with_pages=true&with_stats=true", "GET", "", function (data) {
-                    var analyticsData = {};
-                    analyticsData.pageCount = data.stats.document_page_completion + "/" + data.stats.document_page_count;
-                    analyticsData.name = data.name;
-                    analyticsData.status = data.status.toLowerCase();
-                    var date = moment(data.send_date).fromNow(true);
-                    analyticsData.sendDate = date.substr(0, date.indexOf(' '));
-                    analyticsData.sendDateText = date.substr(date.indexOf(' ') + 1);
-                    analyticsData.visits = data.stats.document_visit_count;
-                    var visitTime = sec2time(data.stats.document_visit_time);
-                    analyticsData.visitTime = visitTime;
-                    analyticsData.url = documentData.sso_url;
+                    if (!!data.send_date) {
+                        var analyticsData = {};
+                        analyticsData.pageCount = data.stats.document_page_completion + "/" + data.stats.document_page_count;
+                        analyticsData.name = data.name;
+                        analyticsData.status = data.status.toLowerCase();
+                        var date = moment(data.send_date).fromNow(true);
+                        analyticsData.sendDate = date.substr(0, date.indexOf(' '));
+                        analyticsData.sendDateText = date.substr(date.indexOf(' ') + 1);
+                        analyticsData.visits = data.stats.document_visit_count;
+                        var visitTime = sec2time(data.stats.document_visit_time);
+                        analyticsData.visitTime = visitTime;
+                        analyticsData.url = documentData.sso_url;
 
-                    analyticsData.delete = function () {
-                        apiRequest("documents/" + documentData.id, "DELETE", "", function (data) {
+                        analyticsData.delete = function () {
+                            apiRequest("documents/" + documentData.id, "DELETE", "", function (data) {});
+                        }
+
+                        analyticsData.analyticPageList = [];
+
+                        _.each(data.pages, function (page) {
+                            page.timespent = sec2str(page.page_time)
+                            var percent = Math.round((page.page_time / data.stats.document_visit_time) * 100);
+                            page.percent = !!percent ? percent : 0;
+                            analyticsData.analyticPageList.push(page);
                         });
+
+                        viewModel.documentAnalytics(analyticsData);
+
+                        viewModel.Analytics(true);
+                        viewModel.GaDocuments(false);
+                        viewModel.Spinner(false);
+                    } else {
+                        if (documentData.sso_url) {
+                            lbs.common.executeVba('shell,' + documentData.sso_url);
+                        }
+                        viewModel.Spinner(false);
                     }
-
-                    analyticsData.analyticPageList = [];
-
-                    _.each(data.pages, function (page) {
-                        page.timespent = sec2str(page.page_time)
-                        var percent = Math.round((page.page_time / data.stats.document_visit_time) * 100);
-                        page.percent = !!percent ? percent : 0;
-                        analyticsData.analyticPageList.push(page);
-                    });
-
-                    viewModel.documentAnalytics(analyticsData);
-
-                    viewModel.Analytics(true);
-                    viewModel.GaDocuments(false);
-                    viewModel.Spinner(false);
                 });
             }
         }
@@ -299,19 +326,28 @@ lbs.apploader.register('GetAccept-v2', function () {
                 if (hours > 0) {
                     var days = Math.round(moment.duration(seconds).asDays());
                     if (days > 0) {
-                        return { "type": "days", "value": days }
-                    }
-                    else {
-                        return { "type": "hours", "value": hours }
+                        return {
+                            "type": "days",
+                            "value": days
+                        }
+                    } else {
+                        return {
+                            "type": "hours",
+                            "value": hours
+                        }
 
                     }
+                } else {
+                    return {
+                        "type": "min",
+                        "value": min
+                    }
                 }
-                else {
-                    return { "type": "min", "value": min }
+            } else {
+                return {
+                    "type": "sec",
+                    "value": sec
                 }
-            }
-            else {
-                return { "type": "sec", "value": sec }
             }
         }
 
@@ -323,8 +359,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     s = Math.round(t % 60);
                 var str = (d > 0 ? d + 'd ' : '') + (h > 0 ? h + 'h ' : '') + (m > 0 ? m + 'm ' : '') + (t < 1 ? '' : s + 's');
                 return str ? str : '0s';
-            }
-            else {
+            } else {
                 return '0s';
             }
         }
@@ -334,63 +369,78 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.gaDocumentList.removeAll();
             viewModel.GaDocuments(true);
             var active_record_id = lbs.limeDataConnection.ActiveInspector.Controls.GetValue(class_id);
-            var document_ids = lbs.common.executeVba("GetAccept.CheckDocuments," + active_record_id + ',' + className);
-            if (document_ids && document_ids !== "False") {
-                apiRequest('documents?external_id=' + document_ids, 'GET', '', function (data) {
-                    if(data) {
+            if (!!active_record_id) {
+                var document_ids = lbs.common.executeVba("GetAccept.CheckDocuments," + active_record_id + ',' + className);
+                if (document_ids && document_ids !== "False") {
+                    apiRequest('documents?external_id=' + document_ids, 'GET', '', function (data) {
+                        if (data) {
+                            processDocument(data);
+                        } else {
+                            console.log("Couldn't get document data");
+                        }
+                    });
+                } else {
+                    viewModel.Spinner(false);
+                    console.log("Couldn't find any document ids.");
+                }
+
+                apiRequest('documents?external_id=' + key, 'GET', '', function (data) {
+                    if (data) {
                         processDocument(data);
                     }
                 });
-            }
-            else {
+
+                apiRequest('entity', 'GET', '', function (data) {
+                    viewModel.emailSubject(data.entity.email_send_subject === '' ? data.entity.default_email_send_subject : data.entity.email_send_subject);
+                    viewModel.emailMessage(data.entity.email_send_message === '' ? data.entity.default_email_send_message : data.entity.email_send_message);
+                });
+
+            } else {
+                className = lbs.limeDataConnection.ActiveInspector.class.name;
+                class_id = 'id' + className;
                 viewModel.Spinner(false);
-                console.log("Couldn't find any document ids.");
+                listDocuments();
+                console.log("Couldn't find active_record_id. Restarts the loading of documents");
             }
 
-            apiRequest('documents?external_id=' + key, 'GET', '', function (data) {
-                if(data) {
-                    processDocument(data);
-                }
-            });
-
-            apiRequest('entity', 'GET', '', function (data) {
-                viewModel.emailSubject(data.entity.email_send_subject === ''? data.entity.default_email_send_subject : data.entity.email_send_subject);
-                viewModel.emailMessage(data.entity.email_send_message === ''? data.entity.default_email_send_message : data.entity.email_send_message);
-            });
 
         }
 
         function processDocument(data) {
             viewModel.Spinner(false);
-                if (data.length > 0) {
-                    $.each(data, function (index, doc) {
-                        var docUrl = '/document/' + (doc.status == 'draft' ? 'edit' : 'view') + '/' + doc.id;
-                        var sso_url = 'https://app.getaccept.com/auth/sso/login?token=' + escape(accessToken) + '&entity_id=' + entityId + '&go=' + escape(docUrl);
-                        var document = { id: doc.id, name: doc.name, status: doc.status, sso_url: sso_url, is_signing: doc.is_signing }
-                        document.analytics = function () {
-                            documentAnalytics(this);
-                        }
+            if (data.length > 0) {
+                $.each(data, function (index, doc) {
+                    var docUrl = '/document/' + (doc.status == 'draft' ? 'edit' : 'view') + '/' + doc.id;
+                    var sso_url = 'https://app.getaccept.com/auth/sso/login?token=' + escape(accessToken) + '&entity_id=' + entityId + '&go=' + escape(docUrl);
+                    var document = {
+                        id: doc.id,
+                        name: doc.name,
+                        status: doc.status,
+                        sso_url: sso_url,
+                        is_signing: doc.is_signing
+                    }
+                    document.analytics = function () {
+                        documentAnalytics(this);
+                    }
 
-                        document.download = function () {
-                            downloadDocument(this);
-                        }
+                    document.download = function () {
+                        downloadDocument(this);
+                    }
 
-                        viewModel.gaDocumentList.push(document);
-                    });
-                }
+                    viewModel.gaDocumentList.push(document);
+                });
+            }
         }
 
         function downloadDocument(document) {
             var document_id = document.id;
-            var documentname = document.name;
-
+            var documentname = prepereStringForSavingToFileSystem(document.name);
             //Use parameter direct,  /download?direct=true to get binary content back
             //This can later be processed in VBA to store file in Lime
             apiRequest('documents/' + document_id + '/download', 'GET', '', function (data) {
                 if (typeof (data.document_url) != 'undefined') {
                     lbs.common.executeVba("GetAccept.DownloadFile," + data.document_url + ',' + documentname + ',' + className + ',' + appConfig.title_field);
-                }
-                else {
+                } else {
                     alert('Could not find signed document');
                 }
             });
@@ -410,19 +460,17 @@ lbs.apploader.register('GetAccept-v2', function () {
                     status = xhr.status;
                     if (status == 200) {
                         callback(JSON.parse(xhr.responseText));
-                    }
-                    else if (status == 401) {
-                        alert('Something wrong! Try to re-login.');
-                    }
-                    else {
+                    } else if (status == 401) {
+                        callback(false);
+                        //alert('Something wrong! Try to re-login.');
+                    } else {
                         callback(false);
                     }
                 }
             };
             if (json) {
                 xhr.send(JSON.stringify(json));
-            }
-            else {
+            } else {
                 xhr.send();
             }
         }
@@ -541,8 +589,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 name = lbs.limeDataConnection.ActiveUser.Record("name");
                 email = lbs.limeDataConnection.ActiveUser.Record("email");
                 company = lbs.limeDataConnection.Database.Name;
-            }
-            catch (e) {
+            } catch (e) {
                 console.log(e);
             }
 
@@ -564,8 +611,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     mobile = lbs.limeDataConnection.ActiveUser.Record("cellphone");
                     first_name = lbs.limeDataConnection.ActiveUser.Record("firstname");
                     last_name = lbs.limeDataConnection.ActiveUser.Record("lastname");
-                }
-                catch (e) {
+                } catch (e) {
                     console.log(e);
                 }
 
@@ -588,16 +634,14 @@ lbs.apploader.register('GetAccept-v2', function () {
                     apiRequest('register', 'POST', json, function (data) {
                         if (data.error) {
                             alert(data.error);
-                        }
-                        else {
+                        } else {
                             viewModel.Signup(false);
                             viewModel.Login(true);
                             viewModel.userName(viewModel.signupEmail());
                         }
                     });
 
-                }
-                else {
+                } else {
                     alert("You need to fill in all fields.")
                 }
             }
@@ -622,7 +666,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         function getRecipients() {
             viewModel.personList.removeAll();
             var contactString = lbs.common.executeVba("GetAccept.GetContactList," + className);
-            var contacts = !!contactString? JSON.parse(contactString) : false;
+            var contacts = !!contactString ? JSON.parse(contactString) : false;
             originalPersonList = [];
             if (contacts) {
                 $.each(contacts.Persons, function (index, personData) {
@@ -649,8 +693,8 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.templateList.removeAll();
             originalTemplateList = [];
             apiRequest('templates', 'GET', '', function (data) {
-                if(data.templates) {
-                    $.each(data.templates, function(index, templateData){
+                if (data.templates) {
+                    $.each(data.templates, function (index, templateData) {
                         var temp = new templateModel(templateData);
                         viewModel.templateList.push(temp);
                         originalTemplateList.push(temp);
@@ -661,34 +705,32 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         function getTemplateFields() {
             viewModel.selectedTemplateFields.removeAll();
-            apiRequest("templates/"+viewModel.selectedTemplateId()+'/fields', "GET", "", function(data) {
-				if(data) {
-                    $.each(data.fields, function(index, fieldData) {
-                        if(!!fieldData.field_label) {
+            apiRequest("templates/" + viewModel.selectedTemplateId() + '/fields', "GET", "", function (data) {
+                if (data) {
+                    $.each(data.fields, function (index, fieldData) {
+                        if (!!fieldData.field_label) {
                             try {
                                 var fieldString = fieldData.field_value;
-                                var fieldKey = fieldString.replace("{{","").replace("}}","");
+                                var fieldKey = fieldString.replace("{{", "").replace("}}", "");
                                 var fieldKeyValue = eval('viewModel.' + fieldKey + '.text');
-                                fieldData.field_value = !!fieldKeyValue? fieldKeyValue : field_value; 
-                            }
-                            catch(e) {
+                                fieldData.field_value = !!fieldKeyValue ? fieldKeyValue : field_value;
+                            } catch (e) {
                                 console.log(e);
                             }
                             viewModel.selectedTemplateFields.push(fieldData);
                         }
                     });
                     viewModel.TemplateFields(true);
-                }
-                else {
+                } else {
                     viewModel.Document(true);
                 }
-			});
+            });
         }
 
         function showTemplateParameters() {
             hideAllSteps();
             viewModel.availableLimeFields.removeAll();
-            $.each(eval('viewModel.' + className), function(fieldName, fieldValue) {
+            $.each(eval('viewModel.' + className), function (fieldName, fieldValue) {
                 var fieldData = new mapAvailableField(fieldName, fieldValue);
                 viewModel.availableLimeFields.push(fieldData);
             });
@@ -701,17 +743,15 @@ lbs.apploader.register('GetAccept-v2', function () {
                 field.value = fieldValue.text;
                 field.name = lbs.limeDataConnection.ActiveInspector.Record.Field(fieldName).LocalName
                 field.key = "{{" + className + "." + fieldName + "}}";
-                field.copy = function() {
+                field.copy = function () {
                     try {
                         window.clipboardData.setData('Text', this.key);
                         alert("Value is copied to clipboard");
-                    }
-                    catch(err){
+                    } catch (err) {
                         console.log(err);
                     }
                 }
-            }
-            catch(e) {
+            } catch (e) {
                 console.log(e);
             }
             return field;
@@ -722,7 +762,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             template.name = templateData.name;
             template.id = templateData.id;
             template.thumb = templateData.thumb_url;
-            template.selectTemplate = function() {
+            template.selectTemplate = function () {
                 viewModel.selectedTemplate(this);
                 viewModel.selectedTemplateId(this.id);
             }
@@ -730,15 +770,15 @@ lbs.apploader.register('GetAccept-v2', function () {
         }
 
         function enterPress(d, e) {
-            if(e.which == 66 && e.ctrlKey) {
-            //catches ctrl + b
+            if (e.which == 66 && e.ctrlKey) {
+                //catches ctrl + b
                 return false;
             }
         }
         viewModel.enterPress = enterPress;
 
         function showPersonList() {
-            if(! viewModel.sendInternal()) {
+            if (!viewModel.sendInternal()) {
                 getRecipients();
             }
             viewModel.showPersons(true);
@@ -766,8 +806,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     recipient.signer = ko.observable(true);
                     recipient.cc = ko.observable(false);
                     recipient.searchString = (personData.firstname + '' + personData.lastname + '' + personData.email).toLocaleLowerCase();
-                }
-                catch (e) {
+                } catch (e) {
                     alert(e);
                 }
 
@@ -811,65 +850,61 @@ lbs.apploader.register('GetAccept-v2', function () {
         function validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             var reg = new RegExp("\å|\ä|\ö");
-            if(!reg.test(email)){
+            if (!reg.test(email)) {
                 return re.test(email);
-            }
-            else {
+            } else {
                 return false;
             }
-            
+
         }
 
         viewModel.inviteSearchValue.subscribe(function (inputString) {
-            if(inputString.length > 3) {
+            if (inputString.length > 3) {
                 viewModel.coworkerList.removeAll();
                 viewModel.Spinner(true);
-                    try {
-                        var coworkers = JSON.parse(lbs.common.executeVba("GetAccept.SearchCoworkerByEmail," + inputString));
-                        if(coworkers.Persons) {
-                            $.each(coworkers.Persons, function(i, coworker) {
-                                var person = new coworkerModel(coworker, true);
-                                viewModel.coworkerList.push(person);
-                            });
-                        }
+                try {
+                    var coworkers = JSON.parse(lbs.common.executeVba("GetAccept.SearchCoworkerByEmail," + inputString));
+                    if (coworkers.Persons) {
+                        $.each(coworkers.Persons, function (i, coworker) {
+                            var person = new coworkerModel(coworker, true);
+                            viewModel.coworkerList.push(person);
+                        });
+                    }
 
-                    }
-                    catch(error) {
-                        alert(error);
-                    }
-                    viewModel.Spinner(false);
+                } catch (error) {
+                    alert(error);
+                }
+                viewModel.Spinner(false);
             }
         });
 
         viewModel.searchValue.subscribe(function (inputString) {
-            if(inputString.length > 3) {
+            if (inputString.length > 3) {
                 viewModel.personList.removeAll();
                 inputString = (inputString.toLowerCase()).replace(' ', '');
-                
-                if(viewModel.sendInternal()) {
+
+                if (viewModel.sendInternal()) {
                     viewModel.Spinner(true);
                     try {
                         var coworkers = JSON.parse(lbs.common.executeVba("GetAccept.SearchCoworkerByEmail," + inputString));
-                        var reg =  new RegExp("\å|\ä|\ö");
-                        if(coworkers.Persons) {
-                            $.each(coworkers.Persons, function(i, coworker) {
-                                if(!reg.test(coworker.email)) {
+                        var reg = new RegExp("\å|\ä|\ö");
+                        if (coworkers.Persons) {
+                            $.each(coworkers.Persons, function (i, coworker) {
+                                if (!reg.test(coworker.email)) {
                                     var person = new recipientModel(coworker, true);
                                     viewModel.personList.push(person);
                                 }
                             });
                         }
-                    }
-                    catch(error) {
+                    } catch (error) {
                         alert(error);
                     }
                     viewModel.Spinner(false);
-                }
-                else {
+                } else {
                     viewModel.Spinner(true);
                     $.each(originalPersonList, function (index, person) {
                         if (person.searchString.indexOf(inputString) > -1) {
-                            if (viewModel.personList().indexOf(person) == - 1) {
+                            if (viewModel.personList().indexOf(person) == -1) {
                                 viewModel.personList.push(person);
                             }
                         }
@@ -880,20 +915,19 @@ lbs.apploader.register('GetAccept-v2', function () {
         });
 
         viewModel.templateSerach.subscribe(function (inputString) {
-            if(inputString.length > 2) {
+            if (inputString.length > 2) {
                 viewModel.templateList.removeAll();
                 viewModel.Spinner(true);
                 $.each(originalTemplateList, function (index, template) {
                     if (template.name.indexOf(inputString) > -1) {
-                        if (viewModel.templateList().indexOf(template) == - 1) {
+                        if (viewModel.templateList().indexOf(template) == -1) {
                             viewModel.templateList.push(template);
                         }
                     }
                 });
                 viewModel.Spinner(false);
 
-            }
-            else if (inputString.length == 0 ) {
+            } else if (inputString.length == 0) {
                 viewModel.templateList.removeAll();
                 $.each(originalTemplateList, function (index, temp) {
                     viewModel.templateList.push(temp);
@@ -911,8 +945,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.Spinner(false);
                 reloadFileName();
 
-            }
-            else {
+            } else {
                 viewModel.Spinner(false);
                 alert("You need to select at least one recipient!");
             }
@@ -959,8 +992,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.TemplateFields(false);
                 viewModel.GaDocuments(false);
                 getTemplateFields();
-            }
-            else if( viewModel.useFile()) {
+            } else if (viewModel.useFile()) {
                 if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
                     if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.Selection.Count > 0) {
                         viewModel.worksteps([1, 1]);
@@ -970,22 +1002,19 @@ lbs.apploader.register('GetAccept-v2', function () {
                         viewModel.GaDocuments(false);
                         getDocuments();
                         uploadDocument();
-                    }
-                    else {
+                    } else {
                         viewModel.Spinner(false);
                         alert("You must select at least one document.")
                     }
-                }
-                else {
+                } else {
                     viewModel.Spinner(false);
                     alert("Please select a document or a template step forward.")
                 }
-            }
-            else {
+            } else {
                 alert("Please select a document or a template step forward.")
             }
-            
-            
+
+
         }
 
         function getDocuments() {
@@ -993,13 +1022,19 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.document.removeAll();
             viewModel.documentList.removeAll();
             var documentData = JSON.parse(lbs.common.executeVba("GetAccept.GetDocuments," + className));
-            if (documentData) {
+            if (documentData.length > 0) {
                 $.each(documentData, function (i, document) {
-                    var document_json = { name: document.name, external_id: document.id };
+                    var document_json = {
+                        name: document.name,
+                        external_id: document.id
+                    };
                     var doc = new documentModel(document_json);
                     viewModel.documentList.push(doc);
                 });
-                var doc_josn = { name: documentData[0].name, external_id: documentData[0].id };
+                var doc_josn = {
+                    name: documentData[0].name,
+                    external_id: documentData[0].id
+                };
                 var doc = new documentModel(doc_josn);
                 viewModel.document.push(doc);
             }
@@ -1036,27 +1071,25 @@ lbs.apploader.register('GetAccept-v2', function () {
             try {
                 var message = prepereStringForSendingToVBA(viewModel.emailMessage());
                 var subject = prepereStringForSendingToVBA(viewModel.emailSubject());
-                
+
                 var data = {
                     'emailData': {
                         'emailMessage': message,
                         'emailSubject': subject
                     }
                 };
-          
+
                 try {
                     var t = json2xml(data);
-                }
-                catch(e) {
+                } catch (e) {
                     alert(e);
                 }
-                
+
                 lbs.common.executeVba("GetAccept.showEmailDialog," + t);
                 var emailResult = lbs.common.executeVba("GetAccept.GetEmailData");
-                
+
                 unpackEmailData(emailResult);
-            }
-            catch(e){
+            } catch (e) {
                 alert(e);
             }
         }
@@ -1072,135 +1105,116 @@ lbs.apploader.register('GetAccept-v2', function () {
                 var message = unpackStringAfterSending(json.emailData.emailMessage);
                 var subject = unpackStringAfterSending(json.emailData.emailSubject);
 
-                if(message != viewModel.emailMessage()) {
+                if (message != viewModel.emailMessage()) {
                     viewModel.updateMessage(true);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         viewModel.updateMessage(false);
-                    },1000);
+                    }, 1000);
                     viewModel.emailMessage(message);
-                } 
+                }
 
-                if(subject != viewModel.emailSubject()) {
+                if (subject != viewModel.emailSubject()) {
                     viewModel.updateSubject(true);
-                    setTimeout(function(){
+                    setTimeout(function () {
                         viewModel.updateSubject(false);
-                    },1000);
+                    }, 1000);
                     viewModel.emailSubject(subject);
                 }
-            }
-            catch(e) {
+            } catch (e) {
                 alert(e);
             }
         }
 
         function unpackStringAfterSending(str) {
-            str = str.replace(/%0/g,',');
-            str = str.replace(/%1/g, String.fromCharCode(10));
-            str = str.replace(/%2/g, String.fromCharCode(39));
-            str = str.replace(/%3/g, String.fromCharCode(34));
-            str = str.replace(/%4/g, '&');
-            str = str.replace(/%5/g, '>');
-            str = str.replace(/%6/g, '<');
-           
+            if (!!str) {
+                str = str.replace(/%0/g, ',');
+                str = str.replace(/%1/g, String.fromCharCode(10));
+                str = str.replace(/%2/g, String.fromCharCode(39));
+                str = str.replace(/%3/g, String.fromCharCode(34));
+                str = str.replace(/%4/g, '&');
+                str = str.replace(/%5/g, '>');
+                str = str.replace(/%6/g, '<');
+            }
+
             return str;
         }
-        
+
         function prepereStringForSendingToVBA(str) {
             try {
-                str = str.replace(/,/g,'%0');
-                str = str.replace(/(?:\r\n|\r|\n)/g,'%1');
-                str = str.replace(/'/g,'%2');
-                str = str.replace(/"/g,'%3');
-                str = str.replace(/&/g,'%4');
-                str = str.replace(/>/g,'%5');
-                str = str.replace(/</g,'%6');
-                
-                
-            }   
-            catch(e) {
+                str = str.replace(/,/g, '%0');
+                str = str.replace(/(?:\r\n|\r|\n)/g, '%1');
+                str = str.replace(/'/g, '%2');
+                str = str.replace(/"/g, '%3');
+                str = str.replace(/&/g, '%4');
+                str = str.replace(/>/g, '%5');
+                str = str.replace(/</g, '%6');
+
+
+            } catch (e) {
                 alert(e);
             }
-            return str; 
+            return str;
+        }
+
+        function prepereStringForSavingToFileSystem(str) {
+            try {
+                //A filename cannot contain any of the following characters: \ / : * ? " < > |  
+                str = str.replace(/,/g, '.');
+                str = str.replace(/\//g, '');
+                str = str.replace(/\\/g, '');
+                str = str.replace(/\?/g, '');
+                str = str.replace(/'/g, '');
+                str = str.replace(/:/g, '');
+                str = str.replace(/\|/g, '');
+                str = str.replace(/\*/g, '');
+                str = str.replace(/"/g, '');
+                str = str.replace(/>/g, '');
+                str = str.replace(/</g, '');
+            } catch (e) {
+                alert(e);
+            }
+            return str;
         }
 
         viewModel.createEmail = packEmailData;
 
         function sendDocument(automaticSending) {
-            var active_record_id = lbs.limeDataConnection.ActiveInspector.Controls.GetValue(class_id);
             var deal_value = "";
             var deal_name = "";
             var company_name = "";
             var video_id = null;
             viewModel.Spinner(true);
-
+            var sending_is_ok = true;
             if (className === "business" || className === "deal") {
                 deal_value = eval('viewModel.' + className + '.' + appConfig.businessValue + '.value')
                 deal_name = eval('viewModel.' + className + '.name.text');
                 company_name = eval('viewModel.' + className + '.company.text');
-            }
-            else if (className === "company") {
+            } else if (className === "company") {
                 company_name = eval('viewModel.' + className + '.name.text');
-            }
-            else {
-                company_name = eval('viewModel.' + className + '.company.text');
-            }
+            } else {
+                try {
+                    company_name = eval('viewModel.' + className + '.company.text');
+                } catch (e) {
+                    sending_is_ok = false;
+                    console.log(e);
+                    className = lbs.limeDataConnection.activeInspector.class.name;
+                    if (className) {
+                        sendDocument(automaticSending);
+                    }
 
-            if (viewModel.videoData().video_id) {
-                video_id = viewModel.videoData().video_id;
-            }
-
-            if(!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
-                var documentData = {
-                    name: viewModel.selectedTemplate().name,
-                    type: 'sales',
-                    external_id: key,
-                    value: deal_value,
-                    recipients: [],
-                    company_name: company_name,
-                    is_automatic_sending: automaticSending,
-                    is_reminder_sending: viewModel.smartReminders(),
-                    is_sms_sending: viewModel.sendSMS(),
-                    email_send_subject: viewModel.emailSubject(),
-                    email_send_message: viewModel.emailMessage(),
-                    video_id: video_id ? video_id : null,
                 }
-
-                if (viewModel.selectedTemplateFields().length > 0) {
-                    var customFields = [];
-                    $.each(viewModel.selectedTemplateFields(), function(index, field){
-                        customFields.push({'id': field.field_id, 'value': field.field_value});
-                    });
-                    documentData.custom_fields = customFields;
-                }
-
-                documentData.template_id = viewModel.selectedTemplateId();
-
-                var have_signer = viewModel.recipientsList().filter(function (i) {
-                    return i.signer() == true;
-                });
-
-                if (have_signer != "undefiend") {
-                    documentData.is_signing = true;
-                }
-                else {
-                    documentData.is_signing = 0;
-                }
-                gaRecipientList = [];
-                $.each(viewModel.recipientsList(), function (i, rec) {
-                    var recipeint = new gaRecipient(rec);
-                    gaRecipientList.push(recipeint);
-                });
-                documentData.recipients = gaRecipientList;
-                postDocument(documentData, automaticSending);
             }
-            else {
-                $.each(viewModel.document(), function (i, file) {
+
+            if (sending_is_ok) {
+                if (viewModel.videoData().video_id) {
+                    video_id = viewModel.videoData().video_id;
+                }
+                if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                     var documentData = {
-                        name: file.documentName(),
-                        file_ids: '',
+                        name: viewModel.selectedTemplate().name,
                         type: 'sales',
+                        external_id: key,
                         value: deal_value,
-                        external_id: file.external_id,
                         recipients: [],
                         company_name: company_name,
                         is_automatic_sending: automaticSending,
@@ -1210,42 +1224,89 @@ lbs.apploader.register('GetAccept-v2', function () {
                         email_send_message: viewModel.emailMessage(),
                         video_id: video_id ? video_id : null,
                     }
-                    gaRecipientList = [];
-                    $.each(viewModel.recipientsList(), function (i, rec) {
-                        var recipeint = new gaRecipient(rec);
-                        gaRecipientList.push(recipeint);
-                    });
 
-                    //Sätter filid och filnamn till dokumentet.
-                    documentData.file_ids = viewModel.uploadedDocuments().join(',');
-                    documentData.recipients = gaRecipientList;
-                    
+                    if (viewModel.selectedTemplateFields().length > 0) {
+                        var customFields = [];
+                        $.each(viewModel.selectedTemplateFields(), function (index, field) {
+                            customFields.push({
+                                'id': field.field_id,
+                                'value': field.field_value
+                            });
+                        });
+                        documentData.custom_fields = customFields;
+                    }
+
+                    documentData.template_id = viewModel.selectedTemplateId();
+
                     var have_signer = viewModel.recipientsList().filter(function (i) {
                         return i.signer() == true;
                     });
 
                     if (have_signer != "undefiend") {
                         documentData.is_signing = true;
-                    }
-                    else {
+                    } else {
                         documentData.is_signing = 0;
                     }
-
+                    gaRecipientList = [];
+                    $.each(viewModel.recipientsList(), function (i, rec) {
+                        var recipeint = new gaRecipient(rec);
+                        gaRecipientList.push(recipeint);
+                    });
+                    documentData.recipients = gaRecipientList;
                     postDocument(documentData, automaticSending);
-                });
+                } else {
+                    $.each(viewModel.document(), function (i, file) {
+                        var documentData = {
+                            name: file.documentName(),
+                            file_ids: '',
+                            type: 'sales',
+                            value: deal_value,
+                            external_id: file.external_id,
+                            recipients: [],
+                            company_name: company_name,
+                            is_automatic_sending: automaticSending,
+                            is_reminder_sending: viewModel.smartReminders(),
+                            is_sms_sending: viewModel.sendSMS(),
+                            email_send_subject: viewModel.emailSubject(),
+                            email_send_message: viewModel.emailMessage(),
+                            video_id: video_id ? video_id : null,
+                        }
+                        gaRecipientList = [];
+                        $.each(viewModel.recipientsList(), function (i, rec) {
+                            var recipeint = new gaRecipient(rec);
+                            gaRecipientList.push(recipeint);
+                        });
+
+                        //Sätter filid och filnamn till dokumentet.
+                        documentData.file_ids = viewModel.uploadedDocuments().join(',');
+                        documentData.recipients = gaRecipientList;
+
+                        var have_signer = viewModel.recipientsList().filter(function (i) {
+                            return i.signer() == true;
+                        });
+
+                        if (have_signer != "undefiend") {
+                            documentData.is_signing = true;
+                        } else {
+                            documentData.is_signing = 0;
+                        }
+
+                        postDocument(documentData, automaticSending);
+                    });
+                }
             }
         }
 
         function postDocument(documentData, automaticSending) {
             apiRequest('documents', 'POST', documentData, function (data) {
+                console.log(data);
                 lbs.common.executeVba("GetAccept.SetDocumentStatus," + 1 + ',' + className);
                 if (automaticSending) {
                     viewModel.Spinner(false);
                     lbs.common.executeVba("GetAccept.CreateHistory");
                     hideAllSteps();
                     viewModel.Reminder(true);
-                }
-                else {
+                } else {
                     setTimeout(function () {
                         viewModel.Spinner(false);
                         var docUrl = '/document/edit/ + data.id;
@@ -1263,7 +1324,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.uploadedDocuments.removeAll();
             var document_data = lbs.common.executeVba("GetAccept.GetDocumentData," + className);
             document_data = JSON.parse(document_data);
-            if (document_data) {
+            if (document_data.length > 0) {
                 $.each(document_data, function (index, doc) {
                     var file = window.atob(doc.file_content);
                     var len = file.length;
@@ -1290,11 +1351,17 @@ lbs.apploader.register('GetAccept-v2', function () {
                             }
                         });
                         xhrRequest.send(formData);
-                    }
-                    catch (error) {
+                    } catch (error) {
                         console.log(e);
                     }
                 });
+            } else {
+                alert("Can't upload this document. Check so content is okey.");
+                viewModel.worksteps([1, 1]);
+                viewModel.File(true);
+                viewModel.Recipient(false);
+                viewModel.Document(false);
+                viewModel.GaDocuments(false);
             }
         }
 
@@ -1309,8 +1376,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.entityList().sort(function (left, right) {
                     if (right.id == entityId) {
                         return 1;
-                    }
-                    else if (left.id == entityId) {
+                    } else if (left.id == entityId) {
                         return -1
                     }
                 });
@@ -1345,8 +1411,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                             var existingUser = _.find(data.users, function (u) {
                                 if (u.email === coworkerData.email) {
                                     return true;
-                                }
-                                else {
+                                } else {
                                     return false;
                                 }
                             });
@@ -1368,8 +1433,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             coworker.email = coworkerData.email;
             coworker.sendInvite = function () {
                 viewModel.coworkerList.remove(this);
-                apiRequest('users', 'POST', this, function (data) {
-                });
+                apiRequest('users', 'POST', this, function (data) {});
             }
             return coworker;
         }
@@ -1379,20 +1443,9 @@ lbs.apploader.register('GetAccept-v2', function () {
             lbs.common.executeVba("GetAccept.initGa," + appConfig.personSourceTab + ',' + appConfig.personSourceField)
             var isLoggedOn = checkLogin();
             if (isLoggedOn) {
-                viewModel.Login(false);
-                listCoworkers();
-                listEntities();
-                listDocuments();
-                setupPusher();
 
-                if(!!lbs.bakery.getCookie("shouldToggle")  && lbs.bakery.getCookie("shouldToggle") !== 'undefined') { 
-                    setTimeout(function(){
-                       toogleGaView();
-                    },500);
-                }
-            }
-            else {
-                viewModel.Login(true);
+            } else {
+                //viewModel.Login(true);
             }
         }
 
@@ -1429,18 +1482,15 @@ lbs.apploader.register('GetAccept-v2', function () {
                                 data.video_id = video_id;
                                 viewModel.videoData(data);
                                 viewModel.Spinner(false);
-                            }
-                            else if (data.Status == "Error") {
+                            } else if (data.Status == "Error") {
                                 videoTimer = false;
-                            }
-                            else {
+                            } else {
                                 setTimeout(function () {
                                     checkVideo(job_id, video_id);
                                 }, 2000);
                             }
                         }
-                    }
-                    else {
+                    } else {
                         setTimeout(function () {
                             checkVideo(job_id, video_id);
                         }, 2000);

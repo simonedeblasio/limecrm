@@ -54,8 +54,12 @@ You are now done. Each user will have their own login credentials which is used 
 
 ## Two ways integration (NEW)
 __Requires the Lime CRM API and a api key.__
-This feature allows GetAccept to automatically post back your signed documents to Lime CRM.
-Log on to the GetAccept web application. Go to **Settings** --> **Integrations** --> and then add your api key and the server url to the integration page. 
+This feature allows GetAccept to automatically post back a signed copy of your signed documents to Lime CRM. It will download the signed document with the signing certificate and store it back in the CRM. 
+
+### How to set it up.
+1. Log on to the GetAccept web application. [app.getaccept.com](https://app.getaccept.com)
+2. Go to **Settings** --> **Integrations** 
+3. Add your api key and the server url to the integration page. 
 
 Ex: Domain URL: https://[URL]/[DatabaseName]
 		https://gaCRMDemo/getaccept%20CRM

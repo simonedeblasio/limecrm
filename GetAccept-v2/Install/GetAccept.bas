@@ -851,12 +851,12 @@ Public Sub Install()
     
     Set en = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values\strings.xml")
     Set sv = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-sv-rSE\strings.xml")
-'    Set no = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-no-rNO\strings.xml")
-'    Set fi = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-fi-rFI\strings.xml")
-'    Set da = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-da-rDK\strings.xml")
+    Set no = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-no-rNO\strings.xml")
+    Set fi = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-fi-rFI\strings.xml")
+    Set da = LoadLanguage("apps\GetAccept-v2\Install\Locals\getaccept-xml-archive\res\values-da-rDK\strings.xml")
     
     For Each key In en
-        If en.Exists(key) And sv.Exists(key) And no.Exists(key) And fi.Exists(key) Then
+        If en.Exists(key) And sv.Exists(key) And no.Exists(key) And fi.Exists(key) And da.Exists(key) Then
             Call AddOrCheckLocalize("GetAccept", CStr(key), en.Item(key), en.Item(key), sv.Item(key), no.Item(key), fi.Item(key), da.Item(key))
         End If
     Next key

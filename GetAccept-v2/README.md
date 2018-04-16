@@ -30,18 +30,21 @@ There is a list in the VBA in GetAccept.CheckFileTypes where you can configure w
 	& 
 	[GetAcceptEmail](https://github.com/getaccept/limecrm/tree/master/GetAcceptEmail)
 2. Copy the folders "GetAccept-v2" and "GetAcceptEmail" to the apps folder in the Actionpad-folder. (Don't forget to unblock files before unzipping and moving them)
-3. Add a yes/no field named to "sent_with_ga" to the document table, set it as protected for editing in Lime CRM
+3. Add a yes/no field named to "sent_with_ga" to the document table, set it as "Read only for LIME PRO" in LISA.
 4. Check if the History > type field is named "type" and if there is an option with they key "sentemail". this will be set in the VBA and if it doesn't exist it will not work (you can change it in the vba GetAccept.SetDocumentStatus)
 5. Import the GetAccept.bas ("..\Install\VBA") to the VBA
 6. Run the Install method in the GetAccept VBA module. You must have a localization table in the databas. It is  translated to English, Swedish, Norwegia, Danish and Finish. Check which fields you have in your localization table. Dependent on which fields you have you need to remove languages in AddOrCheckLocalize in the VBA (Example: If the lanugage Norwegian or Danish is missing in you localization table you should remove oRec.Value("no") = sNO and oRecs(1).Value("no") = sNO) and so on.
-7. Import the html-tag below to the tables where you want the GetAccept App tho be shown. most commonly used from company.html or busniess.html. Th table must have a document table and you must be able to connect to a person tab either directly on the table or on a related table.
+7. Restart Lime CRM or run ThisApplication.setup to load the new translations
+8. Import the html-tag below to the actionpad where you want the GetAccept App tho be shown. It's most commonly used from company.html or deal.html. Place the html-tag in the actionpad header. 
+The table must have a document tab and you must be able to connect to a person tab either directly on the card or on a related table.
+9. Publish the actionpad!
 
 ``` html
 <div data-app="{app:'GetAccept-v2',config:{
 	title_field: 'comment', 
 	personSourceTab: '', 	
 	personSourceField: 'company',
-	businessValue:''  
+	businessValue: 'value'  
 	}}">
 </div>
 ```
@@ -60,7 +63,12 @@ You are now done. Each user will have their own login credentials which is used 
 __Requires the Lime CRM API and a api key.__
 This feature allows GetAccept to automatically post back a signed copy of your signed documents to Lime CRM. It will download the signed document with the signing certificate and store it back in the CRM. 
 
-## How to set it up.
+## How to set it up in LIME CRM
+1. Create a API-user.
+2. Give correct permissions to the user (should follow the LIME standard rules (Add/Read/Write))
+3.
+
+## How to set it up in GetAccept.
 1. Log on to the GetAccept web application. [app.getaccept.com](https://app.getaccept.com)
 2. Go to **Settings** --> **Integrations** 
 3. Add your api key and the server url to the integration page. 
@@ -68,7 +76,7 @@ This feature allows GetAccept to automatically post back a signed copy of your s
 **Ex: Domain URL:** https://[URL]/[DatabaseName]
 		https://gaCRMDemo/getaccept%20CRM
 		
-**API-key:** 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F966187491C7C62
+**Ex: API-key:** 3FD114540187E43A9264743B7742528429511C042237ACF10034DEBEAADF770ECFBD8F966187491C7C62
 
 ## Document table setup
 #### You need to have following fields in the Document table to be able to use the two way integration: 

@@ -1186,7 +1186,11 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.Spinner(true);
             var sending_is_ok = true;
             if (className === "business" || className === "deal") {
-                deal_value = eval('viewModel.' + className + '.' + appConfig.businessValue + '.value')
+                if (!!appConfig.dealValue) {
+                    deal_value = eval('viewModel.' + className + '.' + appConfig.dealValue + '.value')
+                } else {
+                    console.log("You are missing dealValue in the config.");
+                }
                 deal_name = eval('viewModel.' + className + '.name.text');
                 company_name = eval('viewModel.' + className + '.company.text');
             } else if (className === "company") {
@@ -1299,7 +1303,6 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         function postDocument(documentData, automaticSending) {
             apiRequest('documents', 'POST', documentData, function (data) {
-                console.log(data);
                 lbs.common.executeVba("GetAccept.SetDocumentStatus," + 1 + ',' + className);
                 if (automaticSending) {
                     viewModel.Spinner(false);

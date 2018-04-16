@@ -1,6 +1,6 @@
-#Congrats
+# Congrats
 You have just installed this amazing connection!
-Now lets try it out :) 
+Now lets try it out **:)** 
 
 ## Get started
 1. Log in with credentials
@@ -20,7 +20,7 @@ Now lets try it out :)
 4. Send the document to a colleague
 
 ## After sendout
-1. Create a todo by pressing the todu-button
+1. Create a todo by pressing the todo button
 2. Check so the workflow is restarting it self.
 
 

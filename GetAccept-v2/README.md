@@ -43,6 +43,8 @@ The table must have a document tab and you must be able to connect to a person t
 
 9. [LIME] - Publish the actionpad!
 
+10. [Do this test](https://github.com/getaccept/limecrm/blob/master/GetAccept-v2/Install/test-of-workflow.md)
+
 ``` html
 <div data-app="{app:'GetAccept-v2',config:{
 	title_field: 'comment', 

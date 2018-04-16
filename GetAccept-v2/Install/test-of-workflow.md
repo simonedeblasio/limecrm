@@ -1,3 +1,7 @@
+#Congrats
+You have just installed this amazing connection!
+Now lets try it out :) 
+
 ## Get started
 1. Log in with credentials
 2. Click on "Get started"

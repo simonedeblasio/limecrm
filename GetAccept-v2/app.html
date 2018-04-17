@@ -14,7 +14,12 @@
                 />
                 <input id="ga-login-password" type="password" class="form-control ga-input-field" data-bind="value: password, valueUpdate: 'afterkeydown', attr: {placeholder : localize.GetAccept.PASSWORD}"
                 />
-                <button class="btn ga-btn ga-login-button" data-bind="text: localize.GetAccept.LOGIN, click: logon"></button>
+                <button class="btn ga-btn ga-login-button" data-bind="click: logon">
+                    <span data-bind="text: localize.GetAccept.LOGIN"></span>
+                    <!-- ko if: tryingToLogIn() -->
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                    <!-- /ko -->
+                </button>
                 <button class="btn ga-btn-blank ga-login-signup" data-bind="text: localize.GetAccept.SIGNUP, click: createFreeAccount"></button>
             </div>
             <!-- /ko -->
@@ -84,7 +89,7 @@
                             <a class="ga-gaDocuments-listItem-analytics" data-bind="text: ' ', openURL: sso_url, icon: 'fa-external-link'"></a>
                             <!-- /ko -->
                             <!-- ko if: status === 'signed' -->
-                            <a class="ga-gaDocuments-listItem-download" data-bind="text: ' ', tooltip: $parent.localize.GetAccept.DOWNLOAD_DOCUMENT, icon: 'fa-download', click: download"></a>
+                            <a class="ga-gaDocuments-listItem-download" data-bind="text: $parent.localize.GetAccept.DOWNLOAD_DOCUMENT, tooltip: $parent.localize.GetAccept.DOWNLOAD_DOCUMENT, icon: 'fa-download', click: download"></a>
                             <!-- /ko -->
                         </div>
                     </li>
@@ -257,9 +262,11 @@
                 </div>
             </div>
 
+            <!-- ko if: useTemplates() -->
             <div class="ga-template-action-links">
                 <a href="" style="display: block;" data-bind="text: 'Show template parameters', click: showTemplateParameters"></a>
             </div>
+            <!-- /ko -->
             <button style="margin-top: 1em;" class="btn ga-btn ga-btn-button" data-bind="text: localize.GetAccept.NEXT + ' >',  click: showDocument"></button>
             <!-- /ko -->
 
@@ -355,7 +362,7 @@
                             <label class="ga-label ga-document-email-label" data-bind="text: localize.GetAccept.SUBJECT"></label>
                             <!-- ko if: updateSubject -->
                             <i class="fa fa-spinner fa-pulse fa-fw ga-document-updated-icon"></i>
-                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANING_TEXT"></span>
+                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANGING_TEXT"></span>
                             <!-- /ko -->
                             <div class="ga-document-input">
                                 <span data-bind="text: emailSubject"></span>
@@ -364,7 +371,7 @@
                             <label class="ga-label ga-document-email-label" data-bind="text: localize.GetAccept.MESSAGE"></label>
                             <!-- ko if: updateMessage -->
                             <i class="fa fa-spinner fa-pulse fa-fw ga-document-updated-icon"></i>
-                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANING_TEXT"></span>
+                            <span class="ga-document-updated-text" data-bind="text: localize.GetAccept.CHANGING_TEXT"></span>
                             <!-- /ko -->
                             <div class="ga-document-input">
                                 <span data-bind="text: emailMessage"></span>
@@ -428,6 +435,7 @@
                 <h4 data-bind="text: localize.GetAccept.SUCCESS"></h4>
                 <p data-bind="text: localize.GetAccept.SUCCESSFULLY"></p>
                 <h4 data-bind="text: localize.GetAccept.ADD_REMINDER"></h4>
+                <p data-bind="text: localize.GetAccept.ABOUT_HOW_MANY_DAYS"></p>
                 <ul class="ga-reminderList" data-bind="foreach: reminderOptions">
                     <li>
                         <div class="ga-reminderList-option" data-bind="text: $data, click: $parent.createTodo"></div>
@@ -498,12 +506,19 @@
                         <div class="ga-menu-user-container">
                             <!-- ko if: User.thumb_url === '' -->
                             <i class="fa fa-user"></i>
-                            <span class="" data-bind="text: User.first_name + ' ' + User.last_name"></span>
+                            <div class="ga-menu-user-info-container">
+                                <span class="ga-menu-user-info-name" data-bind="text: User.first_name + ' ' + User.last_name"></span>
+                                <span class="ga-menu-user-info-entity" data-bind="text: User.entity_name"></span>
+                            </div>
                             <!-- /ko -->
-                            <!-- ko if: User.thumb_url -->
-                            <div class="ga-menu-user-thumb" data-bind="style: {'backgroundImage': 'url('+User.thumb_url+')'}"></div>
-                            <span class="ga-menu-user-text" data-bind="text: User.first_name + ' ' + User.last_name"></span>
-
+                            <!-- ko if: User.thumb_url !== '' -->
+                            <div class="ga-menu-user-thumb-container">
+                                <div class="ga-menu-user-thumb" data-bind="style: {'backgroundImage': 'url('+User.thumb_url+')'}"></div>
+                                <div class="ga-menu-user-info-thumb-container ga-menu-user-text">
+                                    <span class="ga-menu-user-info-thumb-name" data-bind="text: User.first_name + ' ' + User.last_name"></span>
+                                    <span class="ga-menu-user-info-thumb-entity" data-bind="text: User.entity_name"></span>
+                                </div>
+                            </div>
                             <!-- /ko -->
                         </div>
                     </li>

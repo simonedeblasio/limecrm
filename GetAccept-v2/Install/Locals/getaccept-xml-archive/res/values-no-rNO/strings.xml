@@ -6,9 +6,9 @@
  Locale: no-NO, Norwegian (Norway)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 26 Oct 2017 23:17:22 +0100
+ Exported at: Tue, 17 Apr 2018 08:15:08 -0500
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">E-post</string>
     <string name="RELATED_DOCUMENTS">Relaterte dokumenter</string>
     <string name="NO_DOCUMENT_SENT_YET">Det finnes ingen dokumenter sendt fra dette kortet</string>
@@ -94,5 +94,8 @@
     <string name="CHOOSE_A_DOCUMENT">Velg et dokument</string>
     <string name="SELECTED_DOCUMENT">Utvalgt dokument:</string>
     <string name="SEARCH_FOR_TEMPLATE">Søk etter mal</string>
-    <string name="CHANING_TEXT">Endre tekst</string>
+    <string name="CHANGING_TEXT">Endre tekst</string>
+    <string name="ABOUT_HOW_MANY_DAYS">Om hvor mange dager vil du ha en påminnelse?</string>
+    <string name="DAYS">dager</string>
+    <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet lastes ned</string>
 </resources>

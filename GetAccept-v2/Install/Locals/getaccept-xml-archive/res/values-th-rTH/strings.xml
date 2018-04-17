@@ -6,9 +6,9 @@
  Locale: th-TH, Thai (Thailand)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 26 Oct 2017 23:17:22 +0100
+ Exported at: Tue, 17 Apr 2018 08:15:08 -0500
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL"></string>
     <string name="RELATED_DOCUMENTS"></string>
     <string name="NO_DOCUMENT_SENT_YET"></string>
@@ -94,5 +94,8 @@
     <string name="CHOOSE_A_DOCUMENT"></string>
     <string name="SELECTED_DOCUMENT"></string>
     <string name="SEARCH_FOR_TEMPLATE"></string>
-    <string name="CHANING_TEXT"></string>
+    <string name="CHANGING_TEXT"></string>
+    <string name="ABOUT_HOW_MANY_DAYS"></string>
+    <string name="DAYS"></string>
+    <string name="DOCUMENT_IS_DOWNLOADED"></string>
 </resources>

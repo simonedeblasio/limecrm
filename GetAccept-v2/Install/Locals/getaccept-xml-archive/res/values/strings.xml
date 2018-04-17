@@ -6,9 +6,9 @@
  Locale: en-US, English (USA)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 26 Oct 2017 23:17:22 +0100
+ Exported at: Tue, 17 Apr 2018 08:15:08 -0500
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
     <string name="RELATED_DOCUMENTS">Related documents</string>
     <string name="NO_DOCUMENT_SENT_YET">There is no documents sent from here yet</string>
@@ -24,7 +24,7 @@
     <string name="PLAY_VIDEO">Play Video</string>
     <string name="USERNAME">Username</string>
     <string name="LOGIN">Login</string>
-    <string name="SIGNUP">Don\'t have an account? Sign up</string>
+    <string name="SIGNUP">Need an account? Sign up</string>
     <string name="CREATE_ACCOUNT">Create a free account</string>
     <string name="REGISTRATION">The registration process takes less than a minute, after you can send your first documents.</string>
     <string name="READ_ABOUT_ESIGNING">Read about e-signing</string>
@@ -82,7 +82,7 @@
     <string name="USE">Use</string>
     <string name="RETAKE">Retake</string>
     <string name="SEND_SMS">Send SMS</string>
-    <string name="SEARCH_INTERNAL">Search internal on e-mail</string>
+    <string name="SEARCH_INTERNAL">Search internally on email</string>
     <string name="TEMPLATE_HEADER">Choose a file from Lime or select a template from GetAccept.</string>
     <string name="GET_STARTED">Get started</string>
     <string name="LIME_DOCUMENT">Document in Lime</string>
@@ -90,9 +90,12 @@
     <string name="SELECT_DOCUMENT_INSTRUCTIONS">To select a document, click the document tab in Lime, and then select a document</string>
     <string name="REPLACE_DOCUMENT">Replace document</string>
     <string name="CHOOSE_A_TEMPLATE">Choose a template</string>
-    <string name="COPY_AND_PASTE">Copy and paste parameters from the list below to your GetAccept template field as Value.</string>
+    <string name="COPY_AND_PASTE">Copy and paste parameters from the list below to your GetAccept template field as values.</string>
     <string name="CHOOSE_A_DOCUMENT">Choose a document</string>
     <string name="SELECTED_DOCUMENT">Selected document:</string>
     <string name="SEARCH_FOR_TEMPLATE">Search for template</string>
-    <string name="CHANING_TEXT">Chaning text</string>
+    <string name="CHANGING_TEXT">Change text</string>
+    <string name="ABOUT_HOW_MANY_DAYS">Click number of days from today to create a follow-up task.</string>
+    <string name="DAYS">days</string>
+    <string name="DOCUMENT_IS_DOWNLOADED">Document is downloaded</string>
 </resources>

@@ -6,9 +6,9 @@
  Locale: fi-FI, Finnish (Finland)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 26 Oct 2017 23:17:22 +0100
+ Exported at: Tue, 17 Apr 2018 08:15:08 -0500
 -->
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Sähköposti</string>
     <string name="RELATED_DOCUMENTS">Liittyvät dokumentit</string>
     <string name="NO_DOCUMENT_SENT_YET">Ei vielä lähetettyjä asiakirjoja tältä kortilta</string>
@@ -94,5 +94,8 @@
     <string name="CHOOSE_A_DOCUMENT">Valitse asiakirja</string>
     <string name="SELECTED_DOCUMENT">Valittu asiakirja:</string>
     <string name="SEARCH_FOR_TEMPLATE">Etsi mallia</string>
-    <string name="CHANING_TEXT">Tekstin muuttaminen</string>
+    <string name="CHANGING_TEXT">Tekstin muuttaminen</string>
+    <string name="ABOUT_HOW_MANY_DAYS">Kuinka monta päivää haluat muistutuksen?</string>
+    <string name="DAYS">päivää</string>
+    <string name="DOCUMENT_IS_DOWNLOADED">Asiakirja on ladattu</string>
 </resources>

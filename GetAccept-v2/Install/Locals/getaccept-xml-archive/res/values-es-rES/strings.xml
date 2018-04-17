@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Loco xml export: Android string resources
+ Project: Get Accept Translations
+ Release: Working copy
+ Locale: es-ES, Spanish (Spain)
+ Tagged: Lime CRM
+ Exported by: Andreas Åström
+ Exported at: Tue, 17 Apr 2018 08:15:08 -0500
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="COMMON_EMAIL">Email</string>
+    <string name="RELATED_DOCUMENTS">Documentos relacionados</string>
+    <string name="NO_DOCUMENT_SENT_YET">No hay documentos enviados desde aquí todavía</string>
+    <string name="SETTINGS">ajustes</string>
+    <string name="INVITE_COWORKERS">Invite a sus compañeros de trabajo</string>
+    <string name="SUPPORT">Apoyo</string>
+    <string name="CANCEL">Cancelar</string>
+    <string name="MULTIPLE_ENTITIES">Si tiene varias entidades puede seleccionar su entidad actual aquí.</string>
+    <string name="SELECT_ENTITY">Seleccione entidad</string>
+    <string name="INVITE_COLLEGUES">Invite a sus compañeros de utilizar esta integración</string>
+    <string name="INVITE">Invitación</string>
+    <string name="INTRODUCTION_VIDEO">Introducción de vídeo</string>
+    <string name="PLAY_VIDEO">Reproduce el video</string>
+    <string name="USERNAME">Nombre de usuario</string>
+    <string name="LOGIN">Iniciar sesión</string>
+    <string name="SIGNUP">¿No tienes una cuenta? Regístrate</string>
+    <string name="CREATE_ACCOUNT">Crea una cuenta nueva</string>
+    <string name="REGISTRATION">El proceso de registro tarda menos de un minuto, después de que usted puede enviar sus primeros documentos.</string>
+    <string name="READ_ABOUT_ESIGNING">Lee sobre firma electrónica</string>
+    <string name="REGISTER">Registro</string>
+    <string name="AGREE_WITH">Al registrarse, usted está de acuerdo con nuestra</string>
+    <string name="TERMS_OF_SERVICE">Términos de servicio</string>
+    <string name="AFTER_EXPIRATION_TRIAL">Después de la expiración de la prueba de 14 días, usted tiene la opción de volver a una planta libre, o actualizar a una</string>
+    <string name="PAID_PLAN">plan de pago.</string>
+    <string name="NAME">Nombre</string>
+    <string name="ENTITY_NAME">Introduzca su nombre de compañía / entidad</string>
+    <string name="VERIFY_CREDENTIALS">Asegúrese de que su contraseña y nombre de usuario son correctas.</string>
+    <string name="SEND">Enviar</string>
+    <string name="DOCUMENT_RECIPIENTS">Los destinatarios de documentos</string>
+    <string name="RECIPIENT_ROLES">Agregar y papeles receptores establecidos. Todos los destinatarios de la lista recibirán el documento.</string>
+    <string name="CLICK_TO_SEARCH">Haga clic para buscar el nombre o correo electrónico</string>
+    <string name="NO_RECIPIENTS">No se añaden los destinatarios</string>
+    <string name="SIGNER">Firmante</string>
+    <string name="CC">CC</string>
+    <string name="NEXT">Siguiente</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Es necesario seleccionar a un destinatario leaste!</string>
+    <string name="BACK">Espalda</string>
+    <string name="DOCUMENTS">Documento (s) que será enviado</string>
+    <string name="UPLOAD_VIDEO">Subir vídeo</string>
+    <string name="PREPARE_SENDING">preparar el envío</string>
+    <string name="NAME_OF_YOUR_DOCUMENTS">Permite definir un nombre de su documento y personalizar el asunto y el mensaje</string>
+    <string name="SEND_SMART_REMINDERS">Enviar recordatorios inteligentes</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Abrirá en GetAccept y grabar un video</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Abra su aplicación móvil GetAccept y grabar un vídeo a increse su tasa de cierre.</string>
+    <string name="VIDEO_IS_BEING_PROCESSING">El video está siendo procesado, por favor espere</string>
+    <string name="SELECT_A_DOCUMENT">Por favor, seleccione un documento para dar un paso adelante.</string>
+    <string name="REMOVE_VIDEO">Retire de vídeo</string>
+    <string name="SUCCESS">¡Éxito!</string>
+    <string name="SUCCESSFULLY">El documento ha sido enviada a través GetAccept</string>
+    <string name="ADD_REMINDER">¿Agregar recordatorio?</string>
+    <string name="SKIP">Omitir</string>
+    <string name="REFRESH_LIST">Actualizar lista</string>
+    <string name="LOGOUT">Cerrar sesión</string>
+    <string name="PASSWORD">Contraseña</string>
+    <string name="DETAILED_ANALYTICS">análisis detallados</string>
+    <string name="DOWNLOAD_DOCUMENT">Descargar documento</string>
+    <string name="COUNTRY">País</string>
+    <string name="COMPANY_ENTITY">Empresa / Entidad</string>
+    <string name="SENT">Expedido</string>
+    <string name="VISITS">visitas</string>
+    <string name="TIME_SPENT">Tiempo usado</string>
+    <string name="PAGE_VIEWS">páginas vistas</string>
+    <string name="READ">Leer</string>
+    <string name="DELETE">Borrar</string>
+    <string name="SEND_INTERNAL">Enviar interna</string>
+    <string name="DOCUMENT_NAME">Nombre del documento</string>
+    <string name="SUBJECT">Tema</string>
+    <string name="MESSAGE">Mensaje</string>
+    <string name="OPEN_IN_GETACCEPT">Abrir en GetAccept</string>
+    <string name="UPLOAD_A_VIDEO">¡Subir un video!</string>
+    <string name="USE">Utilizar</string>
+    <string name="RETAKE">Volver a tomar</string>
+    <string name="SEND_SMS">Enviar SMS</string>
+    <string name="SEARCH_INTERNAL">Busca dentro del email</string>
+    <string name="TEMPLATE_HEADER">Selecciona un archivo de Lime CRM o selecciona una plantilla de GetAccept.</string>
+    <string name="GET_STARTED">Empieza</string>
+    <string name="LIME_DOCUMENT">Documento en Lime CRM</string>
+    <string name="TEMPLATE_FROM_GETACCEPT">Plantilla de GetAccept</string>
+    <string name="SELECT_DOCUMENT_INSTRUCTIONS">Para seleccionar un documento, haz clic en la pestaña de Lime que deseas, y luego selecciónalo.</string>
+    <string name="REPLACE_DOCUMENT">Reemplaza el documento</string>
+    <string name="CHOOSE_A_TEMPLATE">Selecciona una plantilla</string>
+    <string name="COPY_AND_PASTE">Copia y pega como valores los parámetros de la lista de abajo a al campo de tu plantilla de GetAccept.</string>
+    <string name="CHOOSE_A_DOCUMENT">Selecciona un documento:</string>
+    <string name="SELECTED_DOCUMENT">Documento seleccionado:</string>
+    <string name="SEARCH_FOR_TEMPLATE">Busca una plantilla</string>
+    <string name="CHANGING_TEXT">Texto cambiante</string>
+    <string name="ABOUT_HOW_MANY_DAYS"></string>
+    <string name="DAYS"></string>
+    <string name="DOCUMENT_IS_DOWNLOADED"></string>
+</resources>

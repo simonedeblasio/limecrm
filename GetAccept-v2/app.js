@@ -63,6 +63,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         //Variabler
         viewModel.userName = ko.observable('');
         viewModel.password = ko.observable('');
+        viewModel.tryingToLogIn = ko.observable(false);
         viewModel.showPersons = ko.observable(false);
         viewModel.searchValue = ko.observable('').extend({
             throttle: 500
@@ -132,6 +133,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 var password = viewModel.password();
                 var postUrl = authEndpoint + "/v1/auth";
 
+                viewModel.tryingToLogIn(true);
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', postUrl, true);
                 xhr.setRequestHeader('Content-type', 'application/json');
@@ -139,14 +141,17 @@ lbs.apploader.register('GetAccept-v2', function () {
                     if (xhr.readyState == 4) {
                         status = xhr.status;
                         if (status == 200) {
+                            viewModel.tryingToLogIn(false);
                             data = JSON.parse(xhr.responseText);
                             saveToken(data);
                             loadUserSettings();
                         } else {
                             data = JSON.parse(xhr.responseText);
                             if (!data.error) {
+                                viewModel.tryingToLogIn(false);
                                 alert(viewModel.localize.GetAccept.VERIFY_CREDENTIALS);
                             } else {
+                                viewModel.tryingToLogIn(false);
                                 alert(data.error);
                             }
                             return false;
@@ -439,6 +444,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             //This can later be processed in VBA to store file in Lime
             apiRequest('documents/' + document_id + '/download', 'GET', '', function (data) {
                 if (typeof (data.document_url) != 'undefined') {
+                    alert(viewModel.localize.GetAccept.DOCUMENT_IS_DOWNLOADED);
                     lbs.common.executeVba("GetAccept.DownloadFile," + data.document_url + ',' + documentname + ',' + className + ',' + appConfig.title_field);
                 } else {
                     alert('Could not find signed document');

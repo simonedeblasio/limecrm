@@ -6,7 +6,7 @@
  Locale: th-TH, Thai (Thailand)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 17 Apr 2018 08:15:08 -0500
+ Exported at: Mon, 23 Apr 2018 16:17:52 +0200
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL"></string>
@@ -98,4 +98,5 @@
     <string name="ABOUT_HOW_MANY_DAYS"></string>
     <string name="DAYS"></string>
     <string name="DOCUMENT_IS_DOWNLOADED"></string>
+    <string name="SIGNED"></string>
 </resources>

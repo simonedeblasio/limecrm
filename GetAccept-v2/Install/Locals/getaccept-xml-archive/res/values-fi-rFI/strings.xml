@@ -6,7 +6,7 @@
  Locale: fi-FI, Finnish (Finland)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 17 Apr 2018 08:15:08 -0500
+ Exported at: Mon, 23 Apr 2018 16:17:52 +0200
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Sähköposti</string>
@@ -98,4 +98,5 @@
     <string name="ABOUT_HOW_MANY_DAYS">Kuinka monta päivää haluat muistutuksen?</string>
     <string name="DAYS">päivää</string>
     <string name="DOCUMENT_IS_DOWNLOADED">Asiakirja on ladattu</string>
+    <string name="SIGNED">Allekirjoitettu</string>
 </resources>

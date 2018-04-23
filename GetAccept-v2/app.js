@@ -296,7 +296,10 @@ lbs.apploader.register('GetAccept-v2', function () {
                         analyticsData.url = documentData.sso_url;
 
                         analyticsData.delete = function () {
-                            apiRequest("documents/" + documentData.id, "DELETE", "", function (data) {});
+                            apiRequest("documents/" + documentData.id, "DELETE", "", function (data) {
+                                cancel();
+                                refreshGaDocuments();
+                            });
                         }
 
                         analyticsData.analyticPageList = [];

@@ -6,7 +6,7 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 17 Apr 2018 08:15:07 -0500
+ Exported at: Mon, 23 Apr 2018 16:17:51 +0200
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Epost</string>
@@ -98,4 +98,5 @@
     <string name="ABOUT_HOW_MANY_DAYS">Om hur många dagar vill du ha en påminnelse?</string>
     <string name="DAYS">dagar</string>
     <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet har hämtats</string>
+    <string name="SIGNED">Signerat</string>
 </resources>

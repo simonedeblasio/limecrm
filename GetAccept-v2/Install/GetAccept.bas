@@ -148,41 +148,48 @@ Public Function GetContactList(className As String) As String
     Dim i As Integer
     
     Set oInspector = Application.ActiveInspector
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
-        Set oView = New LDE.View
-        Call oView.Add(GlobalPersonFirstNameField, lkSortAscending)
-        Call oView.Add(GlobalPersonLastNameField)
-        Call oView.Add(GlobalPersonEmailField)
-        Call oView.Add(GlobalPersonMobileField)
-        
-        If GlobalPersonSourceTab <> "" Then
-            If oInspector.Explorers.Exists(GlobalPersonSourceTab) Then
-                Set oFilter = New LDE.Filter
-                Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
-                
-                If oFilter.HitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
-                    Set oRecords = New LDE.Records
-                    Call oRecords.Open(Database.Classes(GlobalPersonSourceTab), oFilter, oView)
-                    strJSON = CreatePersonJSON(oRecords)
-                End If
-            Else
-                Call Lime.MessageBox(Localize.GetText("GetAccept", "i_cant_get_person"))
-                
-            End If
-        End If
-        
-        If GlobalPersonSourceField <> "" Then
-            Set oFilter = New LDE.Filter
-            Call oFilter.AddCondition(GlobalPersonSourceField, lkOpEqual, oInspector.Controls.GetValue(GlobalPersonSourceField))
-            
-            If oFilter.HitCount(Database.Classes("person")) > 0 Then
-                Set oRecords = New LDE.Records
-                Call oRecords.Open(Database.Classes("person"), oFilter, oView)
-                
-                strJSON = CreatePersonJSON(oRecords)
-            End If
-        End If
+    
+    If className <> oInspector.Class.Name Then
+        className = oInspector.Class.Name
     End If
+        If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+            Set oView = New LDE.View
+            Call oView.Add(GlobalPersonFirstNameField, lkSortAscending)
+            Call oView.Add(GlobalPersonLastNameField)
+            Call oView.Add(GlobalPersonEmailField)
+            Call oView.Add(GlobalPersonMobileField)
+            
+            If GlobalPersonSourceTab <> "" Then
+                If oInspector.Explorers.Exists(GlobalPersonSourceTab) Then
+                    Set oFilter = New LDE.Filter
+                    Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
+                    
+                    If oFilter.HitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
+                        Set oRecords = New LDE.Records
+                        Call oRecords.Open(Database.Classes(GlobalPersonSourceTab), oFilter, oView)
+                        strJSON = CreatePersonJSON(oRecords)
+                    End If
+                Else
+                    Call Lime.MessageBox(Localize.GetText("GetAccept", "i_cant_get_person"))
+                    
+                End If
+            End If
+            
+            If GlobalPersonSourceField <> "" Then
+                Set oFilter = New LDE.Filter
+                Call oFilter.AddCondition(GlobalPersonSourceField, lkOpEqual, oInspector.Controls.GetValue(GlobalPersonSourceField))
+                If Not IsNull(oInspector.Controls.GetValue(GlobalPersonSourceField)) Then
+                    If oFilter.HitCount(Database.Classes("person")) > 0 Then
+                        Set oRecords = New LDE.Records
+                        Call oRecords.Open(Database.Classes("person"), oFilter, oView)
+                        
+                        strJSON = CreatePersonJSON(oRecords)
+                    End If
+                End If
+            End If
+        End If
+    
+    ''End If
     
     GetContactList = strJSON
 
@@ -370,6 +377,11 @@ Public Function GetDocumentData(className As String) As String
     Dim oItem As New Lime.ExplorerItem
     Dim oInspector As New Lime.Inspector
     Set oInspector = ThisApplication.ActiveInspector
+    
+    If className <> oInspector.Class.Name Then
+        className = oInspector.Class.Name
+    End If
+    
     retval = "["
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
@@ -382,12 +394,14 @@ Public Function GetDocumentData(className As String) As String
                     Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
                
                     Call oRecord.Open(Database.Classes("document"), oItem.Record.ID, oView)
-                    retval = retval & " { "
-                    retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
-                    retval = retval & "."
-                    retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
-                    retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document(GlobalDocumentField).Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
-                    retval = retval & " },"
+                    If Not oRecord.Document("document") Is Nothing Then
+                        retval = retval & " { "
+                        retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
+                        retval = retval & "."
+                        retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
+                        retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document(GlobalDocumentField).Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
+                        retval = retval & " },"
+                    End If
                 Next
             Else
                 Lime.MessageBox (Localize.GetText("GetAccept", "i_no_document_tab_selected"))
@@ -525,22 +539,6 @@ Public Sub SetDocumentStatus(sStatus As String, className As String)
                     oRecordDocument.Open Classes("document"), oItem.Record.ID
                     oRecordDocument.Value("sent_with_ga") = sStatus
                     Call oRecordDocument.Update
-                    
-                    ' Create historynote
-                    Dim oRecordHistory As New LDE.Record
-                    oRecordHistory.Open Classes("history")
-                    ' Check that the field with same class name exist on the document which should be connected
-                    If oRecordHistory.Fields.Exists(oInspector.Class.Name) Then
-                        oRecordHistory.Value(oInspector.Class.Name) = oInspector.Record.ID
-                    End If
-                    oRecordHistory.Value(GlobalHistoryTypeField) = Database.Classes("history").Fields(GlobalHistoryTypeField).Options.Lookup(GlobalHistoryTypeFieldOptionSent, lkLookupOptionByKey).Value
-                    oRecordHistory.Value(GlobalHistoryNoteField) = "Sent with GetAccept"
-                    oRecordHistory.Value(GlobalHistoryDateField) = VBA.Now
-                    If oRecordHistory.Fields.Exists(GlobalHistoryDocumentField) Then
-                        oRecordHistory.Value(GlobalHistoryDocumentField) = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
-                    End If
-                    
-                    Call oRecordHistory.Update
                 Next
             End If
         End If
@@ -625,7 +623,6 @@ Public Sub DownloadFile(sLink As String, sFileName As String, className As Strin
     Dim oRecord As New LDE.Record
     Dim pDocument As New LDE.Document
     
-    
     sMapLocation = ThisApplication.TemporaryFolder & "\GetAccept\"
     sFileLocation = sMapLocation & sFileName & ".pdf"
     
@@ -665,7 +662,7 @@ Public Sub DownloadFile(sLink As String, sFileName As String, className As Strin
             End If
         End If
         
-        oRecord(commentField) = sFileName & " (" & (Localize.GetText("GetAccept", "ga_signed")) & ")"
+        oRecord(commentField) = sFileName & " (" & (Localize.GetText("GetAccept", "SIGNED")) & ")"
         oRecord("sent_with_ga") = 1
         oRecord.Update
          
@@ -805,6 +802,11 @@ Public Function GetDocuments(className As String) As String
     Dim oView As LDE.View
     Dim oInspector As New Lime.Inspector
     Set oInspector = ThisApplication.ActiveInspector
+    retval = ""
+    If className <> oInspector.Class.Name Then
+        className = oInspector.Class.Name
+    End If
+    
     ' The user has selected an document
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
@@ -829,7 +831,9 @@ Public Function GetDocuments(className As String) As String
             End If
         End If
     End If
-    retval = Left(retval, Len(retval) - 1)
+    If VBA.Len(retval) > 3 Then
+        retval = VBA.Left(retval, VBA.Len(retval) - 1)
+    End If
     retval = retval & "]"
     
     GetDocuments = retval
@@ -909,7 +913,7 @@ Public Sub AddToBundle(ByRef languageBundle As Scripting.Dictionary, ByRef nodes
     Next xNode
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.BuildBundle")
+    UI.ShowError ("GetAccept.AddToBundle")
 End Sub
 
 

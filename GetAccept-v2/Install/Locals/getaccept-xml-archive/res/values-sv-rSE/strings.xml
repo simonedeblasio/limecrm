@@ -6,7 +6,7 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Mon, 23 Apr 2018 16:17:51 +0200
+ Exported at: Tue, 15 May 2018 16:32:35 +0200
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Epost</string>
@@ -81,7 +81,7 @@
     <string name="UPLOAD_A_VIDEO">Ladda upp en video!</string>
     <string name="USE">Använd</string>
     <string name="RETAKE">Ta om</string>
-    <string name="SEND_SMS"></string>
+    <string name="SEND_SMS">Skicka SMS</string>
     <string name="SEARCH_INTERNAL">Sök internt efter email</string>
     <string name="TEMPLATE_HEADER">Välj ett dokument från Lime eller en mall från GetAccept.</string>
     <string name="GET_STARTED">Kom igång</string>

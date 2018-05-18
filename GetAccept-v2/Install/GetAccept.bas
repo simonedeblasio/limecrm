@@ -1,9 +1,11 @@
 Attribute VB_Name = "GetAccept"
 Option Explicit
+Option Explicit
 
 ' ### GLOBAL VARIABLES ###
 Private GlobalPersonSourceTab As String
 Private GlobalPersonSourceField As String
+Private Const GlobalCustomSource As Boolean = False ' This one should be True if you want to build your own Contact source
 
 '### GLOBAL SETTINGS ###
 ' Document
@@ -159,33 +161,42 @@ Public Function GetContactList(className As String) As String
             Call oView.Add(GlobalPersonEmailField)
             Call oView.Add(GlobalPersonMobileField)
             
-            If GlobalPersonSourceTab <> "" Then
-                If oInspector.Explorers.Exists(GlobalPersonSourceTab) Then
-                    Set oFilter = New LDE.Filter
-                    Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
-                    
-                    If oFilter.HitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
-                        Set oRecords = New LDE.Records
-                        Call oRecords.Open(Database.Classes(GlobalPersonSourceTab), oFilter, oView)
-                        strJSON = CreatePersonJSON(oRecords)
-                    End If
-                Else
-                    Call Lime.MessageBox(Localize.GetText("GetAccept", "i_cant_get_person"))
-                    
-                End If
-            End If
+            If Not GlobalCustomSource Then
             
-            If GlobalPersonSourceField <> "" Then
-                Set oFilter = New LDE.Filter
-                Call oFilter.AddCondition(GlobalPersonSourceField, lkOpEqual, oInspector.Controls.GetValue(GlobalPersonSourceField))
-                If Not IsNull(oInspector.Controls.GetValue(GlobalPersonSourceField)) Then
-                    If oFilter.HitCount(Database.Classes("person")) > 0 Then
-                        Set oRecords = New LDE.Records
-                        Call oRecords.Open(Database.Classes("person"), oFilter, oView)
+                If GlobalPersonSourceTab <> "" Then
+                    If oInspector.Explorers.Exists(GlobalPersonSourceTab) Then
+                        Set oFilter = New LDE.Filter
+                        Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
                         
-                        strJSON = CreatePersonJSON(oRecords)
+                        If oFilter.HitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
+                            Set oRecords = New LDE.Records
+                            Call oRecords.Open(Database.Classes(GlobalPersonSourceTab), oFilter, oView)
+                            strJSON = CreatePersonJSON(oRecords)
+                        End If
+                    Else
+                        Call Lime.MessageBox(Localize.GetText("GetAccept", "i_cant_get_person"))
+                        
                     End If
                 End If
+                
+                If GlobalPersonSourceField <> "" Then
+                    Set oFilter = New LDE.Filter
+                    Call oFilter.AddCondition(GlobalPersonSourceField, lkOpEqual, oInspector.Controls.GetValue(GlobalPersonSourceField))
+                    If Not IsNull(oInspector.Controls.GetValue(GlobalPersonSourceField)) Then
+                        If oFilter.HitCount(Database.Classes("person")) > 0 Then
+                            Set oRecords = New LDE.Records
+                            Call oRecords.Open(Database.Classes("person"), oFilter, oView)
+                            
+                            strJSON = CreatePersonJSON(oRecords)
+                        End If
+                    End If
+                End If
+            Else
+                '' Generate your custom source here
+                '' ExampleFunction is an example of how a function can work. The function should return a JSON string with an array of Persons. See example.
+                
+                strJSON = ExampleFunction()
+                
             End If
         End If
     
@@ -198,6 +209,64 @@ ErrorHandler:
     Call UI.ShowError("GetAccept.GetContactList")
     GetContactList = ""
 End Function
+
+Public Function ExampleFunction() As String
+    On Error GoTo ErrorHandler
+    
+    Dim ContactJson As String
+    Dim oInspector As Lime.Inspector
+    
+    Set oInspector = Application.ActiveInspector
+    
+    If Not oInspector Is Nothing Then
+        If ActiveInspector.Controls.GetValue("person") <> "" Then
+            Dim firstname As String
+            Dim lastname As String
+            Dim phone As String
+            Dim email As String
+            Dim tempJson As String
+            
+            firstname = ActiveInspector.Controls.GetValue("person.firstname")
+            lastname = ActiveInspector.Controls.GetValue("person.lastname")
+            phone = ActiveInspector.Controls.GetValue("person.phone")
+            email = ActiveInspector.Controls.GetValue("person.email")
+           
+            '' Use CreatePersonJsonFromCustomSource to generate a recipient object. this should be placed in a JSON array called Persons. See example below
+            tempJson = CreatePersonJsonFromCustomSource(firstname, lastname, email, phone)
+            ContactJson = "{" + """Persons"":[" + tempJson + "]}"
+        End If
+        
+    End If
+    
+    ExampleFunction = ContactJson
+    
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("GetAccept.exampleFunction")
+End Function
+
+'' A Recipient needs to have a firstname, lastname, email, phone is optional
+Public Function CreatePersonJsonFromCustomSource(firstname As String, lastname As String, email As String, mobilephone As String) As String
+    On Error GoTo ErrorHandler
+    
+    Dim strJSON As String
+    If email <> "" Then
+        strJSON = "{""firstname"":""" & firstname & """," _
+                & """lastname"":""" & lastname & """," _
+                & """mobilephone"":""" & mobilephone & """," _
+                & """email"":""" & email & """}"
+    Else
+        strJSON = ""
+    End If
+
+    CreatePersonJsonFromCustomSource = strJSON
+
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("GetAccept.CreatePersonJsonFromCustomSource")
+    CreatePersonJsonFromCustomSource = ""
+End Function
+
 Public Function GetCoworkerList()
     'Get the coworkers from Coworker tab
  

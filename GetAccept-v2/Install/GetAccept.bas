@@ -1,6 +1,5 @@
 Attribute VB_Name = "GetAccept"
 Option Explicit
-Option Explicit
 
 ' ### GLOBAL VARIABLES ###
 Private GlobalPersonSourceTab As String

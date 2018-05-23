@@ -28,7 +28,6 @@ lbs.apploader.register('GetAcceptEmail', function () {
         but, well, here you have it.
     */
     self.initialize = function (node, viewModel) {
-        viewModel.hello = "world";
         var documentDataXml = lbs.common.executeVba("GetAccept.GetEmailData");
 
         try {

@@ -21,8 +21,9 @@ lbs.apploader.register('GetAccept-v2', function () {
 
     self.initialize = function (node, viewModel) {
         var appConfig = self.config.appConfig;
-        var authEndpoint = "https://app.getaccept.com/api";
-        var apiEndpoint = "https://app.getaccept.com/api";
+        var authEndpoint = "https://api.getaccept.com";
+        var apiEndpoint = "https://api.getaccept.com";
+
         var clientId = "Lime CRM";
         var className = lbs.limeDataConnection.ActiveInspector.class.name;
         var class_id = 'id' + className;

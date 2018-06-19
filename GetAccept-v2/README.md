@@ -91,6 +91,8 @@ This feature allows GetAccept to automatically post back a signed copy of your s
 		name: Sent, key: sent
 		name: Reviewd, key: reviewd
 		name: Signed, key: signed
+		
+**The getacceptstatus field is implemented now to be able to use in the feature. It will only set status Signed until next version.**
 	
 [sent_with_ga] - type: Yes/No field
 
@@ -101,7 +103,6 @@ This feature allows GetAccept to automatically post back a signed copy of your s
 [type] - type: Option field,
 	values: 
 		name: Agreement, key: agreement
-
 
 # Troubleshoot
 Some common errors: 

@@ -50,7 +50,7 @@ The table must have a document tab and you must be able to connect to a person t
 	title_field: 'comment', 
 	personSourceTab: '', 	
 	personSourceField: 'company',
-	businessValue: 'value'  
+	dealValue: 'value'  
 	}}">
 </div>
 ```
@@ -59,7 +59,7 @@ The table must have a document tab and you must be able to connect to a person t
 - title_field: The document name field
 - personSourceTab: If there is a realiton tab on the object where it shoud look for recipient persons directly, ex: if you place it in company.hmtl you should have persons
 - personSourceField: If there is a realtion field on the object where it should look for persons connected to a sub table, ex: if you place it in busniess.html and you have a connection to the company where - persons are connected. 
-- businessValue The name of the field containing the busniessvalue
+- dealValue The name of the field containing the deal value
 
 You are now done. Each user will have their own login credentials which is used to start using the GetAccept integration.
 

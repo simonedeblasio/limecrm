@@ -89,7 +89,7 @@ This feature allows GetAccept to automatically post back a signed copy of your s
 	values: 
 		name: Draft, key: draft
 		name: Sent, key: sent
-		name: Reviewd, key: reviewd
+		name: Reviewed, key: reviewed
 		name: Signed, key: signed
 		
 **The getacceptstatus field is implemented now to be able to use in the feature. It will only set status Signed until next version.**

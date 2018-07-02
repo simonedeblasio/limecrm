@@ -772,7 +772,14 @@ lbs.apploader.register('GetAccept-v2', function () {
             template.name = templateData.name;
             template.id = templateData.id;
             template.thumb = templateData.thumb_url;
+            template.videoId = templateData.video_id;
             template.selectTemplate = function () {
+                if(this.videoId != '') {
+                    viewModel.hasVideo(true); 
+                }
+                else {
+                    viewModel.hasVideo(false);
+                }
                 viewModel.selectedTemplate(this);
                 viewModel.selectedTemplateId(this.id);
             }
@@ -1223,6 +1230,9 @@ lbs.apploader.register('GetAccept-v2', function () {
                 if (viewModel.videoData().video_id) {
                     video_id = viewModel.videoData().video_id;
                 }
+                else {
+                    video_id = null;
+                }
                 if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                     var documentData = {
                         name: viewModel.selectedTemplate().name,
@@ -1236,7 +1246,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                         is_sms_sending: viewModel.sendSMS(),
                         email_send_subject: viewModel.emailSubject(),
                         email_send_message: viewModel.emailMessage(),
-                        video_id: video_id ? video_id : null,
+                        video_id: video_id ? video_id : 0,
                     }
 
                     if (viewModel.selectedTemplateFields().length > 0) {

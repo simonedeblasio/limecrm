@@ -4,7 +4,7 @@
 
 h4 {
     font-weight: bold;
-    color: rgb(51, 71, 91);
+    color: rgb(51,71,91);
     font-size: 14px;
 }
 
@@ -13,7 +13,7 @@ ul {
 }
 
 a:hover {
-    color: rgb(244, 146, 49);
+    color: rgb(244,146,49);
     text-decoration: underline;
 }
 
@@ -22,7 +22,7 @@ a:hover {
 }
 
 .header-container::before {
-    border-color: rgb(46, 46, 46) transparent transparent !important;
+    border-color: rgb(46,46,46) transparent transparent !important;
 }
 
 .ga-container {
@@ -30,13 +30,11 @@ a:hover {
 }
 
 /*********************/
-
 /*VIEW (Black header)*/
-
 /*********************/
 
 .ga-view {
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(46,46,46);
     width: 100%;
     height: 38px;
     padding: 5px;
@@ -61,7 +59,7 @@ a:hover {
     padding-top: 4px;
 }
 
-.ga-view .chevron {
+.ga-view .chevron{
     font-size: 9px;
 }
 
@@ -76,13 +74,13 @@ a:hover {
     bottom: 0px;
     margin-right: 10px;
     width: 100%;
-    height: 30em;
+    height: 30em;  
     overflow-y: auto;
     overflow-x: hidden;
     padding: 15px;
     padding-bottom: 40px;
     background-color: #fff;
-    color: rgb(136, 136, 136);
+    color: rgb(136,136,136);
     z-index: 40;
 }
 
@@ -96,8 +94,9 @@ a:hover {
     height: 100%;
     background-color: #DFEDFF;
     z-index: 15;
-    -webkit-box-shadow: inset 1px 0px 2px 0px rgba(204, 204, 204, 1);
-    box-shadow: inset 1px 0px 2px 0px rgba(204, 204, 204, 1);
+    -webkit-box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
+    -moz-box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
+    box-shadow: inset 1px 0px 2px 0px rgba(204,204,204,1);
 }
 
 .ga-view-send {
@@ -106,7 +105,7 @@ a:hover {
     margin: 1px 0px;
     padding: 4px 10px 5px 6px;
     font-size: 12px;
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
     border-radius: 3px;
     font-weight: 700;
 }
@@ -117,14 +116,12 @@ a:hover {
 }
 
 /*******/
-
 /*LOGIN*/
-
 /*******/
 
 .ga-login {
     text-align: center;
-    color: rgb(46, 46, 46);
+    color: rgb(46,46,46);
 }
 
 .ga-login-icon {
@@ -143,9 +140,7 @@ a:hover {
 }
 
 /*******/
-
 /*STEPS*/
-
 /*******/
 
 .ga-steps {
@@ -162,24 +157,22 @@ a:hover {
 }
 
 .ga-step {
-    border: 0.3px solid rgb(244, 146, 49);
+    border: 0.3px solid rgb(244,146,49);
     border-radius: 50%;
     display: inline-block;
     padding: 4px;
 }
 
 .ga-step-fill {
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
 }
 
 /*************/
-
 /*GaDocuments*/
-
 /*************/
 
 .ga-gaDocuments {
-    color: rgb(136, 136, 136);
+    color: rgb(136,136,136);
     word-break: break-word;
     white-space: normal;
     /*max-height: 25em;
@@ -211,7 +204,7 @@ a:hover {
 }
 
 .ga-gaDocuments-listItem-link {
-    color: rgb(244, 146, 49);
+    color: rgb(244,146,49);
     font-weight: 900;
     cursor: pointer;
 }
@@ -219,22 +212,19 @@ a:hover {
 .ga-gaDocuments-listItem-status {
     display: inline-block;
     text-transform: capitalize;
-    font-size: 12px;
+    font-size: 12px;  
     font-weight: bold;
 }
 
-.ga-gaDocuments-listItem-analytics,
-.ga-gaDocuments-listItem-download {
+.ga-gaDocuments-listItem-analytics, .ga-gaDocuments-listItem-download {
     color: #999;
     display: inline-block;
     text-transform: capitalize;
-    font-size: 11px;
+    font-size: 11px; 
 }
 
 /***********/
-
 /*Analytics*/
-
 /***********/
 
 .ga-analytics-status-indicator {
@@ -293,8 +283,6 @@ a:hover {
 .ga-analytics-pageList li {
     margin-top: 15px;
     padding-left: 20px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
 }
 
@@ -330,8 +318,7 @@ a:hover {
 .ga-analytics-page-thumb {
     max-height: 100%;
     max-width: 100%;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
-            box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 3px;
 }
 
 .ga-analytics-delete {
@@ -340,9 +327,7 @@ a:hover {
 }
 
 /*****************/
-
 /*****VIDEO*******/
-
 /*****************/
 
 .ga-video {
@@ -356,16 +341,15 @@ a:hover {
     bottom: 0px;
     padding: 10px;
     cursor: pointer;
-    background: hsla(0, 0%, 78%, .5);
-    -webkit-box-shadow: 0 0.8rem 1.5rem 0 rgba(0, 0, 0, .3);
-            box-shadow: 0 0.8rem 1.5rem 0 rgba(0, 0, 0, .3);
+    background: hsla(0,0%,78%,.5);
+    box-shadow: 0 0.8rem 1.5rem 0 rgba(0,0,0,.3);
 }
 
 .ga-video-innerContainer {
+    position: relative;
     background-color: #fff;
     padding: 0px;
     height: auto;
-    position: relative;
     color: #000;
     padding-bottom: 40px;
     border-radius: 12px 12px 2px 2px;
@@ -373,7 +357,7 @@ a:hover {
 
 .ga-video-header {
     text-align: center;
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
     color: #fff;
     padding: 30px 0px;
     border-radius: 2px 2px 0px 0px;
@@ -387,17 +371,19 @@ a:hover {
     width: 25px;
     text-align: center;
     line-height: 25px;
+    cursor: pointer;
     color: #fff;
     font-weight: bolder;
 }
 
 .ga-video-close:hover {
-    color: #000;
+    color: #666;
 }
 
 .ga-video-body {
     text-align: center;
     padding: 0px 20px;
+    color: #666;
 }
 
 .ga-video-thumb {
@@ -406,24 +392,21 @@ a:hover {
 }
 
 .ga-video-button-group {
-    display: block;
-    margin-top: 10px;
+    display: block; 
+    margin-top: 10px; 
     margin-bottom: 20px;
     width: 100%;
 }
 
-.ga-btn-group,
-.ga-btn-group:visited {
+.ga-btn-group ,.ga-btn-group:visited {
     width: 49%;
     margin-right: 2px;
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
     color: #fff;
 }
 
-.ga-btn-group:hover,
-.ga-btn-group:active,
-.ga-btn-group:focus {
-    background-color: rgb(244, 146, 49);
+.ga-btn-group:hover, .ga-btn-group:active, .ga-btn-group:focus {
+    background-color: rgb(244,146,49);
     color: #fff;
 }
 
@@ -432,11 +415,8 @@ a:hover {
 }
 
 /*******************/
-
 /*SEND OUT WORKFLOW*/
-
 /*******************/
-
 .ga-sendout-workflow {
     word-break: break-word;
     white-space: normal;
@@ -454,21 +434,19 @@ a:hover {
 }
 
 .ga-back {
-    color: rgb(244, 146, 49);
+    color: rgb(244,146,49);
     cursor: pointer;
 }
 
 /***********/
-
 /*RECIPIENT*/
-
 /***********/
 
 .ga-recipient {
     width: 100%;
     padding: 0px;
     background-color: #fff;
-    color: rgb(136, 136, 136);
+    color: rgb(136,136,136);
     word-wrap: break-word;
     white-space: normal;
 }
@@ -477,7 +455,7 @@ a:hover {
     height: auto;
     max-height: 150px;
     overflow-y: auto;
-    border: 1px solid rgb(136, 136, 136);
+    border: 1px solid rgb(136,136,136);
     border-radius: 2px;
 }
 
@@ -490,19 +468,17 @@ a:hover {
     position: absolute;
     top: 50%;
     right: 50%;
-    -webkit-transform: translate(50%, -100%);
-            transform: translate(50%, -100%);
-    color: #888;
+    transform: translate(50%,-100%);
+    color:#888;
 }
 
 .ga-recipient-recipients {
     position: relative;
     height: 9em;
     overflow-y: auto;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(238,238,238);
     border-radius: 2px;
 }
-
 .ga-recipient-recipients ul {
     padding: 0em;
     margin: 0em;
@@ -512,41 +488,41 @@ a:hover {
     position: relative;
     left: 0em;
     right: 0em;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    min-height: 30px;
-    line-height: 30px;
+    flex-direction: row;
+    height: auto;
+    vertical-align: middle;
     width: 100%;
+    border-bottom: 1px solid #f7f7f7;
 }
 
 .ga-recipient-recipientsList-name {
-    position: relative;
-    padding-left: 1em;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
+    height: 100%;
+    margin: 5px 0px;
+    padding-left: 10px;
+    flex: 1;
+}
+
+.ga-recipient-recipientsList-name .name {
+   display: block;
+}
+
+.ga-recipient-recipientsList-phone {
+    font-size: 8px;
 }
 
 .ga-recipient-recipientsList-actions {
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: inline-block;
     height: 100%;
-    -webkit-box-flex: 0;
-        -ms-flex-positive: 0;
-            flex-grow: 0;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-    text-align: right;
-    float: right;
-}
+    margin: auto 0px;
+ }
 
 .action {
     display: inline-block;
     cursor: pointer;
-    padding: 0px 5px;
+    padding: 5px 5px;
 }
 
 .action:not(.active):hover {
@@ -554,7 +530,7 @@ a:hover {
 }
 
 .ga-recipient-recipientsList-actions .remove {
-    color: rgb(136, 136, 136);
+    color: rgb(136,136,136);
 }
 
 .ga-recipient-recipientsList-actions .remove:hover {
@@ -563,16 +539,13 @@ a:hover {
 }
 
 .active {
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
     color: #fff;
 }
 
 /******************/
-
 /*AVAILABLE FIELDS*/
-
 /******************/
-
 .ga-available-fields-row {
     border-bottom: 1px solid #ccc;
     padding-top: 0.5em;
@@ -582,7 +555,7 @@ a:hover {
 .ga-available-fields {
     word-break: break-word;
     white-space: normal;
-}
+} 
 
 .ga-available-fields-text {
     font-weight: bold;
@@ -590,9 +563,7 @@ a:hover {
 }
 
 /******/
-
 /*FILE*/
-
 /******/
 
 .ga-file-refresh {
@@ -622,14 +593,14 @@ a:hover {
 }
 
 .ga-file-option.active {
-    background-color: rgb(244, 146, 49);
-    border: 1px solid rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
+    border: 1px solid rgb(244,146,49);
 }
 
 .ga-file-reload-document {
     cursor: pointer;
     text-align: center;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(238,238,238);
     border-radius: 0.2em;
     padding: 1em 0em;
     margin-top: 1em;
@@ -641,9 +612,7 @@ a:hover {
 }
 
 /**********/
-
 /*DOCUMENT*/
-
 /**********/
 
 .ga-document {
@@ -658,24 +627,26 @@ a:hover {
 }
 
 .ga-document-inner {
-    height: 20em;
+    height: 20em; 
     overflow: auto;
 }
 
 .ga-document-add-video {
     display: block;
-    color: #F49231;
     cursor: pointer;
     margin-bottom: 0em;
     margin-top: 0.5em;
+    color:#F49231;
 }
 
 .ga-document-send-list-text {
-    background-color: #eeeeee;
-    border-radius: 20px;
-    color: #666666;
-    font-weight: bold;
+    position: relative;
+    margin: 5px 0px;
+    font-weight: bold;  
     height: auto;
+    border-radius: 20px;
+    color: #666666; 
+    background-color: #eeeeee;
 }
 
 .ga-document-send-list-text span {
@@ -683,11 +654,11 @@ a:hover {
     vertical-align: middle;
 }
 
-.ga-document-send-list-icon {
+.ga-document-send-list-icon { 
     display: inline-block;
     padding: 5px 5px;
     border-radius: 60px;
-    background-color: rgb(244, 146, 49);
+    background-color: rgb(244,146,49);
     color: #fff;
 }
 
@@ -701,10 +672,10 @@ a:hover {
 }
 
 .ga-document-remove-video:hover {
-    background-color: #ccc;
+    background-color:#ccc;
 }
 
-.ga-document-listDocuments li {
+.ga-document-listDocuments li{
     vertical-align: middle;
     margin: 5px 0px;
 }
@@ -725,8 +696,7 @@ a:hover {
     right: 1em;
     width: auto;
     background-color: #fff;
-    -webkit-box-shadow: 0 -5px 5px -5px #333;
-            box-shadow: 0 -5px 5px -5px #333;
+    box-shadow: 0 -5px 5px -5px #333;
 }
 
 .ga-document-email-header {
@@ -773,7 +743,6 @@ a:hover {
     margin-top: 3em;
     z-index: 999;
 }
-
 .ga-no-document-icon {
     font-size: 8em;
     display: block;
@@ -784,9 +753,7 @@ a:hover {
 }
 
 /**********/
-
 /*REMINDER*/
-
 /**********/
 
 .ga-reminderList {
@@ -817,16 +784,14 @@ a:hover {
 }
 
 /******/
-
 /*MENU*/
-
 /******/
 
 .ga-menu-button {
     position: absolute;
     right: 5px;
     top: 5px;
-    color: rgb(136, 136, 136);
+    color: rgb(136,136,136);
     cursor: pointer;
 }
 
@@ -835,15 +800,16 @@ a:hover {
     right: 10px;
     top: 30px;
     z-index: 100;
-    width: 150px;
+    width: 150px;  
     border-bottom-left-radius: 0.2em;
     border-bottom-right-radius: 0.2em;
     background: #FFFFFF;
-    -webkit-box-shadow: 0 3px 11px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 3px 11px 2px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 3px 11px 2px rgba(0,0,0,0.2);
 }
 
-.ga-menu ul {
+.ga-menu ul{
     list-style: none;
     display: block;
     cursor: pointer
@@ -855,46 +821,43 @@ a:hover {
 }
 
 .ga-menu li:hover {
-    border-left: 2px solid rgb(244, 146, 49);
-    color: rgb(244, 146, 49);
+    border-left: 2px solid rgb(244,146,49);
+    color: rgb(244,146,49);
 }
 
 .ga-menu-user-container {
     position: relative;
     height: 3em;
-}
+}  
 
 .ga-menu-user-info-container {
     position: absolute;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
     display: inline-block;
     overflow: hidden;
     line-height: 14px;
 }
 
 .ga-menu-user-info-name {
-    display: block;
-    width: 9em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: block; width: 9em; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
     white-space: nowrap;
 }
 
 .ga-menu-user-info-entity {
     display: block;
     font-size: 10px;
-    width: 12em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 12em; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
     white-space: nowrap;
 }
 
 .ga-menu-user-text {
     margin-left: 2.5em;
-}
-
+} 
 .ga-menu-user-thumb {
     width: 2em;
     display: inline-block;
@@ -906,41 +869,34 @@ a:hover {
 
 .ga-menu-user-info-thumb-container {
     display: inline-block;
-    line-height: 14px;
+    line-height: 14px; 
     margin-top: 0px;
 }
-
 .ga-menu-user-info-thumb-name {
     display: block;
-    width: 8em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    width: 8em; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
     white-space: nowrap;
 }
-
 .ga-menu-user-info-thumb-entity {
     display: block;
-    font-size: 10px !important;
+    font-size: 10px !important; 
     width: 10em;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
     white-space: nowrap;
 }
-
 /********/
-
 /*INVITE*/
-
 /********/
-
 .ga-invite-coworkerlist-container {
     overflow-y: auto;
     max-height: 15em;
     position: relative;
 }
-
 .ga-invite-coworkerlist li {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(238,238,238);
     height: 30px;
     margin-bottom: 2px;
     line-height: 30px;
@@ -967,11 +923,8 @@ a:hover {
 }
 
 /******/
-
 /*HELP*/
-
 /******/
-
 .ga-help-intro-video-thumb {
     text-align: center;
 }
@@ -985,13 +938,11 @@ a:hover {
 }
 
 /**********************/
-
 /*===== TEMPLATE =====*/
-
 /**********************/
 
 .ga-template-container {
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(238,238,238);
     height: 10em;
     overflow-y: auto;
     padding: 0.5em 0.5em;
@@ -1012,33 +963,26 @@ a:hover {
     position: absolute;
     bottom: 4.5em;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    text-align: center;
+    transform: translateX(-50%);
+    text-align: center; 
     margin-top: 1em;
 }
 
 /**********************/
-
 /*====== FIELDS ======*/
-
 /**********************/
 
 .ga-document-fields-container {
-    height: 22em;
+    height: 22em; 
     overflow: auto;
     padding-right: -1em;
 }
 
 /******/
-
 /*MISC*/
-
 /******/
 
-.ga-settings,
-.ga-invite,
-.ga-help {
+.ga-settings ,.ga-invite ,.ga-help {
     height: 300px;
     word-break: normal;
     white-space: normal;
@@ -1050,35 +994,25 @@ a:hover {
     top: 0px;
     left: 0;
     right: 0;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    flex-direction: column;
+    justify-content: center;
     padding-left: 45%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255,255,255,0.4);
     color: orange;
     z-index: 100;
 }
 
-.ga-btn,
-.ga-btn:visited {
-    background-color: rgb(244, 146, 49);
+.ga-btn, .ga-btn:visited{
+    background-color: rgb(244,146,49);
     color: #fff;
     width: 100%;
     height: 40px;
 }
 
-.ga-btn:hover,
-.ga-btn:active,
-.ga-btn:focus {
-    background-color: rgb(244, 146, 49);
+.ga-btn:hover, .ga-btn:active, .ga-btn:focus {
+    background-color: rgb(244,146,49);
     color: #fff;
 }
 
@@ -1094,7 +1028,7 @@ a:hover {
     background-color: none;
     background-image: none;
     border: none;
-    color: rgb(249, 177, 34);
+    color: rgb(249,177,34);
     background: none;
     font-weight: bold;
     margin-top: 5px;
@@ -1103,7 +1037,7 @@ a:hover {
 
 .ga-btn-blank:hover {
     text-decoration: underline;
-    color: rgb(244, 146, 49);
+    color: rgb(244,146,49);
 }
 
 .ga-label {
@@ -1129,101 +1063,73 @@ a:hover {
 }
 
 /* GLÖM INTE ATT PLOCKA BORT DENNA. DENNA GÖMMER SPINNERN. */
-
-#loadingIndicator {
+#loadingIndicator { 
     visibility: hidden !important;
 }
 
 /**********************************/
-
 /********* STATUS COLORS **********/
-
 /**********************************/
 
-.importing,
-.processing,
-.cc {
+.importing , .processing , .cc {
     border-left-color: #3E82F7;
 }
-
-.draft {
-    border-left-color: gray;
-    /*gray*/
+.draft{
+    border-left-color: gray; /*gray*/
+}
+.viewed{
+   border-left-color: #f89214; /*orange*/
+}
+.sent{
+    border-left-color: #3D81DA;  /*blue*/
+}
+.signed{
+    border-left-color: #45c068; /*green*/
+}
+.rejected, .lost{
+    border-left-color: #FA8885;/*red*/
+}
+.reviewed{
+    border-left-color: #f89214;/*orange*/
 }
 
-.viewed {
-    border-left-color: #f89214;
-    /*orange*/
-}
-
-.sent {
-    border-left-color: #3D81DA;
-    /*blue*/
-}
-
-.signed {
-    border-left-color: #45c068;
-    /*green*/
-}
-
-.rejected,
-.lost {
-    border-left-color: #FA8885;
-    /*red*/
-}
-
-.reviewed {
-    border-left-color: #f89214;
-    /*orange*/
-}
-
-.ga-analytics-status-indicator.importing,
-.ga-analytics-status-indicator.processing,
-.ga-analytics-status-indicator.cc {
+.ga-analytics-status-indicator.importing , .ga-analytics-status-indicator.processing , .ga-analytics-status-indicator.cc {
     background-color: #3E82F7;
 }
-
-.ga-analytics-status-indicator.draft {
-    background-color: gray;
-    /*gray*/
+.ga-analytics-status-indicator.draft{
+    background-color: gray; /*gray*/
 }
-
-.ga-analytics-status-indicator.viewed {
-    background-color: #f89214;
-    /*orange*/
+.ga-analytics-status-indicator.viewed{
+   background-color: #f89214; /*orange*/
 }
-
 .ga-analytics-status-indicator.sent {
     background-color: #3D81DA;
 }
-
-.ga-analytics-status-indicator.signed {
-    background-color: #45c068;
-    /*green*/
+.ga-analytics-status-indicator.signed{
+    background-color: #45c068; /*green*/
+}
+.ga-analytics-status-indicator.rejected, .ga-analytics-status-indicator.lost{
+    background-color: #FA8885;/*red*/
+}
+.ga-analytics-status-indicator.reviewed{
+    background-color: #f89214;/*orange*/
 }
 
-.ga-analytics-status-indicator.rejected,
-.ga-analytics-status-indicator.lost {
-    background-color: #FA8885;
-    /*red*/
-}
-
-.ga-analytics-status-indicator.reviewed {
-    background-color: #f89214;
-    /*orange*/
-}
 
 @media screen and (max-height: 800px) {
     .ga-recipient-recipientsList-actions {
         right: 38px;
     }
+
     .ga-analytics {
         height: 100%;
     }
+
     .ga-analytics-pages {
         height: auto;
         overflow: normal;
     }
+
     .ga-document-input {
         overflow: hidden;
         white-space: nowrap;
@@ -1232,19 +1138,23 @@ a:hover {
 }
 
 @media screen and (min-height: 801px) {
-    .ga-view-expanded {
-        height: 40em;
+    .ga-view-expanded { 
+       height: 40em;
     }
+
     .ga-document-inner {
         height: 40em;
     }
-    .ga-document-fields-container {
+
+    .ga-document-fields-container { 
         margin-top: 1em;
         height: 41em;
     }
+
     .ga-recipient-container {
         max-height: 25em;
     }
+
     .ga-recipient-recipients {
         height: 15em;
     }

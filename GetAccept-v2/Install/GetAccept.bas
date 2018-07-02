@@ -321,7 +321,7 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
             i = i + 1
             strJSON = strJSON + """firstname"":""" & oRecord(GlobalCoworkerFirstNameField) & """," _
             & """lastname"":""" & oRecord(GlobalCoworkerLastNameField) & """," _
-            & """mobilephone"":""" & oRecord(GlobalCoworkerMobileField) & """," _
+            & """mobilephone"":""" & ValidatePhoneNumber(oRecord(GlobalCoworkerMobileField)) & """," _
             & """email"":""" & oRecord(GlobalCoworkerEmailField) & """" _
 
             If i < oRecords.Count Then
@@ -340,7 +340,7 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
             i = i + 1
             strJSON = strJSON + """firstname"":""" & oRecord(GlobalPersonFirstNameField) & """," _
             & """lastname"":""" & oRecord(GlobalPersonLastNameField) & """," _
-            & """mobilephone"":""" & oRecord(GlobalPersonMobileField) & """," _
+            & """mobilephone"":""" & ValidatePhoneNumber(oRecord(GlobalPersonMobileField)) & """," _
             & """email"":""" & oRecord(GlobalPersonEmailField) & """" _
 
             If i < oRecords.Count Then
@@ -359,6 +359,28 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
     Exit Function
 ErrorHandler:
     Call UI.ShowError("GetAccept.CreatePersonJSON")
+End Function
+
+Public Function ValidatePhoneNumber(phoneNumber As String) As String
+    On Error GoTo ErrorHandler
+      
+    Dim validatedNumber As String
+    
+    If Len(phoneNumber) >= 8 Then
+        If Left(phoneNumber, 1) = "+" Then
+            validatedNumber = phoneNumber
+        Else
+            validatedNumber = ""
+        End If
+    Else
+        validatedNumber = ""
+    End If
+     
+    ValidatePhoneNumber = validatedNumber
+     
+    Exit Function
+ErrorHandler:
+    Call UI.ShowError("GetAccept.ValidatePhoneNumber")
 End Function
 
 Public Function CheckDocuments(activeRecordId As Long, activeClass As String) As String

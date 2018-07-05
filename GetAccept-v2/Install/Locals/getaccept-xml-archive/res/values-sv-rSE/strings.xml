@@ -6,11 +6,11 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 15 May 2018 16:32:35 +0200
+ Exported at: Thu, 05 Jul 2018 02:43:54 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Epost</string>
-    <string name="RELATED_DOCUMENTS">Relatedade dokument</string>
+    <string name="RELATED_DOCUMENTS">Relaterade dokument</string>
     <string name="NO_DOCUMENT_SENT_YET">Det finns inget dokument skickat från detta kort</string>
     <string name="SETTINGS">Inställningar</string>
     <string name="INVITE_COWORKERS">Bjud in dina kollegor</string>
@@ -92,11 +92,14 @@
     <string name="CHOOSE_A_TEMPLATE">Välj en template</string>
     <string name="COPY_AND_PASTE">Kopiera och klistra parametrar från listan nedan till ditt GetAccept-mallfält som värde.</string>
     <string name="CHOOSE_A_DOCUMENT">Välj dokument</string>
-    <string name="SELECTED_DOCUMENT">Valt dokument:</string>
+    <string name="SELECTED_DOCUMENT">Valt dokument</string>
     <string name="SEARCH_FOR_TEMPLATE">Sök efter en mall</string>
     <string name="CHANGING_TEXT">Ändrar text</string>
     <string name="ABOUT_HOW_MANY_DAYS">Om hur många dagar vill du ha en påminnelse?</string>
     <string name="DAYS">dagar</string>
     <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet har hämtats</string>
     <string name="SIGNED">Signerat</string>
+    <string name="SELECT">Välj</string>
+    <string name="CHANGE_DOCUMENT">Vill du byta dokument. Välj ett nytt dokument i dokumentfliken och klicka på uppdatera.</string>
+    <string name="UPDATE">Uppdatera</string>
 </resources>

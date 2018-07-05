@@ -6,7 +6,7 @@
  Locale: es-ES, Spanish (Spain)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 15 May 2018 16:32:35 +0200
+ Exported at: Thu, 05 Jul 2018 02:43:54 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
@@ -92,11 +92,14 @@
     <string name="CHOOSE_A_TEMPLATE">Selecciona una plantilla</string>
     <string name="COPY_AND_PASTE">Copia y pega como valores los parámetros de la lista de abajo a al campo de tu plantilla de GetAccept.</string>
     <string name="CHOOSE_A_DOCUMENT">Selecciona un documento:</string>
-    <string name="SELECTED_DOCUMENT">Documento seleccionado:</string>
+    <string name="SELECTED_DOCUMENT">Documento seleccionado</string>
     <string name="SEARCH_FOR_TEMPLATE">Busca una plantilla</string>
     <string name="CHANGING_TEXT">Texto cambiante</string>
     <string name="ABOUT_HOW_MANY_DAYS"></string>
     <string name="DAYS"></string>
     <string name="DOCUMENT_IS_DOWNLOADED"></string>
     <string name="SIGNED"></string>
+    <string name="SELECT"></string>
+    <string name="CHANGE_DOCUMENT"></string>
+    <string name="UPDATE"></string>
 </resources>

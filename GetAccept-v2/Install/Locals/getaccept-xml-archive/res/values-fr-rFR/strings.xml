@@ -6,7 +6,7 @@
  Locale: fr-FR, French (France)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 15 May 2018 16:32:35 +0200
+ Exported at: Thu, 05 Jul 2018 02:43:54 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
@@ -92,11 +92,14 @@
     <string name="CHOOSE_A_TEMPLATE">Choisir un template</string>
     <string name="COPY_AND_PASTE">Copier coller les paramètres depuis la liste ci-dessous en tant que valeurs de champ sur votre template GetAccept.</string>
     <string name="CHOOSE_A_DOCUMENT">Choisir un document</string>
-    <string name="SELECTED_DOCUMENT">Document sélectionné :</string>
+    <string name="SELECTED_DOCUMENT">Document sélectionné</string>
     <string name="SEARCH_FOR_TEMPLATE">Rechercher un template</string>
     <string name="CHANGING_TEXT">Modifier le texte</string>
     <string name="ABOUT_HOW_MANY_DAYS"></string>
     <string name="DAYS"></string>
     <string name="DOCUMENT_IS_DOWNLOADED"></string>
     <string name="SIGNED"></string>
+    <string name="SELECT">Sélectionner</string>
+    <string name="CHANGE_DOCUMENT"></string>
+    <string name="UPDATE"></string>
 </resources>

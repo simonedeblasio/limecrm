@@ -216,17 +216,22 @@
                    <!-- ko if: useFile -->
                     <div data-bind="visible: useFile">
                         <!-- ko if: documentName() !== "" -->
-                        <h4 data-bind="text: localize.GetAccept.SELECTED_DOCUMENT + ' ' + documentName()"></h4>
+                        <h4 class="" data-bind="text: 'Selected document'"></h4>
+                        <div class="ga-select-file">
+                            <h5 class="ga-file-name" data-bind="text: documentName(), icon: 'fa-file'"></h5>
+                            <p data-bind="text: localize.GetAccept.CHANGE_DOCUMENT"></p>
+                            <a data-bind="icon: 'fa-refresh', click: reloadFileName, text: localize.GetAccept.UPDATE"></a>
+                        </div>
                         <!-- /ko -->
                         <!-- ko if: documentName() === "" -->
                         <h4 data-bind="text: localize.GetAccept.CHOOSE_A_DOCUMENT"></h4>
+                        <div class="ga-select-file">
+                            <p data-bind="text: localize.GetAccept.SELECT_DOCUMENT_INSTRUCTIONS"></p>
+                            <a data-bind="icon: 'fa-plus', click: reloadFileName, text: localize.GetAccept.SELECT"></a>
+                        </div>
                         <!-- /ko -->
 
-                        <span data-bind="text: localize.GetAccept.SELECT_DOCUMENT_INSTRUCTIONS"></span>
-                        <div class="ga-file-reload-document" data-bind="click: reloadFileName">
-                            <i class="fa fa-refresh ga-file-reload-icon"></i>
-                            <span data-bind="text: localize.GetAccept.REPLACE_DOCUMENT"></span>
-                        </div>
+
                     </div>
                     <!-- /ko -->
 

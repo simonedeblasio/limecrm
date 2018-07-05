@@ -6,7 +6,7 @@
  Locale: de-DE, German (Germany)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 15 May 2018 16:32:35 +0200
+ Exported at: Thu, 05 Jul 2018 02:43:54 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
@@ -99,4 +99,7 @@
     <string name="DAYS"></string>
     <string name="DOCUMENT_IS_DOWNLOADED"></string>
     <string name="SIGNED"></string>
+    <string name="SELECT"></string>
+    <string name="CHANGE_DOCUMENT"></string>
+    <string name="UPDATE"></string>
 </resources>

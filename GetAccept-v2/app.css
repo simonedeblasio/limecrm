@@ -565,6 +565,16 @@ a:hover {
 /******/
 /*FILE*/
 /******/
+.ga-select-file {
+    margin-top: 5px;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+.ga-file-name {
+    display: inline-block;
+    color:rgb(244,146,49);
+}
 
 .ga-file-refresh {
     margin-left: 0.5em;
@@ -956,7 +966,6 @@ a:hover {
 
 .ga-template-list-item.selected {
     color: #f89214;
-    font-weight: bold;
 }
 
 .ga-template-action-links {

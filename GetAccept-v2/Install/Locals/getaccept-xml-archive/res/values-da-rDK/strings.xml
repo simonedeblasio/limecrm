@@ -6,7 +6,7 @@
  Locale: da-DK, Danish (Denmark)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 15 May 2018 16:32:35 +0200
+ Exported at: Thu, 05 Jul 2018 02:43:54 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">E-mail</string>
@@ -92,11 +92,14 @@
     <string name="CHOOSE_A_TEMPLATE">Vælg en skabelon</string>
     <string name="COPY_AND_PASTE">Kopier og indsæt parametre fra nedenstående liste til dit GetAccept-skabelonfelt som Værdi.</string>
     <string name="CHOOSE_A_DOCUMENT">Vælg et dokument</string>
-    <string name="SELECTED_DOCUMENT">Udvalgt dokument:</string>
+    <string name="SELECTED_DOCUMENT">Udvalgt dokument</string>
     <string name="SEARCH_FOR_TEMPLATE">Søg efter skabelon</string>
     <string name="CHANGING_TEXT">Ændring af tekst</string>
     <string name="ABOUT_HOW_MANY_DAYS">Om hvor mange dage vil du have en påmindelse?</string>
     <string name="DAYS">dagar</string>
     <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet hentes</string>
     <string name="SIGNED">Underskrevet</string>
+    <string name="SELECT">Vælg</string>
+    <string name="CHANGE_DOCUMENT">Hvis du vil ændre dokument. Skal du vælge en ny i dokumentfanen og trykke på opdatering.</string>
+    <string name="UPDATE">Opdatering</string>
 </resources>

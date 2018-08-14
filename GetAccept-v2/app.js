@@ -819,6 +819,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     recipient.lastname = personData.lastname;
                     recipient.email = personData.email;
                     recipient.internal = internal;
+                    recipient.company_name = personData.companyname
                     recipient.mobilephone = personData.mobilephone;
                     recipient.signer = ko.observable(true);
                     recipient.cc = ko.observable(false);
@@ -860,7 +861,8 @@ lbs.apploader.register('GetAccept-v2', function () {
                 first_name: recipient.firstname,
                 last_name: recipient.lastname,
                 mobile: recipient.mobilephone,
-                role: recipient.signer() ? 'signer' : 'cc'
+                role: recipient.signer() ? 'signer' : 'cc',
+                company_name : recipient.company_name
             }
         }
 

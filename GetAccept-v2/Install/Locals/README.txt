@@ -5,3 +5,6 @@ Need to download new version of the translations?
 3. In GetAccept-v2/Install/Locals replace folder getaccept-xml-archive with the unziped folder.
 4. In VBA. Run Install.
 5. Be happy.
+
+
+Björn Johansson

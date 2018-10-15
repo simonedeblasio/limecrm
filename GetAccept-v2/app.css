@@ -459,6 +459,10 @@ a:hover {
     border-radius: 2px;
 }
 
+.ga-recipient-personList {
+    max-height: 15em;
+}
+
 .ga-recipient-personList li {
     padding: 5px 10px;
     cursor: pointer;
@@ -982,9 +986,10 @@ a:hover {
 /**********************/
 
 .ga-document-fields-container {
-    height: 22em; 
+    height: 21em; 
+    margin-top: 1em;
     overflow: auto;
-    padding-right: -1em;
+    padding: 0em 0.5em;
 }
 
 /******/
@@ -1157,7 +1162,7 @@ a:hover {
 
     .ga-document-fields-container { 
         margin-top: 1em;
-        height: 41em;
+        height: 31em;
     }
 
     .ga-recipient-container {

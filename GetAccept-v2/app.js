@@ -814,12 +814,13 @@ lbs.apploader.register('GetAccept-v2', function () {
             recipient = this;
             if (personData) {
                 try {
+                    var companyName = personData.companyname === 'INTERNAL' ? (appConfig.companyName || 'Internt') : personData.companyname;
                     recipient.name = personData.firstname + ' ' + personData.lastname;
                     recipient.firstname = personData.firstname;
                     recipient.lastname = personData.lastname;
                     recipient.email = personData.email;
                     recipient.internal = internal;
-                    recipient.company_name = personData.companyname
+                    recipient.company_name = companyName;
                     recipient.mobilephone = personData.mobilephone;
                     recipient.signer = ko.observable(true);
                     recipient.cc = ko.observable(false);

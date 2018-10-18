@@ -325,7 +325,7 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
             & """lastname"":""" & oRecord(GlobalCoworkerLastNameField) & """," _
             & """mobilephone"":""" & ValidatePhoneNumber(oRecord(GlobalCoworkerMobileField)) & """," _
             & """email"":""" & oRecord(GlobalCoworkerEmailField) & """," _
-            & """companyname"":""" & oRecord(GlobalPersonCompanyNameField) & """" _
+            & """companyname"":""INTERNAL"""
         
             If i < oRecords.Count Then
                 strJSON = strJSON + "},{"

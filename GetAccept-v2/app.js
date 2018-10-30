@@ -101,6 +101,12 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.selectedTemplateFields = ko.observableArray();
         viewModel.availableLimeFields = ko.observableArray();
 
+        viewModel.showGaTemplates = ko.observable(false);
+        viewModel.showLimeFiles = ko.observable(false);
+
+        //UPLOAD FILE 
+        viewModel.filesFromDiskList = ko.observableArray();
+
         //LISTS
         viewModel.document = ko.observableArray();
         viewModel.gaDocumentList = ko.observableArray();
@@ -113,6 +119,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.entityList = ko.observableArray();
         viewModel.coworkerList = ko.observableArray();
         viewModel.templateList = ko.observableArray();
+        viewModel.limeDocumentList = ko.observableArray();
         viewModel.reminderOptions = [1, 3, 5, 7, 10, 14];
 
         function toogleGaView() {
@@ -513,6 +520,8 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.documentList.removeAll();
             viewModel.recipientsList.removeAll();
             viewModel.personList.removeAll();
+            viewModel.limeDocumentList.removeAll();
+            viewModel.filesFromDiskList.removeAll();
             setTimeout(function () {
                 viewModel.GaDocuments(true);
                 listDocuments();
@@ -712,6 +721,20 @@ lbs.apploader.register('GetAccept-v2', function () {
                 }
             });
         }
+        
+        function getLimeFiles() {
+            var limeDocuments = lbs.common.executeVba('GetAccept.GetAllDocumentsData,' + className);
+            if (limeDocuments) {
+                limeDocuments = JSON.parse(limeDocuments)
+
+                if(limeDocuments) {
+                    $.each(limeDocuments, function(i, limeDoc) {
+                        var lDocument = new limeDocumentModel(limeDoc)
+                        viewModel.limeDocumentList.push(lDocument);
+                    });
+                }
+            }
+        }
 
         function getTemplateFields() {
             viewModel.selectedTemplateFields.removeAll();
@@ -782,8 +805,32 @@ lbs.apploader.register('GetAccept-v2', function () {
                 }
                 viewModel.selectedTemplate(this);
                 viewModel.selectedTemplateId(this.id);
+                viewModel.useTemplates(true);
+                viewModel.useLimeFile(false);
             }
             return template;
+        }
+
+        function limeDocumentModel(limeDocument) {
+            var document = this;
+            document.name = limeDocument.file_name;
+            document.id = limeDocument.file_id;
+            document.isSelected = ko.observable(false);
+
+            document.select = function() {
+                this.isSelected(!this.isSelected());
+            }
+            return document;
+        }
+
+        function clearTemplates() {
+            $.each(viewModel.limeDocumentList(), function(i, doc) {
+                doc.isSelected(false);
+            });
+
+            viewModel.selectedTemplateId('');
+            viewModel.useTemplates(false);
+            viewModel.useLimeFile(false);
         }
 
         function enterPress(d, e) {
@@ -959,18 +1006,18 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.Spinner(true);
             if (viewModel.recipientsList().length > 0) {
                 getTemplates();
+                getLimeFiles();
                 viewModel.Recipient(false);
                 viewModel.File(true);
                 viewModel.GaDocuments(false);
                 viewModel.Spinner(false);
-                reloadFileName();
-
             } else {
                 viewModel.Spinner(false);
                 alert("You need to select at least one recipient!");
             }
         }
 
+        //This should be removed in next version.
         function reloadFileName() {
             viewModel.documentName('');
             if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
@@ -984,15 +1031,15 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         function toggleTemplatePicker() {
             viewModel.useTemplates(true);
-            viewModel.useFile(false);
+            viewModel.useLimeFile(false);
         }
 
         function toggleDocumentPicker() {
             viewModel.useTemplates(false);
-            viewModel.useFile(true);
+            viewModel.useLimeFile(true);
         }
 
-        viewModel.useFile = ko.observable(true);
+        viewModel.useLimeFile = ko.observable(true);
 
         viewModel.toggleDocumentPicker = toggleDocumentPicker;
         viewModel.toggleTemplatePicker = toggleTemplatePicker;
@@ -1005,36 +1052,76 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.goToDocumentAfterFields = goToDocumentAfterFields;
 
         function showDocument() {
+
+            var limeTemplates = $.grep(viewModel.limeDocumentList(), function(doc) {
+                return doc.isSelected();
+            });
+
             if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
-                viewModel.worksteps([1, 1]);
-                viewModel.File(false);
-                viewModel.Recipient(false);
+                haveSelectFile();
                 viewModel.TemplateFields(false);
-                viewModel.GaDocuments(false);
                 getTemplateFields();
-            } else if (viewModel.useFile()) {
-                if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.class.name === "document") {
-                    if (lbs.limeDataConnection.ActiveInspector.ActiveExplorer.Selection.Count > 0) {
-                        viewModel.worksteps([1, 1]);
-                        viewModel.File(false);
-                        viewModel.Recipient(false);
-                        viewModel.Document(true);
-                        viewModel.GaDocuments(false);
-                        getDocuments();
-                        uploadDocument();
-                    } else {
-                        viewModel.Spinner(false);
-                        alert("You must select at least one document.")
-                    }
-                } else {
-                    viewModel.Spinner(false);
-                    alert("Please select a document or a template step forward.")
-                }
-            } else {
-                alert("Please select a document or a template step forward.")
             }
+            else if (viewModel.filesFromDiskList().length > 0) {
+                haveSelectFile();
+                viewModel.Document(true);
+                uploadDocument(true);
+                viewModel.useLimeFile(false);
+            } else if (!$.isEmptyObject(limeTemplates)) {
+                haveSelectFile();
+                viewModel.Document(true);
+                uploadDocument(false);
+                viewModel.useLimeFile(true);
+            } else {
+                    alert("Please select a document or a template step forward.")
+            }
+        }
 
+        function haveSelectFile() {
+            viewModel.worksteps([1, 1]);
+            viewModel.File(false);
+            viewModel.Recipient(false);
+            viewModel.GaDocuments(false);
+        }
 
+        function toggleFileContainer(gaTemplate) {
+            clearTemplates();
+            if(gaTemplate) {
+                viewModel.showLimeFiles(false);
+                viewModel.showGaTemplates(!viewModel.showGaTemplates())
+            }
+            else {
+                viewModel.showGaTemplates(false);
+                viewModel.showLimeFiles(!viewModel.showLimeFiles())
+            }
+        }
+        
+        function fileModel(fileData) {
+            var file = this;
+            file.file_name = fileData.file_name;
+            file.file_content = fileData.file_content;
+            file.remove = function() {
+                viewModel.filesFromDiskList.remove(this);
+                if(viewModel.filesFromDiskList().length == 0 ) {
+                    viewModel.documentName('');
+                }
+            }
+            return file;
+        }
+
+        function selectFileFromDisk() {
+            var fileData = JSON.parse(lbs.common.executeVba("GetAccept.GetFileFromDisk"));
+            if (fileData) {
+                var file = new fileModel(fileData);
+                viewModel.filesFromDiskList.push(file);
+                viewModel.documentName(file.file_name);
+
+                viewModel.useTemplates(false);
+                viewModel.useLimeFile(false);
+            }
+            else {
+
+            }
         }
 
         function getDocuments() {
@@ -1230,98 +1317,88 @@ lbs.apploader.register('GetAccept-v2', function () {
             }
 
             if (sending_is_ok) {
-                if (viewModel.videoData().video_id) {
-                    video_id = viewModel.videoData().video_id;
+                video_id = viewModel.videoData().video_id ? viewModel.videoData().video_id : null ;
+                
+                //General documnt data
+                var documentData = {
+                    name: '',
+                    type: 'sales',
+                    external_id: key,
+                    value: deal_value,
+                    recipients: [],
+                    company_name: company_name,
+                    is_automatic_sending: automaticSending,
+                    is_reminder_sending: viewModel.smartReminders(),
+                    is_sms_sending: viewModel.sendSMS(),
+                    email_send_subject: viewModel.emailSubject(),
+                    email_send_message: viewModel.emailMessage(),
+                    video_id: video_id ? video_id : 0,
                 }
-                else {
-                    video_id = null;
-                }
+
+                var have_signer = viewModel.recipientsList().filter(function (i) {
+                    return i.signer() == true;
+                });
+                //Adds is signing to document
+                documentData.is_signing = have_signer != "undefiend" ? true : 0;
+                
+                //Adds recipients to document
+                gaRecipientList = [];
+                $.each(viewModel.recipientsList(), function (i, rec) {
+                    var recipeint = new gaRecipient(rec);
+                    gaRecipientList.push(recipeint);
+                });
+                documentData.recipients = gaRecipientList;
+                
+
+                //If Template. Add Template data
                 if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
-                    var documentData = {
-                        name: viewModel.selectedTemplate().name,
-                        type: 'sales',
-                        external_id: key,
-                        value: deal_value,
-                        recipients: [],
-                        company_name: company_name,
-                        is_automatic_sending: automaticSending,
-                        is_reminder_sending: viewModel.smartReminders(),
-                        is_sms_sending: viewModel.sendSMS(),
-                        email_send_subject: viewModel.emailSubject(),
-                        email_send_message: viewModel.emailMessage(),
-                        video_id: video_id ? video_id : 0,
-                    }
-
-                    if (viewModel.selectedTemplateFields().length > 0) {
-                        var customFields = [];
-                        $.each(viewModel.selectedTemplateFields(), function (index, field) {
-                            customFields.push({
-                                'id': field.field_id,
-                                'value': field.field_value
-                            });
-                        });
-                        documentData.custom_fields = customFields;
-                    }
-
-                    documentData.template_id = viewModel.selectedTemplateId();
-
-                    var have_signer = viewModel.recipientsList().filter(function (i) {
-                        return i.signer() == true;
-                    });
-
-                    if (have_signer != "undefiend") {
-                        documentData.is_signing = true;
-                    } else {
-                        documentData.is_signing = 0;
-                    }
-                    gaRecipientList = [];
-                    $.each(viewModel.recipientsList(), function (i, rec) {
-                        var recipeint = new gaRecipient(rec);
-                        gaRecipientList.push(recipeint);
-                    });
-                    documentData.recipients = gaRecipientList;
-                    postDocument(documentData, automaticSending);
-                } else {
-                    $.each(viewModel.document(), function (i, file) {
-                        var documentData = {
-                            name: file.documentName(),
-                            file_ids: '',
-                            type: 'sales',
-                            value: deal_value,
-                            external_id: file.external_id,
-                            recipients: [],
-                            company_name: company_name,
-                            is_automatic_sending: automaticSending,
-                            is_reminder_sending: viewModel.smartReminders(),
-                            is_sms_sending: viewModel.sendSMS(),
-                            email_send_subject: viewModel.emailSubject(),
-                            email_send_message: viewModel.emailMessage(),
-                            video_id: video_id ? video_id : null,
-                        }
-                        gaRecipientList = [];
-                        $.each(viewModel.recipientsList(), function (i, rec) {
-                            var recipeint = new gaRecipient(rec);
-                            gaRecipientList.push(recipeint);
-                        });
-
-                        //Sätter filid och filnamn till dokumentet.
-                        documentData.file_ids = viewModel.uploadedDocuments().join(',');
-                        documentData.recipients = gaRecipientList;
-
-                        var have_signer = viewModel.recipientsList().filter(function (i) {
-                            return i.signer() == true;
-                        });
-
-                        if (have_signer != "undefiend") {
-                            documentData.is_signing = true;
-                        } else {
-                            documentData.is_signing = 0;
-                        }
-
-                        postDocument(documentData, automaticSending);
-                    });
+                    addTemplates(documentData, automaticSending);
+                } 
+                //If Lime Doument. Add Lime document data
+                else if (viewModel.limeDocumentList().length > 0) {
+                    addFile(documentData, automaticSending);
                 }
+                //If File from disk. Add file data 
+                else if (viewModel.filesFromDiskList().length > 0) {
+                    addFile(documentData, automaticSending);
+                }
+                 
             }
+        }
+
+        function addTemplates(documentData, automaticSending) {
+            //Adds name from template
+            documentData.name = viewModel.selectedTemplate().name;         
+            //Adds template id
+            documentData.template_id = viewModel.selectedTemplateId();
+
+            //Adds custom fields
+            if (viewModel.selectedTemplateFields().length > 0) {
+                var customFields = [];
+                $.each(viewModel.selectedTemplateFields(), function (index, field) {
+                    customFields.push({
+                        'id': field.field_id,
+                        'value': field.field_value
+                    });
+                });
+                documentData.custom_fields = customFields;
+            }
+
+            //Sends document
+            postDocument(documentData, automaticSending);
+        }
+
+        function addFile(documentData, automaticSending) {
+            
+            //Adds document name
+            documentData.name = viewModel.documentName() ? viewModel.documentName() : 'Document from lime' ;
+
+            //Adds file data
+            documentData.file_ids = viewModel.uploadedDocuments().join(',');
+
+            //Sends document
+            postDocument(documentData, automaticSending);
+
         }
 
         function postDocument(documentData, automaticSending) {
@@ -1346,10 +1423,26 @@ lbs.apploader.register('GetAccept-v2', function () {
             });
         }
 
-        function uploadDocument() {
+        function uploadDocument(fromFile) {
             viewModel.uploadedDocuments.removeAll();
-            var document_data = lbs.common.executeVba("GetAccept.GetDocumentData," + className);
-            document_data = JSON.parse(document_data);
+            var document_data = [];
+            if(fromFile) {
+                var file_list = [];
+                $.each(viewModel.filesFromDiskList(), function (i, file) {
+                    file_list.push(file)
+                })
+                document_data = file_list;
+            }
+            else {
+                $.each(viewModel.limeDocumentList(), function(i, doc){
+                    if(doc.isSelected()) {
+                        var docData = lbs.common.executeVba("GetAccept.GetDocumentData," + className + "," + doc.id);
+                        docData = JSON.parse(docData);
+                        document_data.push(docData);
+                        viewModel.documentName(doc.name);
+                    }
+                });
+            }
             if (document_data.length > 0) {
                 $.each(document_data, function (index, doc) {
                     var file = window.atob(doc.file_content);
@@ -1468,11 +1561,6 @@ lbs.apploader.register('GetAccept-v2', function () {
             viewModel.showApp = true;
             lbs.common.executeVba("GetAccept.initGa," + appConfig.personSourceTab + ',' + appConfig.personSourceField)
             var isLoggedOn = checkLogin();
-            if (isLoggedOn) {
-
-            } else {
-                //viewModel.Login(true);
-            }
         }
 
         function setupPusher() {
@@ -1555,6 +1643,9 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.createFreeAccount = createFreeAccount;
         viewModel.registerSignup = registerSignup;
         viewModel.showTemplateParameters = showTemplateParameters;
+        //New
+        viewModel.toggleFileContainer = toggleFileContainer;
+        viewModel.selectFileFromDisk = selectFileFromDisk;
         initGa();
         return viewModel;
     };

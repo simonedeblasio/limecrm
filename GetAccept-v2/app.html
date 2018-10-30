@@ -207,49 +207,64 @@
                         </li>
                     </ul>
                 </div>
+             
+                <div class="ga-document-upload-file">
+                    <h4 data-bind="text: localize.GetAccept.UPLOAD_FILES"></h4>
+                    <button class="btn ga-btn" data-bind="click: selectFileFromDisk, text: localize.GetAccept.CLICK_TO_UPLOAD_A_FILE"></button>
+                    <span style="display: block; margin: 0.5em 0em;" data-bind="text: localize.GetAccept.PREFERRED_FORMATS"></span>
+                    <!-- ko if: filesFromDiskList().length > 0 -->
+                        <ul class="ga-uploaded-file-list" data-bind="foreach: filesFromDiskList">
+                            <li class="file-item">
+                                <i class="fa fa-file-text"></i>
+                                <span data-bind="text: file_name"></span>
+                                <i data-bind="click: remove" style="margin-left: 0.5em; cursor: pointer;" class="remove fa fa-times"></i>
+                            </li>
+                        </ul>
+                    <!-- /ko -->
+                </div>
+                
+                <!-- ko if: filesFromDiskList().length === 0 -->
+                    <div class="ga-document-documents">
+                        <div class="ga-document-select-lime-template">
+                            <h4 data-bind="click: toggleFileContainer(true)">
+                                <i class="fa" data-bind="css: {'fa-chevron-down' : showGaTemplates(), 'fa-chevron-right' : !showGaTemplates()  }"></i>
+                                <span style="cursor:pointer;" data-bind="text: localize.GetAccept.USE_TEMPLATES"></span>
 
-                <div class="ga-file-option-container">
-                    <ul class="ga-file-option-list">
-                        <li class="ga-file-option" data-bind="click: toggleDocumentPicker, css: { 'active' : useFile()}, icon: 'fa-file', text: localize.GetAccept.LIME_DOCUMENT "></li>
-                        <li class="ga-file-option" style="border-left: none" data-bind="click: toggleTemplatePicker, css: { 'active' : useTemplates()}, icon: 'fa-clone', text: localize.GetAccept.TEMPLATE_FROM_GETACCEPT"></li>
-                    </ul>
-                   <!-- ko if: useFile -->
-                    <div data-bind="visible: useFile">
-                        <!-- ko if: documentName() !== "" -->
-                        <h4 class="" data-bind="text: 'Selected document'"></h4>
-                        <div class="ga-select-file">
-                            <h5 class="ga-file-name" data-bind="text: documentName(), icon: 'fa-file'"></h5>
-                            <p data-bind="text: localize.GetAccept.CHANGE_DOCUMENT"></p>
-                            <a data-bind="icon: 'fa-refresh', click: reloadFileName, text: localize.GetAccept.UPDATE"></a>
+                            </h4>
+                            <div class="ga-document-template-container" data-bind="css: { 'hiddenContainer' : !showGaTemplates() }">
+                                <!-- ko if: showGaTemplates() -->
+                                <ul class="ga-template-list" data-bind="foreach: templateList">
+                                    <li class="ga-template-list-item" data-bind="click: selectTemplate, css: { 'selected': $root.selectedTemplateId() === id }">
+                                        <i class="fa fa-file-text"></i>
+                                        <span data-bind="text: name"></span>
+                                    </li>
+                                </ul>
+                                <span class="ga-document-no-files" data-bind="visible: templateList().length === 0, text: localize.GetAccept.THERE_ARE_NO_FILES"></span>
+                                <!-- /ko -->
+                            </div>
                         </div>
-                        <!-- /ko -->
-                        <!-- ko if: documentName() === "" -->
-                        <h4 data-bind="text: localize.GetAccept.CHOOSE_A_DOCUMENT"></h4>
-                        <div class="ga-select-file">
-                            <p data-bind="text: localize.GetAccept.SELECT_DOCUMENT_INSTRUCTIONS"></p>
-                            <a data-bind="icon: 'fa-plus', click: reloadFileName, text: localize.GetAccept.SELECT"></a>
+
+                        <div class="ga-document-select-ga-template">
+                            <h4 data-bind="click: toggleFileContainer(false)">
+                                <i class="fa" data-bind="css: {'fa-chevron-down' : showLimeFiles(), 'fa-chevron-right' : !showLimeFiles()  }"></i>
+                                <span style="cursor:pointer;" data-bind="text: localize.GetAccept.USE_LIME_FILE"></span>
+                            </h4>
+                            <div class="ga-document-template-container" data-bind="css: { 'hiddenContainer' : !showLimeFiles() }">
+                                <!-- ko if: showLimeFiles() -->
+                                <ul class="ga-template-list" data-bind="foreach: limeDocumentList">
+                                    <li class="ga-template-list-item" data-bind=" click: select, css: { 'selected' : isSelected} ">
+                                        <i class="fa fa-file-text"></i>
+                                        <span data-bind="text: name"></span>
+                                    </li>
+                                </ul>
+                                <span class="ga-document-no-files" data-bind="visible: limeDocumentList().length === 0, text: localize.GetAccept.THERE_ARE_NO_FILES"></span>
+                                <!-- /ko -->
+                            </div>
                         </div>
-                        <!-- /ko -->
 
 
                     </div>
-                    <!-- /ko -->
-
-                     <!-- ko if: useTemplates() -->
-                        <div>
-                            <h4 data-bind="text: localize.GetAccept.CHOOSE_A_TEMPLATE"></h4>
-                            <input type="text" class="form-control ga-input-field" data-bind="value: templateSerach, valueUpdate: 'afterkeyup', attr: {placeholder: localize.GetAccept.SEARCH_FOR_TEMPLATE}">
-                                <div class="ga-template-container">
-                                    <ul class="ga-template-list" data-bind="foreach: templateList">
-                                        <li class="ga-template-list-item" data-bind="click: selectTemplate, css: { 'selected': $root.selectedTemplateId() === id }">
-                                            <i class="fa fa-file-text"></i>
-                                            <span class="ga-template-item-name" data-bind="text: name"></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                        </div>
-                    <!-- /ko -->
-                </div>               
+                 <!-- /ko -->           
             </div>
 
             <!-- ko if: useTemplates() -->
@@ -267,7 +282,7 @@
                     <ul data-bind="foreach: selectedTemplateFields">
                         <li>
                             <label class="ga-label" data-bind="text: field_label"></label>
-                            <input class="form-control ga-input-field" data-bind="value: field_value, valueUpdate: 'afterkeyup'">
+                            <input class="form-control ga-input-field" data-bind="value: field_value, valueUpdate: 'afterkeyup'"/>
                         </li>
                     </ul>
                 </div>
@@ -313,11 +328,9 @@
                     </ul>
                     <div class="ga-document-listDocuments">
                         <div class="ga-document-inner">
-                            <!-- ko if: useFile() -->
-                                <!-- ko foreach: document -->
-                                    <label for="ga-label ga-document-name" class="ga-label" data-bind="text: $parent.localize.GetAccept.DOCUMENT_NAME"></label>
+                            <!-- ko if: useLimeFile() || filesFromDiskList().length > 0 -->
+                                    <label for="ga-label ga-document-name" class="ga-label" data-bind="text: localize.GetAccept.DOCUMENT_NAME"></label>
                                     <input id="ga-document-name" class="form-control ga-input-field" type="text" data-bind="value: documentName, valueUpdate: 'afterkeydown'" />
-                                <!-- /ko -->
                             <!-- /ko -->
 
                             <!-- ko if: useTemplates() -->

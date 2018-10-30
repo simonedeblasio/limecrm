@@ -6,7 +6,7 @@
  Locale: en-US, English (USA)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 05 Jul 2018 02:43:54 -0500
+ Exported at: Tue, 30 Oct 2018 04:20:56 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
@@ -102,4 +102,10 @@
     <string name="SELECT">Select</string>
     <string name="CHANGE_DOCUMENT">To change document. Select a new one in the document tab and press update.</string>
     <string name="UPDATE">Update</string>
+    <string name="USE_TEMPLATES">Use Templates</string>
+    <string name="USE_LIME_FILE">Use file from Lime</string>
+    <string name="CLICK_TO_UPLOAD_A_FILE">Click to upload a file</string>
+    <string name="PREFERRED_FORMATS">Preferred formats are .pdf, .doc, .docx</string>
+    <string name="THERE_ARE_NO_FILES">There are no files</string>
+    <string name="UPLOAD_FILES">Upload file(s)</string>
 </resources>

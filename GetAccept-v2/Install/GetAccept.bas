@@ -461,12 +461,14 @@ ErrorHandler:
     showList = False
 End Function
 
-Public Function GetDocumentData(className As String) As String
+Public Function GetDocumentData(className As String, iddocument As String) As String
     'Collects the document data from the selected document in the table document
     On Error GoTo ErrorHandler
     
     Dim retval As String
     Dim oRecord As LDE.Record
+    Dim oRecords As LDE.Records
+    Dim oFilter As LDE.Filter
     Dim oView As LDE.View
     Dim oItem As New Lime.ExplorerItem
     Dim oInspector As New Lime.Inspector
@@ -476,36 +478,37 @@ Public Function GetDocumentData(className As String) As String
         className = oInspector.Class.Name
     End If
     
-    retval = "["
+    retval = ""
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
+             If iddocument <> "" Then
+                 Set oRecords = New LDE.Records
+                 Set oFilter = New LDE.Filter
+                 
+                 Set oRecord = New LDE.Record
+                 Set oView = New LDE.View
+                 Call oView.Add(GlobalDocumentField)
+                 Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
+                 Call oFilter.AddCondition("iddocument", lkOpEqual, iddocument)
             
-            If oInspector.ActiveExplorer.Class.Name = "document" Then
-                For Each oItem In oInspector.ActiveExplorer.Selection
-                    Set oRecord = New LDE.Record
-                    Set oView = New LDE.View
-                    Call oView.Add(GlobalDocumentField)
-                    Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
-               
-                    Call oRecord.Open(Database.Classes("document"), oItem.Record.ID, oView)
-                    If Not oRecord.Document("document") Is Nothing Then
-                        retval = retval & " { "
-                        retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
-                        retval = retval & "."
-                        retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
-                        retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document(GlobalDocumentField).Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
-                        retval = retval & " },"
-                    End If
-                Next
-            Else
-                Lime.MessageBox (Localize.GetText("GetAccept", "i_no_document_tab_selected"))
-            End If
+                 Call oRecord.Open(Database.Classes("document"), oFilter, oView)
+                 If Not oRecord.Document("document") Is Nothing Then
+                     retval = retval & " { "
+                     retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
+                     retval = retval & "."
+                     retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
+                     retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oRecord.Document(GlobalDocumentField).Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
+                     retval = retval & " },"
+                 End If
+             Else
+                 Lime.MessageBox (Localize.GetText("GetAccept", "i_no_document_tab_selected"))
+             End If
         End If
     End If
     If VBA.Len(retval) > 3 Then
         retval = VBA.Left(retval, VBA.Len(retval) - 1)
     End If
-    retval = retval & "]"
+    retval = retval & ""
     
     GetDocumentData = retval
     
@@ -1099,4 +1102,92 @@ ErrorHandler:
 End Sub
 
 
+
+Public Function GetFileFromDisk() As String
+    On Error GoTo ErrorHandler:
+    
+    Dim fileName As String
+    Dim oDocument As New LDE.Document
+    Dim retval As String
+    Dim fileDialog As New LCO.FileOpenDialog
+    retval = ""
+    
+    'fileDialog.Filter = "Zip-file (*.zip) | *.zip"
+    
+    fileDialog.AllowMultiSelect = False
+    Call fileDialog.show
+    
+    fileName = fileDialog.fileName
+    If fileName <> "" Then
+       oDocument.Load (fileDialog.fileName)
+        If Not oDocument Is Nothing Then
+            retval = retval & " { "
+            retval = retval & " ""file_name"" : """ & oDocument.Name
+            retval = retval & "."
+            retval = retval & oDocument.Extension & ""","
+            retval = retval & " ""file_content"" :  """ & VBA.Replace(VBA.Replace(VBA.Replace(VBA.Replace(EncodeBase64(oDocument.Contents), "/", "\/"), """", "\"""), vbLf, ""), vbCr, "") & """ "
+            retval = retval & " }"
+        Else
+            Debug.Print ("Can't load the file")
+        End If
+    End If
+    GetFileFromDisk = retval
+    
+    Exit Function
+ErrorHandler:
+    UI.ShowError ("GetAccept.Testar123")
+End Function
+
+
+Public Function GetAllDocumentsData(className As String) As String
+    'Collects the document data from the selected document in the table document
+    On Error GoTo ErrorHandler
+    
+    Dim retval As String
+    Dim oRecord As LDE.Record
+    Dim oRecords As LDE.Records
+    Dim oView As LDE.View
+    Dim oFilter As LDE.Filter
+    Dim oItem As New Lime.ExplorerItem
+    Dim oInspector As New Lime.Inspector
+    Set oInspector = ThisApplication.ActiveInspector
+    
+    If className <> oInspector.Class.Name Then
+        className = oInspector.Class.Name
+    End If
+    
+    retval = "["
+    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+         Set oRecord = New LDE.Record
+         Set oView = New LDE.View
+         Call oView.Add(GlobalDocumentField)
+         Call oView.Add(GlobalDocumentCommentField, lkSortAscending)
+    
+         Set oFilter = New LDE.Filter
+         Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
+    
+         Set oRecords = New LDE.Records
+         Call oRecords.Open(Database.Classes("document"), oFilter, oView)
+         For Each oRecord In oRecords
+             If Not oRecord.Document("document") Is Nothing Then
+                 retval = retval & " { "
+                 retval = retval & " ""file_name"" : """ & oRecord.Value(GlobalDocumentCommentField)
+                 retval = retval & "."
+                 retval = retval & oRecord.Document(GlobalDocumentField).Extension & ""","
+                 retval = retval & " ""file_id"" : """ & oRecord.ID & """"
+                 retval = retval & " },"
+             End If
+         Next oRecord
+    End If
+    If VBA.Len(retval) > 3 Then
+        retval = VBA.Left(retval, VBA.Len(retval) - 1)
+    End If
+    retval = retval & "]"
+    GetAllDocumentsData = retval
+    
+    Exit Function
+ErrorHandler:
+    UI.ShowError ("GetAccept.GetAllDocumentsData")
+    GetAllDocumentsData = ""
+End Function
 

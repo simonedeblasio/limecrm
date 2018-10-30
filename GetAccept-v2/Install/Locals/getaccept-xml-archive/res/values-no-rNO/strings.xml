@@ -6,7 +6,7 @@
  Locale: no-NO, Norwegian (Norway)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 05 Jul 2018 02:43:54 -0500
+ Exported at: Tue, 30 Oct 2018 04:20:56 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">E-post</string>
@@ -102,4 +102,10 @@
     <string name="SELECT">Plukke ut</string>
     <string name="CHANGE_DOCUMENT">Hvis du vil endre dokument. Velger du en ny i dokumentfanen og trykker på oppdateringen.</string>
     <string name="UPDATE">Oppdater</string>
+    <string name="USE_TEMPLATES">Bruk maler</string>
+    <string name="USE_LIME_FILE">Bruk fil fra Lime</string>
+    <string name="CLICK_TO_UPLOAD_A_FILE">Klikk for å laste opp en fil</string>
+    <string name="PREFERRED_FORMATS">Foretrukne formater er .pdf, .doc, .docx</string>
+    <string name="THERE_ARE_NO_FILES">Det er ingen filer</string>
+    <string name="UPLOAD_FILES">Last opp filer</string>
 </resources>

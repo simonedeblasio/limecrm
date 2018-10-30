@@ -6,7 +6,7 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 05 Jul 2018 02:43:54 -0500
+ Exported at: Tue, 30 Oct 2018 04:20:56 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Epost</string>
@@ -102,4 +102,10 @@
     <string name="SELECT">Välj</string>
     <string name="CHANGE_DOCUMENT">Vill du byta dokument. Välj ett nytt dokument i dokumentfliken och klicka på uppdatera.</string>
     <string name="UPDATE">Uppdatera</string>
+    <string name="USE_TEMPLATES">Använd mallar</string>
+    <string name="USE_LIME_FILE">Använd fil från Lime</string>
+    <string name="CLICK_TO_UPLOAD_A_FILE">Ladda upp en fil</string>
+    <string name="PREFERRED_FORMATS">Föredragna format är .pdf, .doc, .docx</string>
+    <string name="THERE_ARE_NO_FILES">Det finns inga filer</string>
+    <string name="UPLOAD_FILES">Ladda upp filer</string>
 </resources>

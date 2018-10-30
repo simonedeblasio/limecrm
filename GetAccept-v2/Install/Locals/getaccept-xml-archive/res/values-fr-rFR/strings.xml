@@ -6,7 +6,7 @@
  Locale: fr-FR, French (France)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 05 Jul 2018 02:43:54 -0500
+ Exported at: Tue, 30 Oct 2018 04:20:56 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Email</string>
@@ -98,8 +98,14 @@
     <string name="ABOUT_HOW_MANY_DAYS"></string>
     <string name="DAYS"></string>
     <string name="DOCUMENT_IS_DOWNLOADED"></string>
-    <string name="SIGNED"></string>
+    <string name="SIGNED">Signé</string>
     <string name="SELECT">Sélectionner</string>
     <string name="CHANGE_DOCUMENT"></string>
     <string name="UPDATE"></string>
+    <string name="USE_TEMPLATES">Utiliser des modèles</string>
+    <string name="USE_LIME_FILE">Utiliser le fichier de Lime</string>
+    <string name="CLICK_TO_UPLOAD_A_FILE">Cliquez pour télécharger un fichier</string>
+    <string name="PREFERRED_FORMATS">Les formats préférés sont .pdf, .doc, .docx</string>
+    <string name="THERE_ARE_NO_FILES">Il n\'y a pas de fichiers</string>
+    <string name="UPLOAD_FILES">Télécharger des fichiers</string>
 </resources>

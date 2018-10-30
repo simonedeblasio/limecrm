@@ -981,6 +981,54 @@ a:hover {
     margin-top: 1em;
 }
 
+.ga-document-documents {
+    margin-top: 1em;
+}
+
+.ga-document-template-container {
+    position: relative;
+    padding: 0.5em 0.5em 2em 0.5em;
+    height: 8em;
+    overflow: auto;
+    -moz-transition: height 0.2s ease-in-out;
+    -webkit-transition: height 0.2s ease-in-out;
+    -o-transition: height 0.2s ease-in-out;
+    transition: height 0.2s ease-in-out;
+    background-color:rgb(238,238,238);
+}
+
+.ga-document-template-container.hiddenContainer {
+    height: 0em;
+    overflow: hidden;
+    padding: 0em;
+    visibility: hidden;
+}
+
+.ga-document-no-files {
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+.ga-uploaded-file-list {
+    margin-top: 1em;
+    padding: 0 0.5em;
+    height: 12em;
+    overflow: auto;
+}
+
+.ga-uploaded-file-list .file-item {
+    padding: 1em 0em;
+    color: #f89214;
+    border-bottom: 1px solid rgb(238,238,238);
+}
+
+.ga-uploaded-file-list .file-item i.remove {
+    color: #666;
+}
+
 /**********************/
 /*====== FIELDS ======*/
 /**********************/

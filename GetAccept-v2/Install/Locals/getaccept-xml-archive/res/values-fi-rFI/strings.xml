@@ -6,7 +6,7 @@
  Locale: fi-FI, Finnish (Finland)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Thu, 05 Jul 2018 02:43:54 -0500
+ Exported at: Tue, 30 Oct 2018 04:20:56 -0500
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Sähköposti</string>
@@ -102,4 +102,10 @@
     <string name="SELECT">Valita</string>
     <string name="CHANGE_DOCUMENT">Jos haluat vaihtaa asiakirjaa. Valitse uusi dokumentti-välilehdeltä ja paina päivitystä.</string>
     <string name="UPDATE">Päivittää</string>
+    <string name="USE_TEMPLATES">Käytä mallipohjia</string>
+    <string name="USE_LIME_FILE">Käytä tiedostoa Lime</string>
+    <string name="CLICK_TO_UPLOAD_A_FILE">Napsauta ladataksesi tiedoston</string>
+    <string name="PREFERRED_FORMATS">Suositeltavat muodot ovat .pdf, .doc, .docx</string>
+    <string name="THERE_ARE_NO_FILES">Tiedostoja ei ole</string>
+    <string name="UPLOAD_FILES">Lähetä tiedosto (t)</string>
 </resources>

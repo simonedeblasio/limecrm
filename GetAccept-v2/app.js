@@ -834,8 +834,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         }
 
         function enterPress(d, e) {
-            if (e.which == 66 && e.ctrlKey) {
-                //catches ctrl + b
+            if (e.which === 66 && e.ctrlKey) {
                 return false;
             }
         }
@@ -1102,7 +1101,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             file.file_content = fileData.file_content;
             file.remove = function() {
                 viewModel.filesFromDiskList.remove(this);
-                if(viewModel.filesFromDiskList().length == 0 ) {
+                if(viewModel.filesFromDiskList().length === 0 ) {
                     viewModel.documentName('');
                 }
             }
@@ -1336,7 +1335,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 }
 
                 var have_signer = viewModel.recipientsList().filter(function (i) {
-                    return i.signer() == true;
+                    return i.signer() === true;
                 });
                 //Adds is signing to document
                 documentData.is_signing = have_signer != "undefiend" ? true : 0;

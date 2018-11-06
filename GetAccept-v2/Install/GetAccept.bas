@@ -461,7 +461,7 @@ ErrorHandler:
     showList = False
 End Function
 
-Public Function GetDocumentData(className As String, iddocument As String) As String
+Public Function GetDocumentData(className As String, iddocument As Long) As String
     'Collects the document data from the selected document in the table document
     On Error GoTo ErrorHandler
     
@@ -481,7 +481,7 @@ Public Function GetDocumentData(className As String, iddocument As String) As St
     retval = ""
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
-             If iddocument <> "" Then
+             If iddocument <> -1 Then
                  Set oRecords = New LDE.Records
                  Set oFilter = New LDE.Filter
                  
@@ -1004,7 +1004,6 @@ Public Sub AddToBundle(ByRef languageBundle As Scripting.Dictionary, ByRef nodes
     
     For Each xNode In nodes
         sKey = xNode.Attributes.getNamedItem("name").text
-        'sKey = Replace(sKey, "_", "-")
         sValue = xNode.text
         Call languageBundle.Add(sKey, sValue)
     Next xNode
@@ -1061,7 +1060,6 @@ Public Sub openGaModal()
     Dim oDialog As Lime.Dialog
     Set oDialog = New Lime.Dialog
     oDialog.Type = lkDialogHTML
-    'oDialog.Property("url") = Application.WebFolder & "lbs.html?ap=apps/GetAcceptEmail/GetAcceptEmail=tab"
     oDialog.Property("url") = Application.WebFolder & "lbs.html?ap=apps/GetAcceptEmail/GetAcceptEmail&type=tab"
     oDialog.Property("height") = 530
     oDialog.Property("width") = 700
@@ -1111,8 +1109,6 @@ Public Function GetFileFromDisk() As String
     Dim retval As String
     Dim fileDialog As New LCO.FileOpenDialog
     retval = ""
-    
-    'fileDialog.Filter = "Zip-file (*.zip) | *.zip"
     
     fileDialog.AllowMultiSelect = False
     Call fileDialog.show

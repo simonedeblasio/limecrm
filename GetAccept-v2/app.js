@@ -267,7 +267,6 @@ lbs.apploader.register('GetAccept-v2', function () {
                         listCoworkers();
                         listEntities();
                         listDocuments();
-                        setupPusher();
 
                         if (!!lbs.bakery.getCookie("shouldToggle") && lbs.bakery.getCookie("shouldToggle") !== 'undefined') {
                             setTimeout(function () {
@@ -1481,6 +1480,8 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.Document(false);
                 viewModel.GaDocuments(false);
             }
+
+            setupPusher();
         }
 
         listEntities = function () {

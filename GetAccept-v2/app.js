@@ -122,6 +122,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.limeDocumentList = ko.observableArray();
         viewModel.reminderOptions = [1, 3, 5, 7, 10, 14];
 
+
         function toogleGaView() {
             $('.ga-container').slideToggle("slow");
             if ($('.ga-container').hasClass("extended")) {
@@ -1391,8 +1392,20 @@ lbs.apploader.register('GetAccept-v2', function () {
             //Adds document name
             documentData.name = viewModel.documentName() ? viewModel.documentName() : 'Document from lime' ;
 
+            //Sort uploaded files.
+            if(viewModel.uploadedDocuments().length > 1) {
+                viewModel.uploadedDocuments().sort(function(a, b){
+                    return a.order - b.order;
+                });
+            }
+
+            var file_ids = "";
+            $.each(viewModel.uploadedDocuments(), function (i, doc) {
+                file_ids = (file_ids === ""? doc.file_id : file_ids + "," + doc.file_id);
+            });
+
             //Adds file data
-            documentData.file_ids = viewModel.uploadedDocuments().join(',');
+            documentData.file_ids = file_ids;
 
             //Sends document
             postDocument(documentData, automaticSending);
@@ -1463,7 +1476,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                                 if (status == 200) {
                                     viewModel.Spinner(false);
                                     var result = JSON.parse(xhrRequest.responseText);
-                                    viewModel.uploadedDocuments.push(result.file_id);
+                                    viewModel.uploadedDocuments.push({file_id: result.file_id, order: index});
                                 }
                             }
                         });

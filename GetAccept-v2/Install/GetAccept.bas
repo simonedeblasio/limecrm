@@ -481,7 +481,7 @@ Public Function GetDocumentData(className As String, iddocument As Long) As Stri
     retval = ""
     If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
-             If iddocument <> -1 Then
+             If iddocument > 0 Then
                  Set oRecords = New LDE.Records
                  Set oFilter = New LDE.Filter
                  

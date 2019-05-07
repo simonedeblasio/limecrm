@@ -750,6 +750,13 @@ a:hover {
     padding: 3px 5px;
 }
 
+.ga-sms-info {
+    padding: 10px 5px;
+    border-radius: 2px;
+    background-color: rgb(244,146,49);
+    color: #fff;
+}
+
 /*===== NO DOCUMENT ======*/
 
 .ga-no-document {

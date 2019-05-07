@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Loco xml export: Android string resources
  Project: Get Accept Translations
@@ -6,32 +6,32 @@
  Locale: da-DK, Danish (Denmark)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 30 Oct 2018 04:20:56 -0500
+ Exported at: Tue, 07 May 2019 15:25:13 +0100
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">E-mail</string>
-    <string name="RELATED_DOCUMENTS">Relateret dokument</string>
-    <string name="NO_DOCUMENT_SENT_YET">Der er ikke sendt et dokument fra dette kort</string>
+    <string name="RELATED_DOCUMENTS">Relaterede dokumenter</string>
+    <string name="NO_DOCUMENT_SENT_YET">Der er ikke sendt et dokument endnu</string>
     <string name="SETTINGS">Indstillinger</string>
     <string name="INVITE_COWORKERS">Inviter kollegaer</string>
     <string name="SUPPORT">Hjælp</string>
     <string name="CANCEL">Stop</string>
-    <string name="MULTIPLE_ENTITIES">Skift enhed</string>
-    <string name="SELECT_ENTITY">Vælg enhed</string>
+    <string name="MULTIPLE_ENTITIES">Skift afdeling</string>
+    <string name="SELECT_ENTITY">Vælg afdeling</string>
     <string name="INVITE_COLLEGUES">Inviter dine kollegaer til GetAccept</string>
     <string name="INVITE">Inviter</string>
     <string name="INTRODUCTION_VIDEO">Introduktionsvideo</string>
     <string name="PLAY_VIDEO">Afspil video</string>
     <string name="USERNAME">Brugernavn</string>
     <string name="LOGIN">Log ind</string>
-    <string name="SIGNUP">Har du ikke en konto? Få en nu</string>
-    <string name="CREATE_ACCOUNT">Få en gratis konto</string>
+    <string name="SIGNUP">Har du ikke en konto? Opret dig nu</string>
+    <string name="CREATE_ACCOUNT">Opret en gratis konto</string>
     <string name="REGISTRATION">Oprettelsen tager mindre end et minut og så er du klar til at sende dit første dokument</string>
     <string name="READ_ABOUT_ESIGNING">Læs om elektronisk underskrift</string>
-    <string name="REGISTER">Registrering</string>
-    <string name="AGREE_WITH">Ved at registrere dig, acceptere du vores</string>
+    <string name="REGISTER">Registrér dig</string>
+    <string name="AGREE_WITH">Ved at registrere dig, accepterer du vores</string>
     <string name="TERMS_OF_SERVICE">Vilkår for anvendelse</string>
-    <string name="AFTER_EXPIRATION_TRIAL">Efter udløb af din 14-dage prøveperiode, har du mulighed for at anvende vores gratis løsning eller opgradere til et</string>
+    <string name="AFTER_EXPIRATION_TRIAL">Efter udløb af din 14-dages prøveperiode, har du mulighed for at anvende vores gratis løsning eller opgradere til et</string>
     <string name="PAID_PLAN">betalt abonnement.</string>
     <string name="NAME">Navn</string>
     <string name="ENTITY_NAME">Din virksomhed</string>
@@ -44,7 +44,7 @@
     <string name="SIGNER">Underskriver</string>
     <string name="CC">CC</string>
     <string name="NEXT">Næste</string>
-    <string name="AT_LEASTE_ONE_RECIPIENT">Du skal vælge mindst en modtager</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Du skal vælge mindst en modtager!</string>
     <string name="BACK">Tilbage</string>
     <string name="DOCUMENTS">Dokument(er) der bliver sendt</string>
     <string name="UPLOAD_VIDEO">Upload video</string>
@@ -52,12 +52,12 @@
     <string name="NAME_OF_YOUR_DOCUMENTS">Giv dokumentet et navn og tilpas emne og besked</string>
     <string name="SEND_SMART_REMINDERS">Send smarte påmindelser</string>
     <string name="OPEN_IN_GA_WITH_VIDEO">Åbn GetAccept Mobil App og indspil video</string>
-    <string name="OPEN_YOUR_GA_MOBILE_APP">Åbn GetAccept Mobil App og indspil video hvor du fortæller hvad du sender</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Åbn GetAccept Mobil App og indspil en personlig video for at øge chancen for at lukke flere aftaler.</string>
     <string name="VIDEO_IS_BEING_PROCESSING">Video forberedes, vent venligst</string>
     <string name="SELECT_A_DOCUMENT">Vælg et dokument for at fortsætte</string>
     <string name="REMOVE_VIDEO">Fjern video</string>
     <string name="SUCCESS">Succes!</string>
-    <string name="SUCCESSFULLY">Dit dokument er blevet sendt med GetAccept</string>
+    <string name="SUCCESSFULLY">Dit dokument er succesfuldt blevet sendt med GetAccept</string>
     <string name="ADD_REMINDER">Tilføj påmindelse?</string>
     <string name="SKIP">Spring over</string>
     <string name="REFRESH_LIST">Opdater listen</string>
@@ -66,12 +66,12 @@
     <string name="DETAILED_ANALYTICS">Detaljerede analyser</string>
     <string name="DOWNLOAD_DOCUMENT">Hent dokument</string>
     <string name="COUNTRY">Land</string>
-    <string name="COMPANY_ENTITY">Firma / enhed</string>
+    <string name="COMPANY_ENTITY">Firma / Afdeling</string>
     <string name="SENT">Sendt</string>
     <string name="VISITS">Besøg</string>
     <string name="TIME_SPENT">Tid brugt</string>
     <string name="PAGE_VIEWS">Sidevisninger</string>
-    <string name="READ">Læse</string>
+    <string name="READ">Læs</string>
     <string name="DELETE">Slet</string>
     <string name="SEND_INTERNAL">Send internt</string>
     <string name="DOCUMENT_NAME">Dokumentnavn</string>
@@ -82,7 +82,7 @@
     <string name="USE">Brug</string>
     <string name="RETAKE">Tag igen</string>
     <string name="SEND_SMS">Send sms</string>
-    <string name="SEARCH_INTERNAL">Søk internt på email</string>
+    <string name="SEARCH_INTERNAL">Søg internt på e-mail</string>
     <string name="TEMPLATE_HEADER">Vælg en fil fra Lime eller vælg en skabelon fra GetAccept.</string>
     <string name="GET_STARTED">Kom igang</string>
     <string name="LIME_DOCUMENT">Dokument i Lime</string>
@@ -90,14 +90,14 @@
     <string name="SELECT_DOCUMENT_INSTRUCTIONS">For at vælge et dokument skal du klikke på fanen Dokument i Lime og derefter vælge et dokument</string>
     <string name="REPLACE_DOCUMENT">Udskift dokument</string>
     <string name="CHOOSE_A_TEMPLATE">Vælg en skabelon</string>
-    <string name="COPY_AND_PASTE">Kopier og indsæt parametre fra nedenstående liste til dit GetAccept-skabelonfelt som Værdi.</string>
+    <string name="COPY_AND_PASTE">Kopier og indsæt parametre fra nedenstående liste til dit GetAccept-skabelonfelt som værdier.</string>
     <string name="CHOOSE_A_DOCUMENT">Vælg et dokument</string>
     <string name="SELECTED_DOCUMENT">Udvalgt dokument</string>
     <string name="SEARCH_FOR_TEMPLATE">Søg efter skabelon</string>
     <string name="CHANGING_TEXT">Ændring af tekst</string>
-    <string name="ABOUT_HOW_MANY_DAYS">Om hvor mange dage vil du have en påmindelse?</string>
-    <string name="DAYS">dagar</string>
-    <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet hentes</string>
+    <string name="ABOUT_HOW_MANY_DAYS">Vælg antallet af dage fra i dag til en opfølgning.</string>
+    <string name="DAYS">dage</string>
+    <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet er hentet</string>
     <string name="SIGNED">Underskrevet</string>
     <string name="SELECT">Vælg</string>
     <string name="CHANGE_DOCUMENT">Hvis du vil ændre dokument. Skal du vælge en ny i dokumentfanen og trykke på opdatering.</string>
@@ -106,6 +106,7 @@
     <string name="USE_LIME_FILE">Brug fil fra Lime</string>
     <string name="CLICK_TO_UPLOAD_A_FILE">Klik for at uploade en fil</string>
     <string name="PREFERRED_FORMATS">Foretrukne formater er .pdf, .doc, .docx</string>
-    <string name="THERE_ARE_NO_FILES">Der er ingen file</string>
-    <string name="UPLOAD_FILES">Upload fil (er)</string>
+    <string name="THERE_ARE_NO_FILES">Der er ingen filer</string>
+    <string name="UPLOAD_FILES">Upload fil(er)</string>
+    <string name="YOU_CANT_TURN_OF_SMS">Du kan ikke slukke for SMS, fordi din modtager mangler en e-mailadresse.</string>
 </resources>

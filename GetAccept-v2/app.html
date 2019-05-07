@@ -386,10 +386,15 @@
                         </div>
                         <div class="checkbox">
                             <label data-bind="click: function(){return true}, clickBubble: false">
-                                <input type="checkbox" value="" data-bind="checked: sendSMS"><span data-bind="text: localize.GetAccept.SEND_SMS"></span>
+                                <input type="checkbox" value="" data-bind="checked: sendSMS, click: toggleSMS"><span data-bind="text: localize.GetAccept.SEND_SMS"></span>
                             </label>
                         </div>
+                        <!-- ko if: showSMSInfo -->
+                        <div class="ga-sms-info">
+                            <span data-bind="text: localize.GetAccept.YOU_CANT_TURN_OF_SMS"></span>
                         </div>
+                        <!-- /ko -->    
+                    </div>
                     
                         <div class="ga-document-sendout-buttons">
                             <button type="button" class="btn ga-btn ga-document-send" data-bind="text: localize.GetAccept.SEND,  icon: 'fa-paper-plane', click: send, enable: (!!selectedTemplate() || uploadedDocuments().length > 0) "></button>

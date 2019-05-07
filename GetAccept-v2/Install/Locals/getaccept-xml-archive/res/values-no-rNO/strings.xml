@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Loco xml export: Android string resources
  Project: Get Accept Translations
@@ -6,7 +6,7 @@
  Locale: no-NO, Norwegian (Norway)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 30 Oct 2018 04:20:56 -0500
+ Exported at: Tue, 07 May 2019 15:25:13 +0100
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">E-post</string>
@@ -21,7 +21,7 @@
     <string name="INVITE_COLLEGUES">Inviter kolleger for å bruke denne integrasjonen</string>
     <string name="INVITE">Invitere</string>
     <string name="INTRODUCTION_VIDEO">Introduksjonsvideo</string>
-    <string name="PLAY_VIDEO">Spill video</string>
+    <string name="PLAY_VIDEO">Spill av video</string>
     <string name="USERNAME">Brukernavn</string>
     <string name="LOGIN">Logg inn</string>
     <string name="SIGNUP">Har du ikke en konto? Meld deg på</string>
@@ -32,27 +32,27 @@
     <string name="AGREE_WITH">Ved å registrere deg, samtykker du med våre</string>
     <string name="TERMS_OF_SERVICE">Vilkår for bruk</string>
     <string name="AFTER_EXPIRATION_TRIAL">Etter utløpt 14-dagers prøveperiode, har du muligheten til å gå tilbake til en gratis versjon, eller oppgradere til en</string>
-    <string name="PAID_PLAN">betalt abonnement.</string>
+    <string name="PAID_PLAN">betalings abonnement.</string>
     <string name="NAME">Navn</string>
     <string name="ENTITY_NAME">Skriv inn ditt foretaksnavn</string>
     <string name="VERIFY_CREDENTIALS">Sørg for at brukernavn og passord er riktig.</string>
     <string name="SEND">Send</string>
-    <string name="DOCUMENT_RECIPIENTS">Mottakere</string>
-    <string name="RECIPIENT_ROLES">Legg til og sett mottakerroller. Alle mottakere i listen vil motta dokumentet.</string>
+    <string name="DOCUMENT_RECIPIENTS">Dokument Mottakere</string>
+    <string name="RECIPIENT_ROLES">Legg til og sett mottaker roller. Alle mottakere i listen vil motta dokumentet.</string>
     <string name="CLICK_TO_SEARCH">Klikk for å søke navn eller e-post</string>
     <string name="NO_RECIPIENTS">Ingen mottakere lagt til</string>
-    <string name="SIGNER">Signér</string>
+    <string name="SIGNER">Signerer</string>
     <string name="CC">CC</string>
     <string name="NEXT">Neste</string>
-    <string name="AT_LEASTE_ONE_RECIPIENT">Du må velge minst en mottaker</string>
+    <string name="AT_LEASTE_ONE_RECIPIENT">Du må velge minst en mottaker!</string>
     <string name="BACK">Tilbake</string>
     <string name="DOCUMENTS">Dokument(er) som skal sendes</string>
     <string name="UPLOAD_VIDEO">Last opp video</string>
     <string name="PREPARE_SENDING">Forbered utsendelse</string>
     <string name="NAME_OF_YOUR_DOCUMENTS">Angi et navn på dokumentet og tilpass emnet og meldingen</string>
     <string name="SEND_SMART_REMINDERS">Send smarte påminnelser</string>
-    <string name="OPEN_IN_GA_WITH_VIDEO">Åpne i GetAcceptPresent med en video</string>
-    <string name="OPEN_YOUR_GA_MOBILE_APP">Åpne GetAccept på mobilen og spill inn en video for å øke dine sjanser.</string>
+    <string name="OPEN_IN_GA_WITH_VIDEO">Åpne i GetAccept og spill inn en video</string>
+    <string name="OPEN_YOUR_GA_MOBILE_APP">Åpne GetAccept på mobilen din og spill inn en video for å øke sannsynligheten for å vinne avtalen.</string>
     <string name="VIDEO_IS_BEING_PROCESSING">Videoen lastes opp, vennligst vent</string>
     <string name="SELECT_A_DOCUMENT">Vennligst velg et dokument for å fortsette.</string>
     <string name="REMOVE_VIDEO">Fjern video</string>
@@ -66,9 +66,9 @@
     <string name="DETAILED_ANALYTICS">Detaljert analyse</string>
     <string name="DOWNLOAD_DOCUMENT">Last ned dokument</string>
     <string name="COUNTRY">Land</string>
-    <string name="COMPANY_ENTITY">Firma / Entity</string>
+    <string name="COMPANY_ENTITY">Firma / Entitet</string>
     <string name="SENT">Sendt</string>
-    <string name="VISITS">Besøk</string>
+    <string name="VISITS">Besøkende</string>
     <string name="TIME_SPENT">Tid brukt</string>
     <string name="PAGE_VIEWS">Sidevisninger</string>
     <string name="READ">Lese</string>
@@ -76,11 +76,11 @@
     <string name="SEND_INTERNAL">Send internt</string>
     <string name="DOCUMENT_NAME">Dokumentnavn</string>
     <string name="SUBJECT">Emne</string>
-    <string name="MESSAGE">Budskap</string>
+    <string name="MESSAGE">Melding</string>
     <string name="OPEN_IN_GETACCEPT">Åpne i GetAccept</string>
     <string name="UPLOAD_A_VIDEO">Last opp en video!</string>
     <string name="USE">Bruk</string>
-    <string name="RETAKE">Retake</string>
+    <string name="RETAKE">Gjenta</string>
     <string name="SEND_SMS">Send sms</string>
     <string name="SEARCH_INTERNAL">Søk internt på e-post</string>
     <string name="TEMPLATE_HEADER">Velg en fil fra Lime eller velg en mal fra GetAccept.</string>
@@ -90,16 +90,16 @@
     <string name="SELECT_DOCUMENT_INSTRUCTIONS">Hvis du vil velge et dokument, klikker du på dokumentfanen i Lime, og velger deretter et dokument</string>
     <string name="REPLACE_DOCUMENT">Erstatt dokument</string>
     <string name="CHOOSE_A_TEMPLATE">Velg en mal</string>
-    <string name="COPY_AND_PASTE">Kopier og lim inn parametere fra listen nedenfor til GetAccept-malfeltet som Verdi.</string>
+    <string name="COPY_AND_PASTE">Kopier og lim inn parametere fra listen nedenfor til GetAccept-malfeltet som verdi.</string>
     <string name="CHOOSE_A_DOCUMENT">Velg et dokument</string>
     <string name="SELECTED_DOCUMENT">Utvalgt dokument</string>
     <string name="SEARCH_FOR_TEMPLATE">Søk etter mal</string>
     <string name="CHANGING_TEXT">Endre tekst</string>
-    <string name="ABOUT_HOW_MANY_DAYS">Om hvor mange dager vil du ha en påminnelse?</string>
+    <string name="ABOUT_HOW_MANY_DAYS">Klikk antall dager fra i dag for å opprette en oppfølgingsoppgave.</string>
     <string name="DAYS">dager</string>
-    <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet lastes ned</string>
+    <string name="DOCUMENT_IS_DOWNLOADED">Dokumentet er lastet ned</string>
     <string name="SIGNED">Signert</string>
-    <string name="SELECT">Plukke ut</string>
+    <string name="SELECT">Velg</string>
     <string name="CHANGE_DOCUMENT">Hvis du vil endre dokument. Velger du en ny i dokumentfanen og trykker på oppdateringen.</string>
     <string name="UPDATE">Oppdater</string>
     <string name="USE_TEMPLATES">Bruk maler</string>
@@ -108,4 +108,5 @@
     <string name="PREFERRED_FORMATS">Foretrukne formater er .pdf, .doc, .docx</string>
     <string name="THERE_ARE_NO_FILES">Det er ingen filer</string>
     <string name="UPLOAD_FILES">Last opp filer</string>
+    <string name="YOU_CANT_TURN_OF_SMS">Du kan ikke slå av SMS fordi mottaker mangler en epost adresse.</string>
 </resources>

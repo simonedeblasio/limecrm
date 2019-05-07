@@ -1,9 +1,5 @@
 # Changelog for GetAccept
 
-## v1.1.2
-**Released:** 2019-01-22
-* It's now possible to upload documents directly from disk.
-* Changes to when Pusher is activated to speed things up
 
 ## v1.0.0
 **Released:** 2018-04-17

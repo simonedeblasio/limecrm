@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  Loco xml export: Android string resources
  Project: Get Accept Translations
@@ -6,7 +6,7 @@
  Locale: sv-SE, Swedish (Sweden)
  Tagged: Lime CRM
  Exported by: Andreas Åström
- Exported at: Tue, 30 Oct 2018 04:20:56 -0500
+ Exported at: Tue, 07 May 2019 15:25:13 +0100
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="COMMON_EMAIL">Epost</string>
@@ -108,4 +108,5 @@
     <string name="PREFERRED_FORMATS">Föredragna format är .pdf, .doc, .docx</string>
     <string name="THERE_ARE_NO_FILES">Det finns inga filer</string>
     <string name="UPLOAD_FILES">Ladda upp filer</string>
+    <string name="YOU_CANT_TURN_OF_SMS">Du kan inte stänga av SMS-utskick eftersom mottagare saknar e-postadress.</string>
 </resources>

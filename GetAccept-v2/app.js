@@ -84,6 +84,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.showApp = false;
         viewModel.emailSubject = ko.observable('');
         viewModel.emailMessage = ko.observable('');
+        viewModel.showSMSInfo = ko.observable(false);
 
         viewModel.documentAnalytics = ko.observable();
         viewModel.documentName = ko.observable('');
@@ -689,7 +690,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             originalPersonList = [];
             if (contacts) {
                 $.each(contacts.Persons, function (index, personData) {
-                    if (validateEmail(personData.email)) {
+                    if (validateEmail(personData.email) || personData.mobilephone != '') {
                         var person = new recipientModel(personData, false);
                         originalPersonList.push(person);
                         viewModel.personList.push(person);
@@ -1055,6 +1056,8 @@ lbs.apploader.register('GetAccept-v2', function () {
             var limeTemplates = $.grep(viewModel.limeDocumentList(), function(doc) {
                 return doc.isSelected();
             });
+            //Check if SMS must be activated
+            viewModel.sendSMS(activateSmsSending());
 
             if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                 haveSelectFile();
@@ -1072,7 +1075,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 uploadDocument(false);
                 viewModel.useLimeFile(true);
             } else {
-                    alert("Please select a document or a template step forward.")
+                alert("Please select a document or a template step forward.")
             }
         }
 
@@ -1284,10 +1287,34 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         viewModel.createEmail = packEmailData;
 
+        function activateSmsSending() {
+            var recipientWithoutEmail = []; 
+            if (viewModel.sendSMS()) {
+                return;
+            }
+            recipientWithoutEmail = viewModel.recipientsList().filter(function(recipeint) {
+                return recipeint.email === '' && recipeint.mobile !== '';
+            }); 
+            return recipientWithoutEmail.length > 0;
+        };
+
+        viewModel.toggleSMS = function() {
+            if (activateSmsSending()) {
+                viewModel.sendSMS(true);
+                viewModel.showSMSInfo(true);
+                setTimeout(function() {
+                    viewModel.showSMSInfo(false);
+                }, 5000);
+                return true;
+            }
+            else {
+                viewModel.sendSMS(viewModel.sendSMS());
+                return true;
+            }
+        }
+        
         function sendDocument(automaticSending) {
-            var deal_value = "";
-            var deal_name = "";
-            var company_name = "";
+            var deal_value, deal_name, company_name = "";
             var video_id = null;
             viewModel.Spinner(true);
             var sending_is_ok = true;
@@ -1311,7 +1338,6 @@ lbs.apploader.register('GetAccept-v2', function () {
                     if (className) {
                         sendDocument(automaticSending);
                     }
-
                 }
             }
 
@@ -1360,8 +1386,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 //If File from disk. Add file data 
                 else if (viewModel.filesFromDiskList().length > 0) {
                     addFile(documentData, automaticSending);
-                }
-                 
+                } 
             }
         }
 
@@ -1388,7 +1413,6 @@ lbs.apploader.register('GetAccept-v2', function () {
         }
 
         function addFile(documentData, automaticSending) {
-            
             //Adds document name
             documentData.name = viewModel.documentName() ? viewModel.documentName() : 'Document from lime' ;
 
@@ -1409,7 +1433,6 @@ lbs.apploader.register('GetAccept-v2', function () {
 
             //Sends document
             postDocument(documentData, automaticSending);
-
         }
 
         function postDocument(documentData, automaticSending) {

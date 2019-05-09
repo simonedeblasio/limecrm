@@ -1057,7 +1057,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 return doc.isSelected();
             });
             //Check if SMS must be activated
-            viewModel.sendSMS(activateSmsSending());
+            viewModel.sendSMS(viewModel.activateSmsSending());
 
             if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                 haveSelectFile();
@@ -1287,19 +1287,15 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         viewModel.createEmail = packEmailData;
 
-        function activateSmsSending() {
-            var recipientWithoutEmail = []; 
-            if (viewModel.sendSMS()) {
-                return;
-            }
-            recipientWithoutEmail = viewModel.recipientsList().filter(function(recipeint) {
+        viewModel.activateSmsSending = ko.computed(function() {
+            var recipientWithoutEmail = viewModel.recipientsList().filter(function(recipeint) {
                 return recipeint.email === '' && recipeint.mobile !== '';
             }); 
             return recipientWithoutEmail.length > 0;
-        };
+        });
 
         viewModel.toggleSMS = function() {
-            if (activateSmsSending()) {
+            if (viewModel.activateSmsSending()) {
                 viewModel.sendSMS(true);
                 viewModel.showSMSInfo(true);
                 setTimeout(function() {

@@ -88,7 +88,7 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         viewModel.documentAnalytics = ko.observable();
         viewModel.documentName = ko.observable('');
-        //FREE ACCOUNT 
+        //FREE ACCOUNT
         viewModel.signupCountry = ko.observable('');
         viewModel.signupCompany = ko.observable('');
         viewModel.signupEmail = ko.observable('');
@@ -96,7 +96,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.signupPassword = ko.observable('')
         viewModel.signupCountryList = ko.observableArray();
 
-        //TEMPLATE 
+        //TEMPLATE
         viewModel.selectedTemplate = ko.observable();
         viewModel.selectedTemplateId = ko.observable();
         viewModel.selectedTemplateFields = ko.observableArray();
@@ -105,7 +105,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.showGaTemplates = ko.observable(false);
         viewModel.showLimeFiles = ko.observable(false);
 
-        //UPLOAD FILE 
+        //UPLOAD FILE
         viewModel.filesFromDiskList = ko.observableArray();
 
         //LISTS
@@ -696,16 +696,6 @@ lbs.apploader.register('GetAccept-v2', function () {
                         viewModel.personList.push(person);
                     }
                 });
-
-                /*var coworkers = lbs.common.executeVba('GetAccept.GetCoworkerList');
-                coworkers = JSON.parse(coworkers);
-                _.each(coworkers.Persons, function (coworkerData) {
-                    if (coworkerData.email !== "") {
-                        var coworker = new recipientModel(coworkerData, true);
-                        originalPersonList.push(coworker);
-                        viewModel.personList.push(coworker);
-                    }
-                });*/
             }
         }
 
@@ -722,7 +712,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 }
             });
         }
-        
+
         function getLimeFiles() {
             var limeDocuments = lbs.common.executeVba('GetAccept.GetAllDocumentsData,' + className);
             if (limeDocuments) {
@@ -799,7 +789,7 @@ lbs.apploader.register('GetAccept-v2', function () {
             template.videoId = templateData.video_id;
             template.selectTemplate = function () {
                 if(this.videoId != '') {
-                    viewModel.hasVideo(true); 
+                    viewModel.hasVideo(true);
                 }
                 else {
                     viewModel.hasVideo(false);
@@ -1097,7 +1087,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 viewModel.showLimeFiles(!viewModel.showLimeFiles())
             }
         }
-        
+
         function fileModel(fileData) {
             var file = this;
             file.file_name = fileData.file_name;
@@ -1267,7 +1257,7 @@ lbs.apploader.register('GetAccept-v2', function () {
 
         function prepereStringForSavingToFileSystem(str) {
             try {
-                //A filename cannot contain any of the following characters: \ / : * ? " < > |  
+                //A filename cannot contain any of the following characters: \ / : * ? " < > |
                 str = str.replace(/,/g, '.');
                 str = str.replace(/\//g, '');
                 str = str.replace(/\\/g, '');
@@ -1290,7 +1280,7 @@ lbs.apploader.register('GetAccept-v2', function () {
         viewModel.activateSmsSending = ko.computed(function() {
             var recipientWithoutEmail = viewModel.recipientsList().filter(function(recipeint) {
                 return recipeint.email === '' && recipeint.mobile !== '';
-            }); 
+            });
             return recipientWithoutEmail.length > 0;
         });
 
@@ -1308,7 +1298,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 return true;
             }
         }
-        
+
         function sendDocument(automaticSending) {
             var deal_value, deal_name, company_name = "";
             var video_id = null;
@@ -1339,7 +1329,7 @@ lbs.apploader.register('GetAccept-v2', function () {
 
             if (sending_is_ok) {
                 video_id = viewModel.videoData().video_id ? viewModel.videoData().video_id : null ;
-                
+
                 //General documnt data
                 var documentData = {
                     name: '',
@@ -1361,7 +1351,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 });
                 //Adds is signing to document
                 documentData.is_signing = have_signer != "undefiend" ? true : 0;
-                
+
                 //Adds recipients to document
                 gaRecipientList = [];
                 $.each(viewModel.recipientsList(), function (i, rec) {
@@ -1369,26 +1359,26 @@ lbs.apploader.register('GetAccept-v2', function () {
                     gaRecipientList.push(recipeint);
                 });
                 documentData.recipients = gaRecipientList;
-                
+
 
                 //If Template. Add Template data
                 if (!!viewModel.selectedTemplate() && viewModel.useTemplates()) {
                     addTemplates(documentData, automaticSending);
-                } 
+                }
                 //If Lime Doument. Add Lime document data
                 else if (viewModel.limeDocumentList().length > 0) {
                     addFile(documentData, automaticSending);
                 }
-                //If File from disk. Add file data 
+                //If File from disk. Add file data
                 else if (viewModel.filesFromDiskList().length > 0) {
                     addFile(documentData, automaticSending);
-                } 
+                }
             }
         }
 
         function addTemplates(documentData, automaticSending) {
             //Adds name from template
-            documentData.name = viewModel.selectedTemplate().name;         
+            documentData.name = viewModel.selectedTemplate().name;
             //Adds template id
             documentData.template_id = viewModel.selectedTemplateId();
 

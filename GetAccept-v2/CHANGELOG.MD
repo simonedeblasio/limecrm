@@ -1,5 +1,9 @@
 # Changelog for GetAccept
 
+## v1.1.3
+**Released:** 2019-05-07
+* Can now send a document to a recipient who only has a phone number
+
 ## v1.1.2
 **Released:** 2019-01-22
 * It's now possible to upload documents directly from disk.

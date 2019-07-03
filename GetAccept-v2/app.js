@@ -1334,7 +1334,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                 var documentData = {
                     name: '',
                     type: 'sales',
-                    external_id: key,
+                    external_id: getExternalKey(),
                     value: deal_value,
                     recipients: [],
                     company_name: company_name,
@@ -1345,7 +1345,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     email_send_message: viewModel.emailMessage(),
                     video_id: video_id ? video_id : 0,
                 }
-
+            
                 var have_signer = viewModel.recipientsList().filter(function (i) {
                     return i.signer() === true;
                 });
@@ -1366,7 +1366,7 @@ lbs.apploader.register('GetAccept-v2', function () {
                     addTemplates(documentData, automaticSending);
                 }
                 //If Lime Doument. Add Lime document data
-                else if (viewModel.limeDocumentList().length > 0) {
+                else if (useLimeDocuments()) {
                     addFile(documentData, automaticSending);
                 }
                 //If File from disk. Add file data
@@ -1374,6 +1374,21 @@ lbs.apploader.register('GetAccept-v2', function () {
                     addFile(documentData, automaticSending);
                 }
             }
+        }
+
+        function getExternalKey() {
+            if (!useLimeDocuments()) {
+                return key;
+            }
+            return viewModel.limeDocumentList().filter(function(doc) {
+                return doc.isSelected()
+            })[0].id;
+        }
+
+        function useLimeDocuments() {
+            return viewModel.limeDocumentList().filter(function(doc) {
+                return doc.isSelected()
+            }).length > 0;
         }
 
         function addTemplates(documentData, automaticSending) {

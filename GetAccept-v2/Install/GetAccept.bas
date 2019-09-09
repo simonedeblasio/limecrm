@@ -58,7 +58,7 @@ Public Sub SetTokens(strToken As String)
     
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.SetTokens")
+    Call LC_UI.ShowError("GetAccept.SetTokens")
 End Sub
 
 Public Function OpenGetAccept(className As String, personSourceTab As String, personSourceField As String) As String
@@ -109,7 +109,7 @@ Public Function OpenGetAccept(className As String, personSourceTab As String, pe
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.OpenGetAccept")
+    Call LC_UI.ShowError("GetAccept.OpenGetAccept")
 End Function
 
 
@@ -133,7 +133,7 @@ Public Function CheckFileTypes(fileType As String) As Boolean
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.CheckFileType")
+    Call LC_UI.ShowError("GetAccept.CheckFileType")
 End Function
 
 Public Function GetContactList(className As String) As String
@@ -154,7 +154,7 @@ Public Function GetContactList(className As String) As String
     If className <> oInspector.Class.Name Then
         className = oInspector.Class.Name
     End If
-        If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+        If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
             Set oView = New LDE.View
             Call oView.Add(GlobalPersonFirstNameField, lkSortAscending)
             Call oView.Add(GlobalPersonLastNameField)
@@ -169,7 +169,7 @@ Public Function GetContactList(className As String) As String
                         Set oFilter = New LDE.Filter
                         Call oFilter.AddCondition(oInspector.Class.Name, lkOpEqual, oInspector.Record.ID)
                         
-                        If oFilter.HitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
+                        If oFilter.hitCount(Database.Classes(GlobalPersonSourceTab)) > 0 Then
                             Set oRecords = New LDE.Records
                             Call oRecords.Open(Database.Classes(GlobalPersonSourceTab), oFilter, oView)
                             strJSON = CreatePersonJSON(oRecords)
@@ -184,7 +184,7 @@ Public Function GetContactList(className As String) As String
                     Set oFilter = New LDE.Filter
                     Call oFilter.AddCondition(GlobalPersonSourceField, lkOpEqual, oInspector.Controls.GetValue(GlobalPersonSourceField))
                     If Not IsNull(oInspector.Controls.GetValue(GlobalPersonSourceField)) Then
-                        If oFilter.HitCount(Database.Classes("person")) > 0 Then
+                        If oFilter.hitCount(Database.Classes("person")) > 0 Then
                             Set oRecords = New LDE.Records
                             Call oRecords.Open(Database.Classes("person"), oFilter, oView)
                             
@@ -207,7 +207,7 @@ Public Function GetContactList(className As String) As String
 
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.GetContactList")
+    Call LC_UI.ShowError("GetAccept.GetContactList")
     GetContactList = ""
 End Function
 
@@ -243,7 +243,7 @@ Public Function ExampleFunction() As String
     
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.exampleFunction")
+    Call LC_UI.ShowError("GetAccept.exampleFunction")
 End Function
 
 '' A Recipient needs to have a firstname, lastname, email, phone is optional
@@ -264,7 +264,7 @@ Public Function CreatePersonJsonFromCustomSource(firstname As String, lastname A
 
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.CreatePersonJsonFromCustomSource")
+    Call LC_UI.ShowError("GetAccept.CreatePersonJsonFromCustomSource")
     CreatePersonJsonFromCustomSource = ""
 End Function
 
@@ -293,7 +293,7 @@ Public Function GetCoworkerList()
           
             Call oFilter.AddCondition("inactive", lkOpEqual, False)
             
-            If oFilter.HitCount(Database.Classes("coworker")) > 0 Then
+            If oFilter.hitCount(Database.Classes("coworker")) > 0 Then
                 Set oRecords = New LDE.Records
                 Call oRecords.Open(Database.Classes("coworker"), oFilter, oView, 10)
                 strJSON = CreatePersonJSON(oRecords)
@@ -303,7 +303,7 @@ Public Function GetCoworkerList()
 
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.GetContactList")
+    Call LC_UI.ShowError("GetAccept.GetContactList")
    
 End Function
 
@@ -362,7 +362,7 @@ Public Function CreatePersonJSON(oRecords As LDE.Records) As String
     
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.CreatePersonJSON")
+    Call LC_UI.ShowError("GetAccept.CreatePersonJSON")
 End Function
 
 Public Function ValidatePhoneNumber(phoneNumber As String) As String
@@ -384,7 +384,7 @@ Public Function ValidatePhoneNumber(phoneNumber As String) As String
      
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.ValidatePhoneNumber")
+    Call LC_UI.ShowError("GetAccept.ValidatePhoneNumber")
 End Function
 
 Public Function CheckDocuments(activeRecordId As Long, activeClass As String) As String
@@ -405,7 +405,7 @@ Public Function CheckDocuments(activeRecordId As Long, activeClass As String) As
     Call oFilter.AddOperator(lkOpAnd)
     
     If activeRecordId > 0 Then
-        If oFilter.HitCount(Application.Classes("document")) > 0 Then
+        If oFilter.hitCount(Application.Classes("document")) > 0 Then
             Call oRecords.Open(Database.Classes("document"), oFilter, oView)
             For Each oRecord In oRecords
                 i = i + 1
@@ -429,7 +429,7 @@ Public Function CheckDocuments(activeRecordId As Long, activeClass As String) As
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.CheckDocuments")
+    Call LC_UI.ShowError("GetAccept.CheckDocuments")
     CheckDocuments = False
 End Function
 
@@ -443,7 +443,7 @@ Public Function showList(sType As String) As Boolean
         Call oFilter.AddCondition(sType, lkOpEqual, ActiveInspector.Record.ID)
         Call oFilter.AddOperator(lkOpAnd)
         
-        If oFilter.HitCount(Application.Classes("document")) > 0 Then
+        If oFilter.hitCount(Application.Classes("document")) > 0 Then
             showList = True
             Exit Function
         Else
@@ -457,7 +457,7 @@ Public Function showList(sType As String) As Boolean
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.showList")
+    Call LC_UI.ShowError("GetAccept.showList")
     showList = False
 End Function
 
@@ -479,7 +479,7 @@ Public Function GetDocumentData(className As String, iddocument As Long) As Stri
     End If
     
     retval = ""
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
              If iddocument > 0 Then
                  Set oRecords = New LDE.Records
@@ -514,7 +514,7 @@ Public Function GetDocumentData(className As String, iddocument As Long) As Stri
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetDocumentData")
+    Call LC_UI.ShowError("GetAccept.GetDocumentData")
     GetDocumentData = ""
 End Function
 
@@ -556,7 +556,7 @@ Public Function GetDocumentType() As Boolean
     GetDocumentType = retval
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetDocumentType")
+    Call LC_UI.ShowError("GetAccept.GetDocumentType")
 End Function
 
 Public Function GetDocumentDescription(className As String) As String
@@ -569,7 +569,7 @@ Public Function GetDocumentDescription(className As String) As String
     Dim oInspector As New Lime.Inspector
     Set oInspector = ThisApplication.ActiveInspector
     ' The user has selected an document
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 Set oRecord = New LDE.Record
@@ -590,7 +590,7 @@ Public Function GetDocumentDescription(className As String) As String
     GetDocumentDescription = retval
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetDocumentDescription")
+    Call LC_UI.ShowError("GetAccept.GetDocumentDescription")
 End Function
 
 Public Function GetDocumentId(className As String) As String
@@ -601,7 +601,7 @@ Public Function GetDocumentId(className As String) As String
     Dim oInspector As New Lime.Inspector
     Set oInspector = ThisApplication.ActiveInspector
     ' The user has selected an document
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 GetDocumentId = oInspector.ActiveExplorer.Selection.Item(1).Record.ID
@@ -611,7 +611,7 @@ Public Function GetDocumentId(className As String) As String
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetDocumentId")
+    Call LC_UI.ShowError("GetAccept.GetDocumentId")
 End Function
 
 Public Sub SetDocumentStatus(sStatus As String, className As String)
@@ -625,7 +625,7 @@ Public Sub SetDocumentStatus(sStatus As String, className As String)
     Set oInspector = ThisApplication.ActiveInspector
     
     ' The user has selected an document
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 
@@ -643,7 +643,7 @@ Public Sub SetDocumentStatus(sStatus As String, className As String)
     
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.SetDocumentStatus")
+    Call LC_UI.ShowError("GetAccept.SetDocumentStatus")
 End Sub
 
 Public Sub OpenGALink(ByVal sLink As String)
@@ -652,7 +652,7 @@ Public Sub OpenGALink(ByVal sLink As String)
     
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.OpenGALink")
+    Call LC_UI.ShowError("GetAccept.OpenGALink")
 End Sub
 
 Private Function EncodeBase64(ByRef arrData() As Byte) As String
@@ -672,7 +672,7 @@ Private Function EncodeBase64(ByRef arrData() As Byte) As String
     
     Exit Function
 ErrorHandler:
-        UI.ShowError ("GetAccept.EncodeBase64")
+        Call LC_UI.ShowError("GetAccept.EncodeBase64")
 End Function
 
 ' ##SUMMARY Saves changes made in actionpad.
@@ -697,7 +697,7 @@ SaveOK:
 
     Exit Function
 ErrorHandler:
-    Call UI.ShowError("GetAccept.TrySave")
+    Call LC_UI.ShowError("GetAccept.TrySave")
     SaveNew = False
 End Function
 
@@ -772,7 +772,7 @@ Public Sub DownloadFile(sLink As String, sFileName As String, className As Strin
     ThisApplication.MousePointer = 1
     Exit Sub
 ErrorHandler:
-    Call UI.ShowError("GetAccept.DownloadFile")
+    Call LC_UI.ShowError("GetAccept.DownloadFile")
     ThisApplication.MousePointer = 1
 End Sub
 
@@ -785,7 +785,7 @@ Private Function AddOrCheckLocalize(sOwner As String, sCode As String, sDescript
     Call oFilter.AddCondition("code", lkOpEqual, sCode)
     oFilter.AddOperator lkOpAnd
     
-    If oFilter.HitCount(Database.Classes("localize")) = 0 Then
+    If oFilter.hitCount(Database.Classes("localize")) = 0 Then
         Debug.Print ("Localization " & sOwner & "." & sCode & " not found, creating new!")
         Dim oRec As New LDE.Record
         Call oRec.Open(Database.Classes("localize"))
@@ -800,7 +800,7 @@ Private Function AddOrCheckLocalize(sOwner As String, sCode As String, sDescript
         oRec.Value("fi") = sFI
         oRec.Value("da") = sDA
         Call oRec.Update
-    ElseIf oFilter.HitCount(Database.Classes("localize")) = 1 Then
+    ElseIf oFilter.hitCount(Database.Classes("localize")) = 1 Then
     Debug.Print ("Updating localization " & sOwner & "." & sCode)
         Call oRecs.Open(Database.Classes("localize"), oFilter)
         oRecs(1).Value("owner") = sOwner
@@ -832,7 +832,7 @@ On Error GoTo ErrorHandler
     GlobalPersonSourceField = personSourceField
 Exit Sub
 ErrorHandler:
-    Call UI.ShowError("GetAccept.personSourceTab")
+    Call LC_UI.ShowError("GetAccept.personSourceTab")
 End Sub
 
 Public Sub CreateTodo(days As Integer)
@@ -855,7 +855,7 @@ On Error GoTo ErrorHandler
     End If
 Exit Sub
 ErrorHandler:
-    Call UI.ShowError("GetAccept.CreateTodo")
+    Call LC_UI.ShowError("GetAccept.CreateTodo")
 End Sub
 
 Public Sub CreateHistory()
@@ -884,7 +884,7 @@ On Error GoTo ErrorHandler
     Call oRecordHistory.Update
 Exit Sub
 ErrorHandler:
-    Call UI.ShowError("GetAccept.CreateHistory")
+    Call LC_UI.ShowError("GetAccept.CreateHistory")
 End Sub
 
 
@@ -905,7 +905,7 @@ Public Function GetDocuments(className As String) As String
     End If
     
     ' The user has selected an document
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
         If Not oInspector.ActiveExplorer Is Nothing Then
             If oInspector.ActiveExplorer.Class.Name = "document" Then
                 Set oRecord = New LDE.Record
@@ -936,7 +936,7 @@ Public Function GetDocuments(className As String) As String
     GetDocuments = retval
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetDocuments")
+    Call LC_UI.ShowError("GetAccept.GetDocuments")
 End Function
 
 'Run Installation to get all transalations installed
@@ -965,7 +965,7 @@ Public Sub Install()
     Debug.Print "----INSTALLATION IS DONE----"
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.Install")
+    Call LC_UI.ShowError("GetAccept.Install")
 End Sub
 
 Public Function LoadLanguage(FilePath As String) As Scripting.Dictionary
@@ -991,7 +991,7 @@ Public Function LoadLanguage(FilePath As String) As Scripting.Dictionary
     Set LoadLanguage = bundle
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.LoadLanguage")
+    Call LC_UI.ShowError("GetAccept.LoadLanguage")
 End Function
 
 Public Sub AddToBundle(ByRef languageBundle As Scripting.Dictionary, ByRef nodes As MSXML2.IXMLDOMNodeList)
@@ -1009,7 +1009,7 @@ Public Sub AddToBundle(ByRef languageBundle As Scripting.Dictionary, ByRef nodes
     Next xNode
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.AddToBundle")
+    Call LC_UI.ShowError("GetAccept.AddToBundle")
 End Sub
 
 
@@ -1037,7 +1037,7 @@ Public Function SearchCoworkerByEmail(email As String) As String
             Call oFilter.AddCondition(GlobalCoworkerEmailField, lkOpLike, email)
             Call oFilter.AddOperator(lkOpAnd)
             
-            If oFilter.HitCount(Database.Classes("coworker")) > 0 Then
+            If oFilter.hitCount(Database.Classes("coworker")) > 0 Then
                 Set oRecords = New LDE.Records
                 Call oRecords.Open(Database.Classes("coworker"), oFilter, oView)
                 strJSON = CreatePersonJSON(oRecords)
@@ -1051,7 +1051,7 @@ Public Function SearchCoworkerByEmail(email As String) As String
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.SearchCoworkerByEmail")
+    Call LC_UI.ShowError("GetAccept.SearchCoworkerByEmail")
 End Function
 
 Public Sub openGaModal()
@@ -1067,7 +1067,7 @@ Public Sub openGaModal()
 
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.openGaModal")
+    Call LC_UI.ShowError("GetAccept.openGaModal")
 End Sub
 
 Public Sub showEmailDialog(emailData As String)
@@ -1076,7 +1076,7 @@ Public Sub showEmailDialog(emailData As String)
     Call openGaModal
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.showEmailDialog")
+    Call LC_UI.ShowError("GetAccept.showEmailDialog")
 End Sub
 
 Public Function GetEmailData() As String
@@ -1086,7 +1086,7 @@ Public Function GetEmailData() As String
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetEmailData")
+    Call LC_UI.ShowError("GetAccept.GetEmailData")
 End Function
 
 Public Sub StoreEmailData(emailData As String)
@@ -1095,7 +1095,7 @@ Public Sub StoreEmailData(emailData As String)
     GlobalEmailData = emailData
     Exit Sub
 ErrorHandler:
-    UI.ShowError ("GetAccept.StoreEmailData")
+   Call LC_UI.ShowError("GetAccept.StoreEmailData")
 
 End Sub
 
@@ -1131,7 +1131,7 @@ Public Function GetFileFromDisk() As String
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.Testar123")
+    Call LC_UI.ShowError("GetAccept.Testar123")
 End Function
 
 
@@ -1153,7 +1153,7 @@ Public Function GetAllDocumentsData(className As String) As String
     End If
     
     retval = "["
-    If Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
+    If LC_Globals.VerifyInspector(className, oInspector) And GetAccept.SaveNew() Then
          Set oRecord = New LDE.Record
          Set oView = New LDE.View
          Call oView.Add(GlobalDocumentField)
@@ -1183,7 +1183,8 @@ Public Function GetAllDocumentsData(className As String) As String
     
     Exit Function
 ErrorHandler:
-    UI.ShowError ("GetAccept.GetAllDocumentsData")
+    Call LC_UI.ShowError("GetAccept.GetAllDocumentsData")
     GetAllDocumentsData = ""
 End Function
+
 
